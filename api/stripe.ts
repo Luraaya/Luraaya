@@ -3,7 +3,7 @@
 
   // Support both env names
   const STRIPE_KEY = process.env.STRIPE_SECRET_KEY || process.env.VITE_STRIPE_SECRET_KEY || '';
-  const stripe = new Stripe(STRIPE_KEY, { apiVersion: '2025-06-30.basil' });
+  const stripe = new Stripe(STRIPE_KEY, { apiVersion: '2025-08-27.basil' });
 
   export default async function handler(req: any, res: any) {
     try {
