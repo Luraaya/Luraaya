@@ -274,7 +274,7 @@ async function saveHoroscopeMessage(userId, content, messageType) {
           content,
           messagetype: messageType,
           read: false,
-          sentat: new Date().toISOString(),
+          sentAt: new Date().toISOString(),
         })
         .select();
 
@@ -1032,16 +1032,16 @@ if (schedulerEnabled) {
           const messageType = mapSubscriptionTypeToMessageType(u.subscriptionType || 'daily');
           const { data: msgs, error: msgErr } = await supabase
             .from('horoscope')
-            .select('sentat')
+            .select('sentAt')
             .eq('user_id', u.id)
             .eq('messagetype', messageType)
-            .order('sentat', { ascending: false })
+            .order('sentAt', { ascending: false })
             .limit(1);
           if (msgErr) {
             console.error('Fetch last message error:', msgErr);
             continue;
           }
-          const lastSentAt = msgs?.[0]?.sentat || null;
+          const lastSentAt = msgs?.[0]?.sentAt || null;
           if (calculateIsDue(lastSentAt, u.subscriptionType || 'daily')) {
             console.log(`Sending ${messageType} to user ${u.id}`);
             await generateAndDeliverHoroscope(u.id);

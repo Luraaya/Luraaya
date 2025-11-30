@@ -224,20 +224,20 @@ async function saveHoroscopeMessage(userId: string, content: string, messageType
 
   const { data: existing, error: checkErr } = await supabase!
     .from('horoscope')
-    .select('id, sentat')
+    .select('id, sentAt')
     .eq('user_id', userId)
     .eq('messagetype', messageType)
-    .gte('sentat', since)
-    .order('sentat', { ascending: false })
+    .gte('sentAt', since)
+    .order('sentAt', { ascending: false })
     .limit(1);
   if (!checkErr && existing && existing.length > 0) {
-    console.log('Dedup: recent horoscope already exists, skipping insert', { userId, messageType, last: existing[0]?.sentat });
+    console.log('Dedup: recent horoscope already exists, skipping insert', { userId, messageType, last: existing[0]?.sentAt });
     return null;
   }
 
   const { data, error } = await supabase!
     .from('horoscope')
-    .insert({ user_id: userId, content, messagetype: messageType, read: false, sentat: now.toISOString() })
+    .insert({ user_id: userId, content, messagetype: messageType, read: false, sentAt: now.toISOString() })
     .select();
   if (error) throw error;
   return data?.[0] || null;

@@ -35,7 +35,7 @@ const DashboardHoroscopes: React.FC = () => {
     setUserMessages(
       data.map((msg) => ({
         ...msg,
-        sentAt: msg.sentat ? new Date(msg.sentat) : new Date(), // Use lowercase 'sentat' and provide fallback
+        sentAt: msg.sentAt ? new Date(msg.sentAt) : new Date(), // Use lowercase 'sentAt' and provide fallback
         messageType: msg.messagetype || 'daily_horoscope' // Use lowercase 'messagetype' and provide fallback
       }))
     );
