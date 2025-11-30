@@ -3,7 +3,7 @@ import { supabase } from "../../api/_lib/supabase";
 
 // Use server-side secret in serverless context (support both env names)
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || process.env.VITE_STRIPE_SECRET_KEY || "", {
-  apiVersion: "2025-06-30.basil",
+  apiVersion: "2025-08-27.basil",
 });
 
 // Map Stripe subscription status to our app's plan types

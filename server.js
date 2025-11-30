@@ -19,7 +19,7 @@ app.use(cors());
 app.use(express.json({ verify: (req, res, buf) => { req.rawBody = buf; } }));
 
 const stripe = new Stripe(process.env.VITE_STRIPE_SECRET_KEY || "", {
-  apiVersion: "2025-06-30.basil",
+  apiVersion: "2025-08-27.basil",
 });
 
 // Initialize Supabase client

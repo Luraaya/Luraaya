@@ -30,7 +30,7 @@ const ENV = {
 
 // Stripe client
 const stripe = new Stripe(ENV.STRIPE_SECRET_KEY, {
-  apiVersion: '2025-06-30.basil',
+  apiVersion: '2025-08-27.basil',
 });
 
 // Supabase client (service role if available for server-side updates)
