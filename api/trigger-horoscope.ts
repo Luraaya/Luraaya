@@ -121,7 +121,8 @@ async function saveMessage(userId: string, content: string, messageType: string)
   const since = new Date(now.getTime() - 10 * 60 * 1000).toISOString();
 
   const { data: existing, error: checkErr } = await supabase
-    .from<{ id: string; sentAt: string }>('horoscope')
+    .from<'horoscope', { id: string; sentAt: string }>('horoscope')
+
     .select('id, sentAt')
     .eq('user_id', userId)
     .eq('messagetype', messageType)
@@ -134,7 +135,8 @@ async function saveMessage(userId: string, content: string, messageType: string)
   }
 
   const { data, error } = await supabase
-    .from<{ id: string; sentAt: string }>('horoscope')
+    .from<'horoscope', { id: string; sentAt: string }>('horoscope')
+
 
     .insert({ user_id: userId, content, messagetype: messageType, read: false, sentAt: now.toISOString() })
     .select();
@@ -219,7 +221,8 @@ export default async function handler(req: any, res: any) {
       try {
         const msgType = mapSubscriptionTypeToMessageType(u.subscriptionType || 'daily');
         const { data: last, error: lastErr } = await supabase
-          .from<{ id: string; sentAt: string }>('horoscope')
+          .from<'horoscope', { id: string; sentAt: string }>('horoscope')
+
 
           .select('sentAt')
           .eq('user_id', u.id)

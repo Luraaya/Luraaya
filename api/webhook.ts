@@ -223,7 +223,8 @@ async function saveHoroscopeMessage(userId: string, content: string, messageType
   const since = new Date(now.getTime() - 10 * 60 * 1000).toISOString();
 
   const { data: existing, error: checkErr } = await supabase!
-    .from<{ id: string; sentAt: string }>('horoscope')
+    .from<'horoscope', { id: string; sentAt: string }>('horoscope')
+
     .select('id, sentAt')
     .eq('user_id', userId)
     .eq('messagetype', messageType)
@@ -236,7 +237,8 @@ async function saveHoroscopeMessage(userId: string, content: string, messageType
   }
 
   const { data, error } = await supabase!
-    .from<{ id: string; sentAt: string }>('horoscope')
+    .from<'horoscope', { id: string; sentAt: string }>('horoscope')
+
     .insert({ user_id: userId, content, messagetype: messageType, read: false, sentAt: now.toISOString() })
     .select();
   if (error) throw error;
