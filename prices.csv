@@ -1,0 +1,13 @@
+Price ID,Product ID,Product Name,Amount,Currency,Interval
+price_1RpaegFYjVV07eHjdhXh1EYn,prod_Sl6spCoQfzkHfP,DailyBasicMonthly,24.00,chf,month
+price_1RpaeeFYjVV07eHjwuuwRtDV,prod_Sl6srO3aSpptQc,DailyBasicYearly,229.00,chf,year
+price_1RpaeZFYjVV07eHjvznjTs7Q,prod_Sl6sG9z260FGep,DailyPremiumMonthly,46.00,chf,month
+price_1RpaeWFYjVV07eHjJqQfPAcV,prod_Sl6sLwSCMn8llk,DailyPremiumYearly,439.00,chf,year
+price_1RpaeTFYjVV07eHjI4B91Hzy,prod_Sl6spYcyN9rOXg,MonthlyBasicMonthly,16.00,chf,month
+price_1RpaePFYjVV07eHjyEkFHPfy,prod_Sl6sXtdjYpuv6E,MonthlyBasicYearly,149.00,chf,year
+price_1RpaeMFYjVV07eHjQ93vIVQd,prod_Sl6svqKkhhtNpB,MonthlyPremiumMonthly,30.00,chf,month
+price_1RpaeKFYjVV07eHjpv50IbEV,prod_Sl6sPqmIjbwv8K,MonthlyPremiumYearly,289.00,chf,year
+price_1RpaeHFYjVV07eHjOXUxCp8m,prod_Sl6sGNPTKFrdPv,WeeklyBasicMonthly,19.00,chf,month
+price_1RpaeEFYjVV07eHjXENNGhnT,prod_Sl6rvCeiwZUDVI,WeeklyPremiumMonthly,36.00,chf,month
+price_1RpaeBFYjVV07eHjyGgVU1V4,prod_Sl6rFwMjEFrXJe,WeeklyBasicYearly,179.00,chf,year
+price_1Rpae7FYjVV07eHjosTrUhyV,prod_Sl6rH64IaPmc7P,WeeklyPremiumYearly,349.00,chf,year

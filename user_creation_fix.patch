@@ -1,0 +1,25 @@
+--- a/src/components/landing/SignupForm.tsx
++++ b/src/components/landing/SignupForm.tsx
+@@ -357,10 +357,20 @@
+       }
+ 
+       // Create user record
+-        await supabase.from("users").insert({
++        const { error: insertError } = await supabase.from("users").insert({
+           id: data.user.id,
+           email: data.user.email,
+           fullname: data.user.user_metadata.fullname || "",
+           language: currentLanguage,
+         });
++
++        if (insertError) {
++          console.error("Error creating user record:", insertError);
++          setPasswordError("Failed to create user profile. Please try again.");
++          setLoading(false);
++          return;
++        }
++
++        console.log("User record created successfully for:", data.user.email);
+ 
+       // Proceed with subscription for new user
+       await proceedWithSubscription(data.user.id, data.user.email);

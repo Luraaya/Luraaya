@@ -1,0 +1,9 @@
+/dist
+/node_modules
+/build.env
+.vercel
+.env
+.env
+.vscode/
+*.backup
+test-stripe-api.js
