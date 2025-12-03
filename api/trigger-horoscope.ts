@@ -121,24 +121,21 @@ async function saveMessage(userId: string, content: string, messageType: string)
   const since = new Date(now.getTime() - 10 * 60 * 1000).toISOString();
 
   const { data: existing, error: checkErr } = await supabase
-    .from<'horoscope', { id: string; sentAt: string }>('horoscope')
-
-    .select('id, sentAt')
+    .from('horoscope')
+    .select('id, sentat')
     .eq('user_id', userId)
     .eq('messagetype', messageType)
-    .gte('sentAt', since)
-    .order('sentAt', { ascending: false })
+    .gte('sentat', since)
+    .order('sentat', { ascending: false })
     .limit(1);
   if (!checkErr && existing && existing.length > 0) {
-    console.log('Dedup (trigger): recent horoscope exists, skip', { userId, messageType, last: existing[0]?.sentAt });
+    console.log('Dedup (trigger): recent horoscope exists, skip', { userId, messageType, last: existing[0]?.sentat });
     return null;
   }
 
   const { data, error } = await supabase
-    .from<'horoscope', { id: string; sentAt: string }>('horoscope')
-
-
-    .insert({ user_id: userId, content, messagetype: messageType, read: false, sentAt: now.toISOString() })
+    .from('horoscope')
+    .insert({ user_id: userId, content, messagetype: messageType, read: false, sentat: now.toISOString() })
     .select();
   if (error) throw error;
   return data?.[0] || null;
@@ -221,16 +218,14 @@ export default async function handler(req: any, res: any) {
       try {
         const msgType = mapSubscriptionTypeToMessageType(u.subscriptionType || 'daily');
         const { data: last, error: lastErr } = await supabase
-          .from<'horoscope', { id: string; sentAt: string }>('horoscope')
-
-
-          .select('sentAt')
+          .from('horoscope')
+          .select('sentat')
           .eq('user_id', u.id)
           .eq('messagetype', msgType)
-          .order('sentAt', { ascending: false })
+          .order('sentat', { ascending: false })
           .limit(1);
         if (lastErr) { console.warn('Fetch last message error for', u.id, lastErr); continue; }
-        const lastSentAt = last?.[0]?.sentAt || null;
+        const lastSentAt = last?.[0]?.sentat || null;
         if (!calculateIsDue(lastSentAt, u.subscriptionType || 'daily')) continue;
 
         const { data: fullUser, error: userErr } = await supabase.from('users').select('*').eq('id', u.id).maybeSingle();

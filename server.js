@@ -1031,8 +1031,7 @@ if (schedulerEnabled) {
         try {
           const messageType = mapSubscriptionTypeToMessageType(u.subscriptionType || 'daily');
           const { data: msgs, error: msgErr } = await supabase
-            .from<'horoscope', { id: string; sentAt: string }>('horoscope')
-
+            .from('horoscope')
             .select('sentAt')
             .eq('user_id', u.id)
             .eq('messagetype', messageType)
