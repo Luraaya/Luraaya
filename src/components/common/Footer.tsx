@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Container from "./Container";
-import { Mail, Twitter, Linkedin, Github, Send } from "lucide-react";
+import { Mail, Instagram, Send } from "lucide-react";
 import LanguageSelector from "./LanguageSelector";
 import { useLanguage } from "../../contexts/LanguageContext";
+
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -39,40 +40,29 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-gray-900 text-white pt-16 pb-8">
-      <Container>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-          <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-teal-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">AM</span>
-              </div>
-              <span className="text-xl font-bold text-white">Luraaya</span>
-            </div>
+<Container>
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div>
+          <div className="flex items-center space-x-2 mb-4">
+            <span className="text-xl font-bold text-white">Luraaya</span>
+          </div>
+
             <p className="text-gray-400 mb-4">{t("footer.content")}</p>
             <div className="flex space-x-4">
+
               <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <Twitter size={20} />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <Linkedin size={20} />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <Github size={20} />
-              </a>
-              <a
-                href="mailto:info@personalmsg.com"
+                href="mailto:luraaya@outlook.com"
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 <Mail size={20} />
+              </a>
+              <a
+                href="https://www.instagram.com/luraaya.official/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <Instagram size={20} />
               </a>
             </div>
           </div>
