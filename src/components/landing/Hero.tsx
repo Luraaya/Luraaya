@@ -44,7 +44,7 @@ const Hero: React.FC = () => {
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
               <a href="#signup">
                 <Button size="lg">
-                  {t("hero.cta")} <ArrowRight size={16} className="ml-2" />
+                  {t("hero.cta")} 
                 </Button>
               </a>
               <a href="#features">

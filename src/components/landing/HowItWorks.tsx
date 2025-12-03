@@ -3,6 +3,7 @@
  * Displays the three-step process of how Luraaya works
  */
 
+
 import React from 'react';
 import Container from '../common/Container';
 import { useLanguage } from '../../contexts/LanguageContext';

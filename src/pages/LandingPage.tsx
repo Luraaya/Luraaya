@@ -15,10 +15,10 @@ const LandingPage: React.FC = () => {
       <SignupForm />
       {/* 3. Cosmic Insights Tailored for You section (Features) */}
       <Features />
-      {/* 4. How Luraaya Works section */}
-      <HowItWorks />
+      {/* 4. How Luraaya Works section - aktuell ausgeblendet */}
+      {/* <HowItWorks /> */}
       {/* 5. Loved by Cosmic Seekers section (Testimonials) */}
-      <Testimonials />
+      {/*<Testimonials />*/}
     </Layout>
   );
 };

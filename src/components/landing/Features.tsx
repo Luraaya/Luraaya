@@ -31,6 +31,7 @@ const Features: React.FC = () => {
       descriptionKey: 'features.multiChannel.description',
       icon: MessageSquare
     },
+    /*
     {
       id: '4',
       titleKey: 'features.lunarTracking.title',
@@ -49,6 +50,7 @@ const Features: React.FC = () => {
       descriptionKey: 'features.secure.description',
       icon: Shield
     }
+      */
   ];
 
   return (

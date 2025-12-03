@@ -168,17 +168,18 @@ const getTranslations = () => {
       "features.description3":
         "This results in personal, guiding insights that support your decisions and strengthen your development.",
 
-      // Individual Feature Translations
-      "features.personalizedChart.title": "Personalized Birth Chart Analysis",
+      // Kacheln Wie es funktioniert
+      "features.personalizedChart.title":
+        "1. Enter your birth details",
       "features.personalizedChart.description":
-        "Get detailed insights based on your exact birth time, date, and location for precise astrological readings.",
-      "features.dailyUpdates.title": "Daily Cosmic Updates",
+        "Enter your birth date, time and place. These details form the foundation for the astrological calculation of your personal profile.",
+      "features.dailyUpdates.title": "2. Cosmic analysis",
       "features.dailyUpdates.description":
-        "Receive daily horoscopes and planetary transit notifications tailored to your unique astrological profile.",
-      "features.multiChannel.title": "Multi-Channel Delivery",
+        "We connect your information with the current planetary configurations. This creates deep astrological patterns analysed for you, revealing the forces that shape, inspire or challenge you at this moment.",
+      "features.multiChannel.title": "3. Receive your personal message",
       "features.multiChannel.description":
-        "Choose how you want to receive your cosmic insights - via email or SMS.",
-      "features.lunarTracking.title": "Lunar Cycle Tracking",
+        "Based on the analysis, you receive current and perfectly tailored guidance for your life path. These insights support your decisions and strengthen your personal growth. Delivered by e-mail or SMS, in the rhythm you choose: daily, weekly or monthly.",
+      /*"features.lunarTracking.title": "Lunar Cycle Tracking",
       "features.lunarTracking.description":
         "Stay aligned with lunar phases and their influence on your zodiac sign for optimal timing.",
       "features.compatibility.title": "Compatibility Insights",
@@ -187,7 +188,8 @@ const getTranslations = () => {
       "features.secure.title": "Secure & Private",
       "features.secure.description":
         "Your birth data and personal information are encrypted and never shared with third parties.",
-
+      */
+      /*
       "features.howItWorks": "How Luraaya Works",
       "features.step1.title": "Share Your Birth Details",
       "features.step1.description":
@@ -200,6 +202,7 @@ const getTranslations = () => {
         "Get personalized astrological messages delivered on your schedule",
       "features.deliveryChannels":
         "Choose your preferred way to receive cosmic insights",
+        */
 
       // Testimonials
       "testimonials.title": "Loved by Cosmic Seekers",
@@ -484,18 +487,18 @@ const getTranslations = () => {
       "features.description3":
         "Daraus entstehen persönliche, richtungsweisende Hinweise, die deine Entscheidungen unterstützen und deine Entwicklung stärken.",
 
-      // Individual Feature Translations
+      // Kacheln Wie es funktioniert
       "features.personalizedChart.title":
-        "Personalisierte Geburtshoroskop-Analyse",
+        "1. Geburtsdaten erfassen",
       "features.personalizedChart.description":
-        "Erhalte detaillierte Einblicke basierend auf Deiner genauen Geburtszeit, Datum und Ort für präzise astrologische Lesungen.",
-      "features.dailyUpdates.title": "Tägliche kosmische Updates",
+        "Gib dein Geburtsdatum, die genaue Zeit und den Geburtsort ein. Diese Angaben bilden die Grundlage für die astrologische Berechnung deines persönlichen Profils.",
+      "features.dailyUpdates.title": "2. Kosmische Analyse",
       "features.dailyUpdates.description":
-        "Erhalte tägliche Horoskope und planetarische Transit-Benachrichtigungen, die auf Ihr einzigartiges astrologisches Profil zugeschnitten sind.",
-      "features.multiChannel.title": "Multi-Kanal-Zustellung",
+        "Wir verbinden deine Angaben mit den aktuellen planetaren Konstellationen. So entstehen tiefgehende astrologische Muster, die für dich ausgewertet werden. Sie zeigen Dir, welche Kräfte dich im Moment formen, inspirieren oder herausfordern.",
+      "features.multiChannel.title": "3. Deine persönliche Botschaft erhalten",
       "features.multiChannel.description":
-        "Wähle, wie Du Deine kosmischen Einblicke erhalten möchten - per E-Mail oder SMS.",
-      "features.lunarTracking.title": "Mondphasen-Verfolgung",
+        "Auf Basis der Analyse ergeben sich aktuelle und perfekt auf dich abgestimmte Hinweise für deinen Lebensweg. Sie werden deine Entscheidungen unterstützen und deine Entwicklung stärken. Per Mail oder SMS und in Deinem Rhytmus: Täglich, Wöchentlich oder Monatlich.",
+      /*"features.lunarTracking.title": "Mondphasen-Verfolgung",
       "features.lunarTracking.description":
         "Bleibe mit den Mondphasen und Dem Einfluss auf Dein Sternzeichen für optimales Timing ausgerichtet.",
       "features.compatibility.title": "Kompatibilitäts-Einblicke",
@@ -503,8 +506,8 @@ const getTranslations = () => {
         "Verstehe deine Beziehungen besser mit personalisierten Kompatibilitäts-Lesungen und Ratschlägen.",
       "features.secure.title": "Sicher & Privat",
       "features.secure.description":
-        "Deine Geburtsdaten und persönlichen Informationen sind verschlüsselt und werden niemals mit Dritten geteilt.",
-
+        "Deine Geburtsdaten und persönlichen Informationen sind verschlüsselt und werden niemals mit Dritten geteilt.",*/
+      /*
       "features.howItWorks": "Wie Luraaya funktioniert",
       "features.step1.title": "Teile Deine Geburtsdaten",
       "features.step1.description":
@@ -517,6 +520,7 @@ const getTranslations = () => {
         "Erhalten  personalisierte astrologische Nachrichten nach Deinem Zeitplan",
       "features.deliveryChannels":
         "Wähle Deine bevorzugte Art, kosmische Einblicke zu erhalten",
+        */
 
       // Testimonials
       "testimonials.title": "Geliebt von kosmischen Suchenden",
@@ -807,18 +811,18 @@ const getTranslations = () => {
       "features.description3":
         "Il en résulte des indications personnelles et déterminantes qui soutiennent tes décisions et renforcent ton développement.",
         
-      // Individual Feature Translations
+      // Kacheln Wie es funktioniert
       "features.personalizedChart.title":
-        "Analyse personnalisée du thème natal",
+      "1. Saisir les données de naissance",
       "features.personalizedChart.description":
-        "Obtenez des aperçus détaillés basés sur votre heure, date et lieu de naissance exacts pour des lectures astrologiques précises.",
-      "features.dailyUpdates.title": "Mises à jour cosmiques quotidiennes",
+      "Indique ta date, ton heure et ton lieu de naissance. Ces informations constituent la base du calcul astrologique de ton profil personnel.",
+      "features.dailyUpdates.title": "2. Analyse cosmique",
       "features.dailyUpdates.description":
-        "Recevez des horoscopes quotidiens et des notifications de transit planétaire adaptés à votre profil astrologique unique.",
-      "features.multiChannel.title": "Livraison multi-canal",
+      "Nous relions tes informations aux configurations planétaires actuelles. Il en résulte des schémas astrologiques profonds analysés pour toi. Ils révèlent les forces qui, en ce moment, te façonnent, t’inspirent ou te mettent au défi.",
+      "features.multiChannel.title": "3. Recevoir ton message personnel",
       "features.multiChannel.description":
-        "Choisissez comment vous voulez recevoir vos aperçus cosmiques - par e-mail ou SMS.",
-      "features.lunarTracking.title": "Suivi du cycle lunaire",
+      "À partir de l’analyse, nous créons des indications actuelles et parfaitement adaptées à ton chemin de vie. Elles soutiennent tes décisions et renforcent ton développement. Par e-mail ou SMS et selon ton rythme : quotidien, hebdomadaire ou mensuel.",
+      /*"features.lunarTracking.title": "Suivi du cycle lunaire",
       "features.lunarTracking.description":
         "Restez aligné avec les phases lunaires et leur influence sur votre signe du zodiaque pour un timing optimal.",
       "features.compatibility.title": "Aperçus de compatibilité",
@@ -827,7 +831,8 @@ const getTranslations = () => {
       "features.secure.title": "Sécurisé et privé",
       "features.secure.description":
         "Vos données de naissance et informations personnelles sont cryptées et jamais partagées avec des tiers.",
-
+        */
+      /*
       "features.howItWorks": "Comment fonctionne Luraaya",
       "features.step1.title": "Partagez vos détails de naissance",
       "features.step1.description":
@@ -840,6 +845,7 @@ const getTranslations = () => {
         "Obtenez des messages astrologiques personnalisés livrés selon votre horaire",
       "features.deliveryChannels":
         "Choisissez votre façon préférée de recevoir des aperçus cosmiques",
+        */
 
       // Testimonials
       "testimonials.title": "Aimé par les chercheurs cosmiques",
