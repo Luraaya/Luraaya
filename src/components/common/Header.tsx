@@ -136,13 +136,6 @@ const Header: React.FC = () => {
                 >
                   {t("nav.contact")}
                 </a>
-                <a
-                  href="#footer"
-                  className="text-gray-700 hover:text-purple-600 transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {t("nav.contact")}
-                </a>
 
                 {user && (
                   <Link
