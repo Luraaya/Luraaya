@@ -71,8 +71,17 @@ const Hero: React.FC = () => {
           <div className="w-full lg:w-1/2 relative">
             <div className="relative bg-white rounded-xl shadow-xl p-6 max-w-md mx-auto transition-transform duration-300 hover:scale-105">
               {/* New message indicator */}
-              <div className="absolute -top- -right-0 bg-teal-500 text-white text-sm px-12 py-3 rounded-l-full flex items-center justify-start">
-
+              <div
+                className="
+                  bg-teal-500 text-white text-sm font-medium
+                  px-6 py-2
+                  w-full text-center
+                  rounded-full
+                  md:w-auto md:px-8 md:py-2
+                  md:absolute md:top-4 md:right-4
+                  md:rounded-l-full md:rounded-r-none
+                "
+              >
                 {t("hero.newReading")}
               </div>
 

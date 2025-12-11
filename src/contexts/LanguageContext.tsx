@@ -117,6 +117,7 @@ const getTranslations = () => {
       "nav.howItWorks": "How It Works",
       "nav.pricing": "Pricing",
       "nav.reviews": "Reviews",
+      "nav.contact": "Contact",
       "nav.getStarted": "Get Started",
       "nav.dashboard": "Dashboard",
       "nav.login": "Log in",
@@ -143,7 +144,7 @@ const getTranslations = () => {
       "hero.title": "Your Personal",
       "hero.titleHighlight": "Horoscope",
       "hero.description":
-        "We analyze the cosmic patterns and provide you with guidance for your life path.",
+      "Insights to guide your life path.",
       "hero.cta": "Receive your personal insights now",
       "hero.learnMore": "How It Works",
       "hero.rating": "",
@@ -246,10 +247,10 @@ const getTranslations = () => {
         "Monthly astrologer consultation",
       "signup.planFeatures.premium.priority": "Priority support",
       "signup.planFeatures.premium.timing": "Custom timing recommendations",
-      "signup.step1.title": "Choose Your Preferences",
-      "signup.step1.description":
+      "signup.step1.title": "How would you like to receive your horoscope?",
+      /*"signup.step1.description":
         "How would you like to receive your cosmic insights?",
-      "signup.step2.title": "Personal Information",
+      "signup.step2.title": "Personal Information",*/
       "signup.step2.description": "Tell us about yourself",
       "signup.step3.title": "Birth Information",
       "signup.step3.description":
@@ -437,6 +438,7 @@ const getTranslations = () => {
       "nav.pricing": "Preise",
       "nav.reviews": "Bewertungen",
       "nav.getStarted": "Loslegen",
+      "nav.contact": "Kontakt",
       "nav.dashboard": "Dashboard",
       "nav.login": "Anmelden",
       "nav.signup": "Registrieren",
@@ -462,7 +464,7 @@ const getTranslations = () => {
       "hero.title": "Dein persönliches",
       "hero.titleHighlight": "Horoskop",
       "hero.description":
-        "Wir analysieren die kosmischen Zusammenhänge und geben Dir Hinweise für Deinen Lebensweg.",
+      "Hinweise für deinen Lebensweg.",
       "hero.cta": "Jetzt persönliche Botschaft erhalten",
       "hero.learnMore": "Wie es funktioniert",
       "hero.rating": " ",
@@ -568,9 +570,9 @@ const getTranslations = () => {
       "signup.planFeatures.premium.priority": "Prioritäts-Support",
       "signup.planFeatures.premium.timing":
         "Benutzerdefinierte Timing-Empfehlungen",
-      "signup.step1.title": "Wähle Deine Präferenzen",
-      "signup.step1.description":
-        "Wie möchtest Du dein Horoskop Einblicke erhalten?",
+      "signup.step1.title": "Wie möchtest du dein Horoskop erhalten?",
+      /*"signup.step1.description":
+        "Wie möchtest du dein Horoskop erhalten?",*/
       "signup.step2.title": "Persönliche Informationen",
       "signup.step2.description": "Erzähle uns von Dir",
       "signup.step3.title": "Geburtsinformationen",
@@ -761,6 +763,7 @@ const getTranslations = () => {
       "nav.pricing": "Prix",
       "nav.reviews": "Èvaluations",
       "nav.getStarted": "Commencer",
+      "nav.contact": "Contact",
       "nav.dashboard": "Tableau de bord",
       "nav.login": "Se connecter",
       "nav.signup": "S'inscrire",
@@ -786,7 +789,7 @@ const getTranslations = () => {
       "hero.title": "Ton",
       "hero.titleHighlight": "horoscope personnel",
       "hero.description":
-        "Nous analysons les liens cosmiques et te donnons des indications pour ton chemin de vie.",
+        "Des éclairages pour ton chemin de vie.",
       "hero.cta": "Reçois maintenant tes indications personnelles",
       "hero.learnMore": "Comment ça marche",
       "hero.rating": " ",
@@ -892,9 +895,9 @@ const getTranslations = () => {
       "signup.planFeatures.premium.priority": "Support prioritaire",
       "signup.planFeatures.premium.timing":
         "Recommandations de timing personnalisées",
-      "signup.step1.title": "Choisissez vos préférences",
-      "signup.step1.description":
-        "Comment souhaitez-vous recevoir vos aperçus cosmiques ?",
+      "signup.step1.title": "Comment souhaites-tu recevoir ton horoscope ?",
+      /*"signup.step1.description":
+        "dd",*/
       "signup.step2.title": "Informations personnelles",
       "signup.step2.description": "Parlez-nous de vous",
       "signup.step3.title": "Informations de naissance",

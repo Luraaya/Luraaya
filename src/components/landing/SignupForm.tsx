@@ -610,16 +610,16 @@ const SignupForm: React.FC = () => {
                       {t("signup.step1.title")}
                     </h3>
                     <p className="text-gray-600">
-                      {t("signup.step1.description")}
+                      {/*t("signup.step1.description")*/}
                     </p>
                   </div>
 
                   {/* Communication Channel Selection */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-3">
+                    <label className="block text-lg font-medium text-gray-00 mb-3">
                       {t("signup.communicationChannel")}
                     </label>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {Object.values(CommunicationChannel)
                         .filter((c) => c !== CommunicationChannel.WHATSAPP)
                         .map((channel) => (
@@ -633,7 +633,7 @@ const SignupForm: React.FC = () => {
                             className="sr-only"
                           />
                           <div
-                            className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${
+                            className={`border-2 rounded-lg p-4 cursor-pointer transition-all h-20 flex flex-col justify-center ${
                               formData.communicationChannel === channel
                                 ? "border-purple-500 bg-purple-50"
                                 : "border-gray-200 hover:border-gray-300"
@@ -658,7 +658,7 @@ const SignupForm: React.FC = () => {
 
                   {/* Frequency Selection */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-3">
+                    <label className="block text-lg font-medium text-gray-00 mb-3">
                       {t("signup.messageFrequency")}
                     </label>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -673,7 +673,7 @@ const SignupForm: React.FC = () => {
                             className="sr-only"
                           />
                           <div
-                            className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${
+                            className={`border-2 rounded-lg p-4 cursor-pointer transition-all h-20 flex flex-col justify-center ${
                               formData.subscriptionType === type
                                 ? "border-purple-500 bg-purple-50"
                                 : "border-gray-200 hover:border-gray-300"

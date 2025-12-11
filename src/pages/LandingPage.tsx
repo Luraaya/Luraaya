@@ -6,6 +6,7 @@ import HowItWorks from "../components/landing/HowItWorks";
 import Testimonials from "../components/landing/Testimonials";
 import SignupForm from "../components/landing/SignupForm";
 
+
 const LandingPage: React.FC = () => {
   return (
     <Layout>

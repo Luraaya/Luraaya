@@ -31,29 +31,31 @@ const Header: React.FC = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <a
+              href="#signup"
+              className="text-gray-700 hover:text-purple-600 transition-colors"
+            >
+              {t("nav.getStarted")}
+            </a>
+            <a
               href="#features"
               className="text-gray-700 hover:text-purple-600 transition-colors"
             >
               {t("nav.howItWorks")}
             </a>
             <a
-              href="#pricing"
+              href="#signup"
               className="text-gray-700 hover:text-purple-600 transition-colors"
             >
               {t("nav.pricing")}
             </a>
+            {/* Contact */}
             <a
-              href="#testimonials"
+              href="#footer"
               className="text-gray-700 hover:text-purple-600 transition-colors"
             >
-              {t("nav.reviews")}
+              {t("nav.contact")}
             </a>
-            <a
-              href="#signup"
-              className="text-gray-700 hover:text-purple-600 transition-colors"
-            >
-              {t("nav.getStarted")}
-            </a>
+
             {user && (
               <Link
                 to="/dashboard"
