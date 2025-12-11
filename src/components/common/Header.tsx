@@ -109,6 +109,13 @@ const Header: React.FC = () => {
             <div className="fixed top-18 left-0 right-0 z-50 bg-white shadow-lg rounded-b-2xl p-6 animate-dropdown">
               <nav className="flex flex-col space-y-4">
                 <a
+                  href="#signup"
+                  className="text-gray-700 hover:text-purple-600 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {t("nav.getStarted")}
+                </a>
+                <a
                   href="#features"
                   className="text-gray-700 hover:text-purple-600 transition-colors"
                   onClick={() => setIsMenuOpen(false)}
@@ -116,26 +123,27 @@ const Header: React.FC = () => {
                   {t("nav.howItWorks")}
                 </a>
                 <a
-                  href="#pricing"
+                  href="#signup"
                   className="text-gray-700 hover:text-purple-600 transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {t("nav.pricing")}
                 </a>
                 <a
-                  href="#testimonials"
+                  href="#footer"
                   className="text-gray-700 hover:text-purple-600 transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {t("nav.reviews")}
+                  {t("nav.contact")}
                 </a>
                 <a
-                  href="#signup"
+                  href="#footer"
                   className="text-gray-700 hover:text-purple-600 transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {t("nav.getStarted")}
+                  {t("nav.contact")}
                 </a>
+
                 {user && (
                   <Link
                     to="/dashboard"
