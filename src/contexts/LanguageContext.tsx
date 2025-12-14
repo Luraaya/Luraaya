@@ -152,7 +152,7 @@ const getTranslations = () => {
       "hero.insights": " ",
       "hero.newReading": "New message",
       "hero.dailyReading": "",
-      "hero.personalizedFor": "Personalized for Laura",
+      "hero.personalizedFor": "Personalized for Laura R.",
 
       // Hero Sample Message Content
       "hero.sampleMessage.title": "Your Daily Horoscope",
@@ -224,29 +224,30 @@ const getTranslations = () => {
 
       // Signup Form
       "signup.title": "Begin Your Cosmic Journey",
-      "signup.description":
-        " ",
-      "signup.freeTrialNote":
-        "All plans include 7-day free trial. No credit card required to start.",
-      "signup.guarantees": "✓ Cancel anytime",
+      "signup.description": " ",
+      "signup.freeTrialNote": " ",
+      "signup.guarantees": "✓ Flexible plans",
       "signup.securePayments": "✓ Secure payments",
-      "signup.support": "✓ 24/7 support",
-      "signup.planFeatures.basic.perfect": "Perfect for getting started",
+      "signup.support": "✓ Swiss company",
+
+      "signup.planFeatures.basic.perfect": " ",
       "signup.planFeatures.premium.complete":
-        "Complete astrological experience",
-      "signup.planFeatures.basic.horoscopes": "Personalized horoscopes",
-      "signup.planFeatures.basic.birthChart": "Birth chart analysis",
-      "signup.planFeatures.basic.lunar": "Lunar phase notifications",
-      "signup.planFeatures.basic.compatibility": "Basic compatibility insights",
-      "signup.planFeatures.basic.support": "Email support",
-      "signup.planFeatures.premium.everything": "Everything in Basic",
-      "signup.planFeatures.premium.advanced": "Advanced birth chart analysis",
-      "signup.planFeatures.premium.transit": "Planetary transit alerts",
-      "signup.planFeatures.premium.detailed": "Detailed compatibility readings",
+        " ",
+
+      "signup.planFeatures.basic.horoscopes": "Personal horoscope",
+      "signup.planFeatures.basic.birthChart": "Interpretation of your zodiac sign",
+      "signup.planFeatures.basic.lunar": "Planets and current transits",
+      "signup.planFeatures.basic.compatibility": "Astrological birth configuration",
+      "signup.planFeatures.basic.support": "Key astrological insights",
+
+      "signup.planFeatures.premium.everything": "In-depth, personal horoscope",
+      "signup.planFeatures.premium.advanced": "Interpretation of your zodiac sign",
+      "signup.planFeatures.premium.transit": "Planets and current transits",
+      "signup.planFeatures.premium.detailed": "Astrological birth configuration",
       "signup.planFeatures.premium.consultation":
-        "Monthly astrologer consultation",
-      "signup.planFeatures.premium.priority": "Priority support",
-      "signup.planFeatures.premium.timing": "Custom timing recommendations",
+        "Life areas based on astrological houses",
+      "signup.planFeatures.premium.priority": "Moon phases and emotional cycles",
+      "signup.planFeatures.premium.timing": "Advanced insights and guidance",
       "signup.step1.title": "How would you like to receive your horoscope?",
       /*"signup.step1.description":
         "How would you like to receive your cosmic insights?",
@@ -279,8 +280,8 @@ const getTranslations = () => {
       "signup.monthly": "Monthly",
       "signup.yearly": "Yearly",
       "signup.save": "Save",
-      "signup.basicPlan": "Basic Plan",
-      "signup.premiumPlan": "Premium Plan",
+      "signup.basicPlan": "Basic",
+      "signup.premiumPlan": "Premium",
       "signup.mostPopular": "Most Popular",
       "signup.previous": "Previous",
       "signup.nextStep": "Next Step",
@@ -472,7 +473,7 @@ const getTranslations = () => {
       "hero.insights": " ",
       "hero.newReading": "Neue Botschaft",
       "hero.dailyReading": " ",
-      "hero.personalizedFor": "Personalisiert für Laura",
+      "hero.personalizedFor": "Personalisiert für Laura R.",
 
       // Hero Sample Message Content
       "hero.sampleMessage.title": "Dein Tageshoroskop",
@@ -543,33 +544,34 @@ const getTranslations = () => {
 
       // Signup Form
       "signup.title": "Beginne Deine kosmische Reise",
-      "signup.description":
-        " ",
-      "signup.freeTrialNote":
-        " ",
-      "signup.guarantees": "✓ Jederzeit kündbar",
+      "signup.description":   " ",
+      "signup.freeTrialNote":  " ",
+      "signup.guarantees": "✓ Flexible Laufzeiten",
       "signup.securePayments": "✓ Sichere Zahlungen",
-      "signup.support": "✓ Vertrauensvoller Support",
-      "signup.planFeatures.basic.perfect": "Perfekt für den Einstieg",
+      "signup.support": "✓ Schweizer Unternehmen",
+      
+      "signup.planFeatures.basic.perfect": " ",
       "signup.planFeatures.premium.complete":
-        "Vollständige astrologische Erfahrung",
-      "signup.planFeatures.basic.horoscopes": "Personalisierte Horoskope",
-      "signup.planFeatures.basic.birthChart": "Geburtshoroskop-Analyse",
-      "signup.planFeatures.basic.lunar": "Mondphasen-Benachrichtigungen",
+        " ",
+      "signup.planFeatures.basic.horoscopes": "Persönliches Horoskop",
+      "signup.planFeatures.basic.birthChart": "Deutung deines Sternzeichens",
+      "signup.planFeatures.basic.lunar": "Planeten und aktuelle Transite",
       "signup.planFeatures.basic.compatibility":
-        "Grundlegende Kompatibilitäts-Einblicke",
-      "signup.planFeatures.basic.support": "E-Mail-Support",
-      "signup.planFeatures.premium.everything": "Alles aus Basic",
+        "Astrologische Geburtskonstellation",
+      "signup.planFeatures.basic.support": "Zentrale astrologische Hinweise",
+
+      "signup.planFeatures.premium.everything": "Tiefgehendes, persönliches Horoskop",
       "signup.planFeatures.premium.advanced":
-        "Erweiterte Geburtshoroskop-Analyse",
-      "signup.planFeatures.premium.transit": "Planetarische Transit-Warnungen",
+        "Deutung deines Sternzeichens",
+      "signup.planFeatures.premium.transit": "Planeten und aktuelle Transite",
       "signup.planFeatures.premium.detailed":
-        "Detaillierte Kompatibilitäts-Lesungen",
+        "Astrologische Geburtskonstellation",
       "signup.planFeatures.premium.consultation":
-        "Monatliche Astrologen-Beratung",
-      "signup.planFeatures.premium.priority": "Prioritäts-Support",
+        "Lebensbereiche nach astrologischen Häusern",
+      "signup.planFeatures.premium.priority": "Mondphasen und emotionale Zyklen",
       "signup.planFeatures.premium.timing":
-        "Benutzerdefinierte Timing-Empfehlungen",
+        "Vertiefte Hinweise und Orientierung",
+
       "signup.step1.title": "Wie möchtest du dein Horoskop erhalten?",
       /*"signup.step1.description":
         "Wie möchtest du dein Horoskop erhalten?",*/
@@ -603,9 +605,10 @@ const getTranslations = () => {
       "signup.monthly": "Monatlich",
       "signup.yearly": "Jährlich",
       "signup.save": "Speichern",
-      "signup.basicPlan": "Basis-Einblicke",
-      "signup.premiumPlan": "Premium-Plan",
-      "signup.mostPopular": "Am beliebtesten",
+
+      "signup.basicPlan": "Basis",
+      "signup.premiumPlan": "Premium",
+      "signup.mostPopular": "Empfehlung",
       "signup.previous": "Zurück",
       "signup.nextStep": "Nächster Schritt",
       "signup.startJourney": "Meine kosmische Reise beginnen",
@@ -797,7 +800,7 @@ const getTranslations = () => {
       "hero.insights": " ",
       "hero.newReading": "Nouveau message",
       "hero.dailyReading": " ",
-      "hero.personalizedFor": "Personnalisé pour Laura",
+      "hero.personalizedFor": "Personnalisé pour  R.",
 
       // Hero Sample Message Content
       "hero.sampleMessage.title": "Ton horoscope du jour",
@@ -872,29 +875,31 @@ const getTranslations = () => {
       "signup.description":
         " ",
       "signup.freeTrialNote":
-        "Tous les plans incluent un essai gratuit de 7 jours. Aucune carte de crédit requise pour commencer.",
-      "signup.guarantees": "✓ Annulez à tout moment",
+        "",
+      "signup.guarantees": "✓ Durées flexibles",
       "signup.securePayments": "✓ Paiements sécurisés",
-      "signup.support": "✓ Support 24/7",
-      "signup.planFeatures.basic.perfect": "Parfait pour commencer",
+      "signup.support": "✓ Entreprise suisse",
+      "signup.planFeatures.basic.perfect": " ",
       "signup.planFeatures.premium.complete":
-        "Expérience astrologique complète",
-      "signup.planFeatures.basic.horoscopes": "Horoscopes personnalisés",
-      "signup.planFeatures.basic.birthChart": "Analyse du thème natal",
-      "signup.planFeatures.basic.lunar": "Notifications des phases lunaires",
+        " ",
+
+      "signup.planFeatures.basic.horoscopes": "Horoscope personnel",
+      "signup.planFeatures.basic.birthChart": "Interprétation de votre signe du zodiaque",
+      "signup.planFeatures.basic.lunar": "Planètes et transits actuels",
       "signup.planFeatures.basic.compatibility":
-        "Aperçus de compatibilité de base",
-      "signup.planFeatures.basic.support": "Support par e-mail",
-      "signup.planFeatures.premium.everything": "Tout dans Basic",
-      "signup.planFeatures.premium.advanced": "Analyse avancée du thème natal",
-      "signup.planFeatures.premium.transit": "Alertes de transit planétaire",
+        "Configuration astrologique de naissance",
+      "signup.planFeatures.basic.support": "Indications astrologiques essentielles",
+
+      "signup.planFeatures.premium.everything": "Horoscope personnel",
+      "signup.planFeatures.premium.advanced": "Interprétation de votre signe du zodiaque",
+      "signup.planFeatures.premium.transit": "Planètes et transits actuels",
       "signup.planFeatures.premium.detailed":
-        "Lectures de compatibilité détaillées",
+        "Configuration astrologique de naissance",
       "signup.planFeatures.premium.consultation":
-        "Consultation mensuelle avec un astrologue",
-      "signup.planFeatures.premium.priority": "Support prioritaire",
+        "Domaines de vie selon les maisons astrologiques",
+      "signup.planFeatures.premium.priority": "Phases lunaires et cycles émotionnels",
       "signup.planFeatures.premium.timing":
-        "Recommandations de timing personnalisées",
+        "Conseils et orientation approfondis",
       "signup.step1.title": "Comment souhaites-tu recevoir ton horoscope ?",
       /*"signup.step1.description":
         "dd",*/
@@ -928,8 +933,8 @@ const getTranslations = () => {
       "signup.monthly": "Mensuel",
       "signup.yearly": "Annuel",
       "signup.save": "Enregistrer",
-      "signup.basicPlan": "Plan de base",
-      "signup.premiumPlan": "Plan premium",
+      "signup.basicPlan": "Base",
+      "signup.premiumPlan": "Premium",
       "signup.mostPopular": "Le plus populaire",
       "signup.previous": "Précédent",
       "signup.nextStep": "Étape suivante",

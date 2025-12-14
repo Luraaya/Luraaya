@@ -311,12 +311,21 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({
 
           {/* Features */}
           <ul className="space-y-2 mb-4">
-            {planFeatures.premium.map((feature, index) => (
-              <li key={index} className="flex items-start text-sm">
-                <Check className="text-green-500 mr-2 h-4 w-4 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">{feature}</span>
-              </li>
-            ))}
+            {planFeatures.premium.map((feature, index) => {
+              const highlightStart = planFeatures.premium.length - 3;
+              const isFirstHighlight = index === highlightStart;
+              const isHighlight = index >= highlightStart;
+
+              return (
+                <li
+                  key={index}
+                  className={`flex items-start text-sm ${isFirstHighlight ? "pt-3 mt-3 border-t border-gray-200" : ""}`}
+                >
+                  <Check className={`mr-2 h-4 w-4 mt-0.5 flex-shrink-0 ${isHighlight ? "text-green-600" : "text-green-500"}`} />
+                  <span className={`text-gray-700 ${isHighlight ? "font-medium" : ""}`}>{feature}</span>
+                </li>
+              );
+            })}
           </ul>
 
           {/* Selection indicator */}
@@ -336,10 +345,10 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({
         <p className="text-sm text-gray-500 mb-2">
           {t("signup.freeTrialNote")}
         </p>
-        <div className="flex justify-center items-center space-x-4 text-xs text-gray-400">
+        <div className="flex justify-center items-center space-x-6 text-sm font-medium text-gray-500">
+          <span>{t("signup.support")}</span>
           <span>{t("signup.guarantees")}</span>
           <span>{t("signup.securePayments")}</span>
-          <span>{t("signup.support")}</span>
         </div>
       </div>
     </div>

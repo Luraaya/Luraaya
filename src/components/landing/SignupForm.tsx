@@ -11,7 +11,7 @@ import {
   getZodiacSign,
   getZodiacDisplayName,
 } from "../../utils/astrologyUtils";
-import { Star, Moon, Sun } from "lucide-react";
+import { Star, Moon, Sun, Mail, MessageCircle, MessagesSquare, Smartphone } from "lucide-react";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { supabase } from "../../lib/supabase";
 import { useAuth } from "../../contexts/AuthContext";
@@ -605,7 +605,11 @@ const SignupForm: React.FC = () => {
               {currentStep === 1 && (
                 <div className="space-y-6">
                   <div className="text-center mb-6">
-                    <Sun className="w-12 h-12 text-yellow-500 mx-auto mb-2" />
+                    <img
+                      src="/logo.jpg"
+                      alt="Luraaya"
+                      className="w-12 h-12 mx-auto mb-2 object-contain"
+                    />
                     <h3 className="text-2xl font-bold">
                       {t("signup.step1.title")}
                     </h3>
@@ -640,11 +644,17 @@ const SignupForm: React.FC = () => {
                             }`}
                           >
                             <div className="text-center">
-                              <div className="text-2xl mb-2">
-                                {channel === CommunicationChannel.EMAIL && "📧"}
-                                {channel === CommunicationChannel.SMS && "💬"}
-                                {channel === CommunicationChannel.WHATSAPP &&
-                                  "📱"}
+                              <div className="mb-2 flex justify-center">
+                                {channel === CommunicationChannel.EMAIL && (
+                                  <Mail className="w-4.5 h-4.5 text-teal-500
+" />
+                                )}
+                                {channel === CommunicationChannel.SMS && (
+                                  <MessageCircle className="w-4.5 h-4.5 text-teal-500" />
+                                )}
+                                {channel === CommunicationChannel.WHATSAPP && (
+                                  <Smartphone className="w-7 h-7 text-purple-600" />
+                                )}
                               </div>
                               <div className="font-medium capitalize">
                                 {channel}
