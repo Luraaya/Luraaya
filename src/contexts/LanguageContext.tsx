@@ -163,11 +163,11 @@ const getTranslations = () => {
       // Features Section
       "features.title": "Personal guidance from \ncosmic connections",
       "features.description":
-        "Our groundbreaking analysis connects:",
+        "Our analysis connects your birth constellation – place, date and time – with the movements of celestial bodies.",
       "features.description2":
-        "(1) your date of birth, place of birth, and time of birth with \n(2) the celestial bodies, their phases, and their constellations.",
+        " ",
       "features.description3":
-        "This results in personal, guiding insights that support your decisions and strengthen your development.",
+        " ",
 
       // Kacheln Wie es funktioniert
       "features.personalizedChart.title":
@@ -248,6 +248,15 @@ const getTranslations = () => {
         "Life areas based on astrological houses",
       "signup.planFeatures.premium.priority": "Moon phases and emotional cycles",
       "signup.planFeatures.premium.timing": "Advanced insights and guidance",
+
+      "pricing.perMonth": "/month",
+      "pricing.perYear": "/year",
+      "pricing.orSaveYearly": "Or save with yearly billing:",
+      "pricing.savePercent": "Save {{percent}}%",
+      "pricing.saveAmount": "Save {{amount}} ({{percent}}%)",
+      "pricing.percentOff": "{{percent}}% off",
+
+
       "signup.step1.title": "How would you like to receive your horoscope?",
       /*"signup.step1.description":
         "How would you like to receive your cosmic insights?",
@@ -484,11 +493,11 @@ const getTranslations = () => {
       // Features Section
       "features.title": "Persönliche Hinweise aus \nkosmischen Zusammenhängen",
       "features.description":
-        "Unsere bahnbrechende Analyse verbindet:",
+        "Unsere bahnbrechende Analyse verbindet deine Geburtskonstellation mit den Himmelskörpern.",
       "features.description2":
-        "(1) dein Geburtsdatum, deinen Geburtsort, deine Geburtszeit mit \n(2) den Himmelskörpern, ihren Phasen und Konstellationen.",
+        " ",
       "features.description3":
-        "Daraus entstehen persönliche, richtungsweisende Hinweise, die deine Entscheidungen unterstützen und deine Entwicklung stärken.",
+        " ",
 
       // Kacheln Wie es funktioniert
       "features.personalizedChart.title":
@@ -571,6 +580,15 @@ const getTranslations = () => {
       "signup.planFeatures.premium.priority": "Mondphasen und emotionale Zyklen",
       "signup.planFeatures.premium.timing":
         "Vertiefte Hinweise und Orientierung",
+
+      "pricing.perMonth": "/Monat",
+      "pricing.perYear": " ",
+      "pricing.orSaveYearly": " ",
+      "pricing.savePercent": "Spare {{percent}}%",
+      "pricing.saveAmount": "Spare {{amount}} ({{percent}}%)",
+      "pricing.percentOff": " ",
+      
+      
 
       "signup.step1.title": "Wie möchtest du dein Horoskop erhalten?",
       /*"signup.step1.description":
@@ -811,11 +829,11 @@ const getTranslations = () => {
       // Features Section
       "features.title": "Indications personnelles issues \ndes liens cosmiques",
       "features.description":
-        "Notre analyse révolutionnaire relie :",
+        "Notre analyse relie l’ensemble de tes données de naissance aux mouvements des corps célestes.",
       "features.description2":
-        "(1) ta date, ton lieu et ton heure de naissance avec \n(2) les corps célestes, leurs phases et leurs constellations.",
+        " ",
       "features.description3":
-        "Il en résulte des indications personnelles et déterminantes qui soutiennent tes décisions et renforcent ton développement.",
+        " ",
         
       // Kacheln Wie es funktioniert
       "features.personalizedChart.title":
@@ -900,6 +918,15 @@ const getTranslations = () => {
       "signup.planFeatures.premium.priority": "Phases lunaires et cycles émotionnels",
       "signup.planFeatures.premium.timing":
         "Conseils et orientation approfondis",
+
+        "pricing.perMonth": "/mois",
+        "pricing.perYear": "/an",
+        "pricing.orSaveYearly": "Ou economisez avec l’abonnement annuel :",
+        "pricing.savePercent": "Avantage de {{percent}} %",
+        "pricing.saveAmount": "Avantage de {{amount}} ({{percent}} %)",
+        "pricing.percentOff": "{{percent}} % de reduction",
+
+
       "signup.step1.title": "Comment souhaites-tu recevoir ton horoscope ?",
       /*"signup.step1.description":
         "dd",*/

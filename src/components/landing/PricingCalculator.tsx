@@ -83,6 +83,33 @@ const getPlanFeatures = (t: (key: string) => string) => ({
   ],
 });
 
+const DEFAULT_CURRENCY = "CHF";
+
+const priceFormatter = new Intl.NumberFormat("de-CH", {
+  style: "currency",
+  currency: DEFAULT_CURRENCY,
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+});
+
+const formatPrice = (value: number) => {
+  return priceFormatter.format(value);
+};
+
+const formatPriceParts = (value: number) => {
+  const parts = priceFormatter.formatToParts(value);
+
+  return {
+    currency: parts.find(p => p.type === "currency")?.value ?? "",
+    amount: parts
+      .filter(p => p.type === "integer" || p.type === "group")
+      .map(p => p.value)
+      .join(""),
+  };
+};
+
+
+
 const PricingCalculator: React.FC<PricingCalculatorProps> = ({
   frequency,
   channel,
@@ -120,19 +147,21 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({
   };
 
   // Get price period text
-  const getPricePeriod = () => {
-    return billingCycle === "monthly" ? "/month" : "/year";
-  };
+    const getPricePeriod = () => {
+      return billingCycle === "monthly"
+        ? t("pricing.perMonth")
+        : t("pricing.perYear");
+    };
 
   return (
     <div className="mt-8">
       {/* Billing Cycle Toggle */}
       <div className="flex justify-center mb-8">
-        <div className="bg-gray-100 p-1 rounded-lg inline-flex">
+        <div className="bg-gray-50 p-2 rounded-xl inline-flex">
           <button
             type="button"
             onClick={() => setBillingCycle("monthly")}
-            className={`px-6 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+            className={`px-10 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
               billingCycle === "monthly"
                 ? "bg-white text-gray-900 shadow-sm"
                 : "text-gray-600 hover:text-gray-900"
@@ -143,16 +172,19 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({
           <button
             type="button"
             onClick={() => setBillingCycle("yearly")}
-            className={`px-6 py-2 rounded-md text-sm font-medium transition-all duration-200 relative ${
+            className={`px-10 py-3 rounded-lg text-base font-medium transition-all duration-200 relative ${
               billingCycle === "yearly"
                 ? "bg-white text-gray-900 shadow-sm"
-                : "text-gray-600 hover:text-gray-900"
+                : "text-black-800 hover:text-gray-900"
             }`}
           >
             {t("signup.yearly")}
             {/* Savings badge */}
             <span className="absolute -top-2 -right-2 bg-green-500 text-white text-xs px-2 py-0.5 rounded-full">
-              Save {calculateSavings(selectedPlan)}%
+              {t("pricing.savePercent").replace(
+                "{{percent}}",
+                String(calculateSavings(selectedPlan))
+              )}
             </span>
           </button>
         </div>
@@ -182,7 +214,7 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({
           <div className="text-center mb-6">
             <div className="mb-3">
               <span className="text-3xl font-bold text-gray-900">
-                ${getDisplayPrice("basic")}
+                {formatPrice(getDisplayPrice("basic"))}
               </span>
               <span className="text-gray-600">{getPricePeriod()}</span>
             </div>
@@ -191,31 +223,19 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({
             {billingCycle === "yearly" && (
               <div className="text-sm">
                 <div className="text-gray-500 line-through mb-1">
-                  ${getCurrentPricing("basic").monthly * 12}/year
+                  {formatPrice(getCurrentPricing("basic").monthly * 12)} {t("pricing.perYear")}
                 </div>
-                <div className="text-green-600 font-medium">
-                  Save $
-                  {getCurrentPricing("basic").monthly * 12 -
-                    getCurrentPricing("basic").yearly}
-                  ({calculateSavings("basic")}% off)
-                </div>
-              </div>
-            )}
-
-            {/* Show comparison for monthly billing */}
-            {billingCycle === "monthly" && (
-              <div className="text-sm text-gray-600">
-                <div className="flex justify-between items-center">
-                  <span>Or save with yearly:</span>
-                  <div className="text-right">
-                    <span className="font-medium">
-                      ${getCurrentPricing("basic").yearly}/year
-                    </span>
-                    <div className="text-xs text-green-600 font-medium">
-                      {calculateSavings("basic")}% off
-                    </div>
+                  <div className="text-green-600 font-medium">
+                    {t("pricing.saveAmount")
+                      .replace(
+                        "{{amount}}",
+                        formatPrice(
+                          getCurrentPricing("basic").monthly * 12 -
+                            getCurrentPricing("basic").yearly
+                        )
+                      )
+                      .replace("{{percent}}", String(calculateSavings("basic")))}
                   </div>
-                </div>
               </div>
             )}
           </div>
@@ -271,7 +291,7 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({
           <div className="text-center mb-6">
             <div className="mb-3">
               <span className="text-3xl font-bold text-gray-900">
-                ${getDisplayPrice("premium")}
+                {formatPrice(getDisplayPrice("premium"))}
               </span>
               <span className="text-gray-600">{getPricePeriod()}</span>
             </div>
@@ -280,30 +300,18 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({
             {billingCycle === "yearly" && (
               <div className="text-sm">
                 <div className="text-gray-500 line-through mb-1">
-                  ${getCurrentPricing("premium").monthly * 12}/year
+                  {formatPrice(getCurrentPricing("premium").monthly * 12)} {t("pricing.perYear")}
                 </div>
                 <div className="text-green-600 font-medium">
-                  Save $
-                  {getCurrentPricing("premium").monthly * 12 -
-                    getCurrentPricing("premium").yearly}
-                  ({calculateSavings("premium")}% off)
-                </div>
-              </div>
-            )}
-
-            {/* Show comparison for monthly billing */}
-            {billingCycle === "monthly" && (
-              <div className="text-sm text-gray-600">
-                <div className="flex justify-between items-center">
-                  <span>Or save with yearly:</span>
-                  <div className="text-right">
-                    <span className="font-medium">
-                      ${getCurrentPricing("premium").yearly}/year
-                    </span>
-                    <div className="text-xs text-green-600 font-medium">
-                      {calculateSavings("premium")}% off
-                    </div>
-                  </div>
+                  {t("pricing.saveAmount")
+                    .replace(
+                      "{{amount}}",
+                      formatPrice(
+                        getCurrentPricing("premium").monthly * 12 -
+                          getCurrentPricing("premium").yearly
+                      )
+                    )
+                    .replace("{{percent}}", String(calculateSavings("premium")))}
                 </div>
               </div>
             )}

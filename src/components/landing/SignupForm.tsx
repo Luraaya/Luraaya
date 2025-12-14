@@ -646,11 +646,11 @@ const SignupForm: React.FC = () => {
                             <div className="text-center">
                               <div className="mb-2 flex justify-center">
                                 {channel === CommunicationChannel.EMAIL && (
-                                  <Mail className="w-4.5 h-4.5 text-teal-500
+                                  <Mail className="w-4.5 h-4.5 text-slate-500
 " />
                                 )}
                                 {channel === CommunicationChannel.SMS && (
-                                  <MessageCircle className="w-4.5 h-4.5 text-teal-500" />
+                                  <MessageCircle className="w-4.5 h-4.5 text-slate-500" />
                                 )}
                                 {channel === CommunicationChannel.WHATSAPP && (
                                   <Smartphone className="w-7 h-7 text-purple-600" />
