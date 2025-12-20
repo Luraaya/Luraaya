@@ -559,7 +559,7 @@ const SignupForm: React.FC = () => {
   return (
     <section
       id="signup"
-      className="py-20 bg-gradient-to-br from-purple-50 to-indigo-50"
+      className="py-20 bg-gradient-to-br from-teal-50 to-indigo-50"
     >
       <Container>
         <div className="max-w-4xl mx-auto">
