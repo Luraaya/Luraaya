@@ -163,9 +163,9 @@ const getTranslations = () => {
       // Features Section
       "features.title": "Personal guidance from \ncosmic connections",
       "features.description":
-        "Our analysis connects your birth constellation – place, date and time – with the movements of celestial bodies.",
+        "Our analysis connects your birth constellation",
       "features.description2":
-        " ",
+        "with the movements of celestial bodies",
       "features.description3":
         " ",
 
@@ -176,7 +176,7 @@ const getTranslations = () => {
         "Enter your birth date, time and place. These details form the foundation for the astrological calculation of your personal profile.",
       "features.dailyUpdates.title": "2. Cosmic analysis",
       "features.dailyUpdates.description":
-        "We connect your information with the current planetary configurations. This creates deep astrological patterns analysed for you, revealing the forces that shape, inspire or challenge you at this moment.",
+        "We connect your information with the current planetary configurations. This creates deep astrological patterns, revealing the forces that shape, inspire or challenge you at this moment.",
       "features.multiChannel.title": "3. Receive your personal message",
       "features.multiChannel.description":
         "Based on the analysis, you receive current and perfectly tailored guidance for your life path. These insights support your decisions and strengthen your personal growth. Delivered by e-mail or SMS, in the rhythm you choose: daily, weekly or monthly.",
@@ -493,9 +493,9 @@ const getTranslations = () => {
       // Features Section
       "features.title": "Persönliche Hinweise aus \nkosmischen Zusammenhängen",
       "features.description":
-        "Unsere bahnbrechende Analyse verbindet deine Geburtskonstellation mit den Himmelskörpern.",
+        "Unsere bahnbrechende Analyse verbindet",
       "features.description2":
-        " ",
+        "deine Geburtskonstellation mit den Himmelskörpern",
       "features.description3":
         " ",
 
@@ -506,7 +506,7 @@ const getTranslations = () => {
         "Gib dein Geburtsdatum, die genaue Zeit und den Geburtsort ein. Diese Angaben bilden die Grundlage für die astrologische Berechnung deines persönlichen Profils.",
       "features.dailyUpdates.title": "2. Kosmische Analyse",
       "features.dailyUpdates.description":
-        "Wir verbinden deine Angaben mit den aktuellen planetaren Konstellationen. So entstehen tiefgehende astrologische Muster, die für dich ausgewertet werden. Sie zeigen Dir, welche Kräfte dich im Moment formen, inspirieren oder herausfordern.",
+        "Wir verbinden deine Angaben mit den aktuellen planetaren Konstellationen. So entstehen tiefgehende astrologische Muster. Sie zeigen Dir, welche Kräfte dich im Moment formen, inspirieren oder herausfordern.",
       "features.multiChannel.title": "3. Deine persönliche Botschaft erhalten",
       "features.multiChannel.description":
         "Auf Basis der Analyse ergeben sich aktuelle und perfekt auf dich abgestimmte Hinweise für deinen Lebensweg. Sie werden deine Entscheidungen unterstützen und deine Entwicklung stärken. Per Mail oder SMS und in Deinem Rhytmus: Täglich, Wöchentlich oder Monatlich.",
@@ -829,7 +829,7 @@ const getTranslations = () => {
       // Features Section
       "features.title": "Indications personnelles issues \ndes liens cosmiques",
       "features.description":
-        "Notre analyse relie l’ensemble de tes données de naissance aux mouvements des corps célestes.",
+        "Notre analyse relie l’ensemble de tes données de naissance aux mouvements des corps célestes",
       "features.description2":
         " ",
       "features.description3":
@@ -842,7 +842,7 @@ const getTranslations = () => {
       "Indique ta date, ton heure et ton lieu de naissance. Ces informations constituent la base du calcul astrologique de ton profil personnel.",
       "features.dailyUpdates.title": "2. Analyse cosmique",
       "features.dailyUpdates.description":
-      "Nous relions tes informations aux configurations planétaires actuelles. Il en résulte des schémas astrologiques profonds analysés pour toi. Ils révèlent les forces qui, en ce moment, te façonnent, t’inspirent ou te mettent au défi.",
+      "Nous relions tes informations aux configurations planétaires actuelles. Il en résulte des schémas astrologiques profonds. Ils révèlent les forces qui, en ce moment, te façonnent, t’inspirent ou te mettent au défi.",
       "features.multiChannel.title": "3. Recevoir ton message personnel",
       "features.multiChannel.description":
       "À partir de l’analyse, nous créons des indications actuelles et parfaitement adaptées à ton chemin de vie. Elles soutiennent tes décisions et renforcent ton développement. Par e-mail ou SMS et selon ton rythme : quotidien, hebdomadaire ou mensuel.",

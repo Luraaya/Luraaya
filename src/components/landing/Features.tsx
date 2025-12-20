@@ -1,97 +1,77 @@
 /**
  * Features section component showcasing the astrology service capabilities
- * Displays key features with icons and descriptions in a responsive grid
+ * Displays key features with descriptions in a responsive layout
  */
 
 import React from 'react';
 import Container from '../common/Container';
-import { Star, Sun, MessageSquare, Moon, Users, Shield } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const Features: React.FC = () => {
   const { t } = useLanguage();
-  
-  // Define features with translation keys for better maintainability
+
   const features = [
     {
       id: '1',
       titleKey: 'features.personalizedChart.title',
-      descriptionKey: 'features.personalizedChart.description',
-      icon: Star
+      descriptionKey: 'features.personalizedChart.description'
     },
     {
       id: '2',
       titleKey: 'features.dailyUpdates.title',
-      descriptionKey: 'features.dailyUpdates.description',
-      icon: Sun
+      descriptionKey: 'features.dailyUpdates.description'
     },
     {
       id: '3',
       titleKey: 'features.multiChannel.title',
-      descriptionKey: 'features.multiChannel.description',
-      icon: MessageSquare
-    },
-    /*
-    {
-      id: '4',
-      titleKey: 'features.lunarTracking.title',
-      descriptionKey: 'features.lunarTracking.description',
-      icon: Moon
-    },
-    {
-      id: '5',
-      titleKey: 'features.compatibility.title',
-      descriptionKey: 'features.compatibility.description',
-      icon: Users
-    },
-    {
-      id: '6',
-      titleKey: 'features.secure.title',
-      descriptionKey: 'features.secure.description',
-      icon: Shield
+      descriptionKey: 'features.multiChannel.description'
     }
-      */
   ];
 
   return (
     <section id="features" className="py-20 bg-white">
       <Container>
         {/* Section header */}
-        <div className="text-center mb-16 whitespace-pre-line">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 whitespace-pre-line">
             {t('features.title')}
           </h2>
-          <p className="text-center text-xl text-gray-600 max-w-2xl mx-auto whitespace-pre-line">
+
+          <p className="text-center text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             {t('features.description')}
-          </p>
-        <div className="max-w-xl mx-auto mt-3">
-          <p className="text-left text-xl text-gray-600 whitespace-pre-line inline-block max-w-2xl">
+            <br />
             {t('features.description2')}
           </p>
-        </div>
-          <p className="text-center text-xl text-gray-600 max-w-2xl mx-auto whitespace-pre-line mt-3">
-            {t('features.description3')}
-          </p>
+
+          {t('features.description3').trim() !== '' && (
+            <p className="text-center text-xl text-gray-600 max-w-2xl mx-auto whitespace-pre-line m-0 mt-2">
+              {t('features.description3')}
+            </p>
+          )}
         </div>
 
-        {/* Features grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature) => {
-            const IconComponent = feature.icon;
-            
-            return (
-              <div 
-                key={feature.id} 
-                className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-indigo-100 rounded-lg flex items-center justify-center mb-4">
-                  <IconComponent className="text-purple-600" size={24} />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{t(feature.titleKey)}</h3>
-                <p className="text-gray-600">{t(feature.descriptionKey)}</p>
+        {/* New layout: links big container, right three stacked cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
+          {/* Left container (placeholder for now) */}
+          <div className="rounded-3xl overflow-hidden bg-gray-50 border border-gray-200 min-h-[320px] lg:min-h-[420px]">
+            <div className="h-full w-full bg-gradient-to-br from-gray-50 to-gray-100" />
+          </div>
+
+          {/* Right: three feature cards */}
+          <div className="space-y-6">
+            {features.map((feature) => (
+              <div
+                key={feature.id}
+                className="rounded-2xl bg-white border border-gray-200 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-teal-200"            >
+                <h3 className="text-lg font-semibold mb-2">
+                  {t(feature.titleKey)}
+                </h3>
+                <p className="text-gray-600">
+                  {t(feature.descriptionKey)}
+                </p>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </Container>
     </section>
