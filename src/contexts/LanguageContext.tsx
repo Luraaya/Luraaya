@@ -179,7 +179,7 @@ const getTranslations = () => {
         "We connect your information with the current planetary configurations. This creates deep astrological patterns, revealing the forces that shape, inspire or challenge you at this moment.",
       "features.multiChannel.title": "3. Receive your personal message",
       "features.multiChannel.description":
-        "Based on the analysis, you receive current and perfectly tailored guidance for your life path. These insights support your decisions and strengthen your personal growth. Delivered by e-mail or SMS, in the rhythm you choose: daily, weekly or monthly.",
+        "This results in up to date and perfectly tailored insights for your life path. They support your decision making and strengthen your personal development.",
       /*"features.lunarTracking.title": "Lunar Cycle Tracking",
       "features.lunarTracking.description":
         "Stay aligned with lunar phases and their influence on your zodiac sign for optimal timing.",
@@ -226,6 +226,12 @@ const getTranslations = () => {
       "signup.title": "Begin Your Cosmic Journey",
       "signup.description": " ",
       "signup.freeTrialNote": " ",
+
+      "subscription.daily": "Daily",
+      "subscription.weekly": "Weekly",
+      "subscription.monthly": "Monthly",
+
+
       "signup.guarantees": "✓ Flexible plans",
       "signup.securePayments": "✓ Secure payments",
       "signup.support": "✓ Swiss company",
@@ -286,8 +292,8 @@ const getTranslations = () => {
       "signup.messages": "Messages",
       "signup.via": "via",
       "signup.zodiacSign": "Zodiac Sign",
-      "signup.monthly": "Monthly",
-      "signup.yearly": "Yearly",
+      "signup.monthly": "Monthly Subscription",
+      "signup.yearly": "Yearly Subscription",
       "signup.save": "Save",
       "signup.basicPlan": "Basic",
       "signup.premiumPlan": "Premium",
@@ -431,9 +437,9 @@ const getTranslations = () => {
       "common.email": "Email",
       "common.sms": "SMS",
       "common.whatsapp": "WhatsApp",
-      "common.daily": "Daily",
-      "common.weekly": "Weekly",
-      "common.monthly": "Monthly",
+      "common.daily": "Personal guidance",
+      "common.weekly": "Conscious alignment",
+      "common.monthly": "Deep insights for your life",
       "common.save": "Save",
       "common.cancel": "Cancel",
       "common.edit": "Edit",
@@ -509,7 +515,7 @@ const getTranslations = () => {
         "Wir verbinden deine Angaben mit den aktuellen planetaren Konstellationen. So entstehen tiefgehende astrologische Muster. Sie zeigen Dir, welche Kräfte dich im Moment formen, inspirieren oder herausfordern.",
       "features.multiChannel.title": "3. Deine persönliche Botschaft erhalten",
       "features.multiChannel.description":
-        "Auf Basis der Analyse ergeben sich aktuelle und perfekt auf dich abgestimmte Hinweise für deinen Lebensweg. Sie werden deine Entscheidungen unterstützen und deine Entwicklung stärken. Per Mail oder SMS und in Deinem Rhytmus: Täglich, Wöchentlich oder Monatlich.",
+        "Es resultieren aktuelle und perfekt auf dich abgestimmte Hinweise für deinen Lebensweg. Das hilft bei deinen Entscheidungen und stärkt deine Entwicklung.",
       /*"features.lunarTracking.title": "Mondphasen-Verfolgung",
       "features.lunarTracking.description":
         "Bleibe mit den Mondphasen und Dem Einfluss auf Dein Sternzeichen für optimales Timing ausgerichtet.",
@@ -552,9 +558,15 @@ const getTranslations = () => {
       "testimonials.messagesDelivered": "Nachrichten geliefert",
 
       // Signup Form
-      "signup.title": "Beginne Deine kosmische Reise",
+      "signup.title": "Beginne deine kosmische Reise",
       "signup.description":   " ",
       "signup.freeTrialNote":  " ",
+
+      "subscription.daily": "Täglich",
+      "subscription.weekly": "Wöchentlich",
+      "subscription.monthly": "Monatlich",
+
+
       "signup.guarantees": "✓ Flexible Laufzeiten",
       "signup.securePayments": "✓ Sichere Zahlungen",
       "signup.support": "✓ Schweizer Unternehmen",
@@ -620,8 +632,8 @@ const getTranslations = () => {
       "signup.messages": "Nachrichten",
       "signup.via": "über",
       "signup.zodiacSign": "Sternzeichen",
-      "signup.monthly": "Monatlich",
-      "signup.yearly": "Jährlich",
+      "signup.monthly": "Monatsabo",
+      "signup.yearly": "Jahresabo",
       "signup.save": "Speichern",
 
       "signup.basicPlan": "Basis",
@@ -767,9 +779,9 @@ const getTranslations = () => {
       "common.email": "E-Mail",
       "common.sms": "SMS",
       "common.whatsapp": "WhatsApp",
-      "common.daily": "Täglich",
-      "common.weekly": "Wöchentlich",
-      "common.monthly": "Monatlich",
+      "common.daily": "Persönliche Begleitung",
+      "common.weekly": "Bewusste Ausrichtung",
+      "common.monthly": "Tiefe Einsichten für dein Leben",
       "common.save": "Speichern",
       "common.cancel": "Abbrechen",
       "common.edit": "Bearbeiten",
@@ -845,7 +857,7 @@ const getTranslations = () => {
       "Nous relions tes informations aux configurations planétaires actuelles. Il en résulte des schémas astrologiques profonds. Ils révèlent les forces qui, en ce moment, te façonnent, t’inspirent ou te mettent au défi.",
       "features.multiChannel.title": "3. Recevoir ton message personnel",
       "features.multiChannel.description":
-      "À partir de l’analyse, nous créons des indications actuelles et parfaitement adaptées à ton chemin de vie. Elles soutiennent tes décisions et renforcent ton développement. Par e-mail ou SMS et selon ton rythme : quotidien, hebdomadaire ou mensuel.",
+      "Il en résulte des indications actuelles et parfaitement adaptées à ton parcours de vie. Elles t’aident dans tes décisions et renforcent ton développement personnel.",
       /*"features.lunarTracking.title": "Suivi du cycle lunaire",
       "features.lunarTracking.description":
         "Restez aligné avec les phases lunaires et leur influence sur votre signe du zodiaque pour un timing optimal.",
@@ -890,10 +902,13 @@ const getTranslations = () => {
 
       // Signup Form
       "signup.title": "Commencez votre voyage cosmique",
-      "signup.description":
-        " ",
-      "signup.freeTrialNote":
-        "",
+      "signup.description": " ",
+      "signup.freeTrialNote": " ",
+
+      "subscription.daily": "Quotidien",
+      "subscription.weekly": "Hebdomadaire",
+      "subscription.monthly": "Mensuel",
+
       "signup.guarantees": "✓ Durées flexibles",
       "signup.securePayments": "✓ Paiements sécurisés",
       "signup.support": "✓ Entreprise suisse",
@@ -957,8 +972,8 @@ const getTranslations = () => {
       "signup.messages": "Messages",
       "signup.via": "via",
       "signup.zodiacSign": "Signe du zodiaque",
-      "signup.monthly": "Mensuel",
-      "signup.yearly": "Annuel",
+      "signup.monthly": "Abonnement mensuel",
+      "signup.yearly": "Abonnement annuel",
       "signup.save": "Enregistrer",
       "signup.basicPlan": "Base",
       "signup.premiumPlan": "Premium",
@@ -1105,9 +1120,9 @@ const getTranslations = () => {
       "common.email": "E-mail",
       "common.sms": "SMS",
       "common.whatsapp": "WhatsApp",
-      "common.daily": "Quotidien",
-      "common.weekly": "Hebdomadaire",
-      "common.monthly": "Mensuel",
+      "common.daily": "Accompagnement personnel",
+      "common.weekly": "Alignement conscient",
+      "common.monthly": "Analyses profondes pour votre vie",
       "common.save": "Enregistrer",
       "common.cancel": "Annuler",
       "common.edit": "Modifier",

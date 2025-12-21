@@ -35,10 +35,10 @@ export const AuroraBackground = ({
               "--white-gradient":
                 "repeating-linear-gradient(100deg,#fff_0%,#fff_7%,transparent_10%,transparent_12%,#fff_16%)",
 
-              "--blue-300": "#93c5fd",
-              "--blue-400": "#60a5fa",
-              "--blue-500": "#3b82f6",
-              "--indigo-300": "#a5b4fc",
+              "--blue-300": "#70d0e0ff",
+              "--blue-400": "#59c4eeff",
+              "--blue-500": "#77abffff",
+              "--indigo-300": "#b4c0fcff",
               "--violet-200": "#ddd6fe",
               "--black": "#000",
               "--white": "#fff",
@@ -51,7 +51,7 @@ export const AuroraBackground = ({
     `after:animate-aurora after:[animation-duration:35s] sm:after:[animation-duration:60s]
      pointer-events-none absolute -inset-[10px]
      [background-image:var(--white-gradient),var(--aurora)]
-     [background-size:300%,_200%]
+     [background-size:400%,_300%]
      [background-position:50%_50%,50%_50%]
      opacity-70
      blur-[10px]

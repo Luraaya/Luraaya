@@ -691,7 +691,7 @@ const SignupForm: React.FC = () => {
                           >
                             <div className="text-center">
                               <div className="font-medium capitalize">
-                                {type}
+                                {t(`subscription.${type.toLowerCase()}`)}
                               </div>
                               <div className="text-sm text-gray-500 mt-1">
                                 {type === SubscriptionType.DAILY &&
