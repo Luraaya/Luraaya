@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import Container from "./Container";
 import Button from "./Button";
+import { HashLink } from "react-router-hash-link";
 import LanguageSelector from "./LanguageSelector";
 import UserDropdown from "./UserDropdown";
 import { useLanguage } from "../../contexts/LanguageContext";

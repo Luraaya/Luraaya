@@ -35,9 +35,9 @@ export const AuroraBackground = ({
               "--white-gradient":
                 "repeating-linear-gradient(100deg,#fff_0%,#fff_7%,transparent_10%,transparent_12%,#fff_16%)",
 
-              "--blue-300": "#88fff9ff",
-              "--blue-400": "#8bd5ffff",
-              "--blue-500": "#888affa6",
+              "--blue-300": "#bafffcff",
+              "--blue-400": "#b6e4ffff",
+              "--blue-500": "#b6b7ffa6",
               "--indigo-300": "#d9defaff",
               "--violet-200": "#ddd6fe",
               "--black": "#000",

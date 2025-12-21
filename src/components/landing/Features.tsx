@@ -31,7 +31,6 @@ const Features: React.FC = () => {
   return (
     <section id="features" className="py-20 bg-white">
       <Container>
-        {/* Section header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 whitespace-pre-line">
             {t('features.title')}
@@ -50,25 +49,25 @@ const Features: React.FC = () => {
           )}
         </div>
 
-        {/* New layout: links big container, right three stacked cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
-          {/* Left container (placeholder for now) */}
-          <div className="rounded-3xl overflow-hidden bg-gray-50 border border-gray-200 min-h-[320px] lg:min-h-[420px]">
-            <div className="h-full w-full bg-gradient-to-br from-gray-50 to-gray-100" />
+        <div className="flex flex-col lg:flex-row gap-10 lg:items-center">
+          <div className="flex items-center justify-center h-[360px] sm:h-[420px] md:h-[480px] lg:h-[560px] max-h-[70vh]">
+            <img
+              src="/Bild2.jpg"
+              alt="Luraaya Features"
+              className="block max-w-full max-h-full object-contain rounded-3xl"
+            />
           </div>
 
-          {/* Right: three feature cards */}
-          <div className="space-y-6">
+          <div className="flex flex-col gap-6 lg:flex-1">
             {features.map((feature) => (
               <div
                 key={feature.id}
-                className="rounded-2xl bg-white border border-gray-200 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-teal-200"            >
+                className="rounded-2xl bg-white border border-gray-200 p-7 lg:p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-teal-200"
+              >
                 <h3 className="text-lg font-semibold mb-2">
                   {t(feature.titleKey)}
                 </h3>
-                <p className="text-gray-600">
-                  {t(feature.descriptionKey)}
-                </p>
+                <p className="text-gray-600">{t(feature.descriptionKey)}</p>
               </div>
             ))}
           </div>

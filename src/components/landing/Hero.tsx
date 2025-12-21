@@ -7,20 +7,16 @@ import React from "react";
 import Container from "../common/Container";
 import Button from "../common/Button";
 import { ArrowRight, Star, Moon } from "lucide-react";
-import { AuroraBackground } from "../ui/aurora-background";
 import { useLanguage } from "../../contexts/LanguageContext";
+import { AuroraBackground } from "../ui/aurora-background";
+
 
 const Hero: React.FC = () => {
   const { t } = useLanguage();
 
-return (
-  <AuroraBackground className="relative py-20 bg-gradient-to-br from-purple-50 via-indigo-50 to-teal-50 overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-purple-200 rounded-full opacity-20 blur-3xl"></div>
-        <div className="absolute top-1/2 -left-24 w-80 h-80 bg-teal-200 rounded-full opacity-20 blur-3xl"></div>
-        <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-indigo-200 rounded-full opacity-30 blur-2xl"></div>
-      </div>
+  return (
+  <AuroraBackground className="w-full">
+    <section className="relative py-20 overflow-hidden">
 
       <Container className="relative z-10">
         <div className="flex flex-col lg:flex-row items-center">
@@ -163,7 +159,8 @@ return (
           </div>
         </div>
       </Container>
-    </AuroraBackground>
+    </section>
+  </AuroraBackground>
   );
 };
 

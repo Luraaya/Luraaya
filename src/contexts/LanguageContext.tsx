@@ -138,6 +138,20 @@ const getTranslations = () => {
       "footer.aboutUs": "About Us",
       "footer.careers": "Careers",
       "footer.contact": "Contact",
+      // Legal
+      "footer.legal.privacyPolicy": "Privacy Policy",
+      "footer.legal.termsOfService": "Terms of Service",
+      "footer.legal.cookies": "Cookies",
+      // Footer – Contact form
+      "footer.contactForm.title": "Contact",
+      "footer.contactForm.namePlaceholder": "Your name",
+      "footer.contactForm.emailPlaceholder": "Your email address",
+      "footer.contactForm.messagePlaceholder": "Your message",
+      "footer.contactForm.sendButton": "Send message",
+      "footer.contactForm.sending": "Sending...",
+      "footer.contactForm.successMessage": "Message sent successfully.",
+      "footer.contactForm.errorMessage": "Failed to send message. Please try again.",
+
 
       // Hero Section Startseite
       "hero.badge": "A Message for You",
@@ -171,15 +185,17 @@ const getTranslations = () => {
 
       // Kacheln Wie es funktioniert
       "features.personalizedChart.title":
-        "1. Enter your birth details",
+        "1. Your birth configuration",
       "features.personalizedChart.description":
-        "Enter your birth date, time and place. These details form the foundation for the astrological calculation of your personal profile.",
-      "features.dailyUpdates.title": "2. Cosmic analysis",
+        "Your date of birth, exact time and place form the basis for making your personal configuration visible.",
+      "features.dailyUpdates.title":
+        "2. Cosmic context",
       "features.dailyUpdates.description":
-        "We connect your information with the current planetary configurations. This creates deep astrological patterns, revealing the forces that shape, inspire or challenge you at this moment.",
-      "features.multiChannel.title": "3. Receive your personal message",
+        "We connect your details with the current planetary configurations. This gives rise to in-depth astrological patterns that show which forces shape, inspire or challenge you.",
+      "features.multiChannel.title":
+        "3. Your personal message",
       "features.multiChannel.description":
-        "This results in up to date and perfectly tailored insights for your life path. They support your decision making and strengthen your personal development.",
+        "This results in personal insights for your life path. They provide orientation and support you in making clearer decisions and shaping your personal development more consciously.",
       /*"features.lunarTracking.title": "Lunar Cycle Tracking",
       "features.lunarTracking.description":
         "Stay aligned with lunar phases and their influence on your zodiac sign for optimal timing.",
@@ -474,6 +490,21 @@ const getTranslations = () => {
       "footer.aboutUs": "Über uns",
       "footer.careers": "Karriere",
       "footer.contact": "Kontakt",
+      // Legal
+      "footer.legal.privacyPolicy": "Datenschutzerklärung",
+      "footer.legal.termsOfService": "AGB",
+      "footer.legal.cookies": "Cookies",
+      // Footer – Kontaktformular
+      "footer.contactForm.title": "Kontakt",
+      "footer.contactForm.namePlaceholder": "Dein Name",
+      "footer.contactForm.emailPlaceholder": "Deine E-Mail-Adresse",
+      "footer.contactForm.messagePlaceholder": "Deine Nachricht",
+      "footer.contactForm.sendButton": "Nachricht senden",
+      "footer.contactForm.sending": "Wird gesendet...",
+      "footer.contactForm.successMessage": "Nachricht wurde erfolgreich gesendet.",
+      "footer.contactForm.errorMessage": "Nachricht konnte nicht gesendet werden. Bitte versuche es erneut.",
+
+
 
       // Hero Section Startseite
       "hero.badge": "Eine Botschaft für dich",
@@ -507,15 +538,15 @@ const getTranslations = () => {
 
       // Kacheln Wie es funktioniert
       "features.personalizedChart.title":
-        "1. Geburtsdaten erfassen",
+        "1. Deine Geburtskonstellation",
       "features.personalizedChart.description":
-        "Gib dein Geburtsdatum, die genaue Zeit und den Geburtsort ein. Diese Angaben bilden die Grundlage für die astrologische Berechnung deines persönlichen Profils.",
-      "features.dailyUpdates.title": "2. Kosmische Analyse",
+        "Dein Geburtsdatum, die genaue Zeit und der Geburtsort bilden die Grundlage, um deine persönliche Konstellation sichtbar zu machen.",
+      "features.dailyUpdates.title": "2. Kosmische Einordnung",
       "features.dailyUpdates.description":
-        "Wir verbinden deine Angaben mit den aktuellen planetaren Konstellationen. So entstehen tiefgehende astrologische Muster. Sie zeigen Dir, welche Kräfte dich im Moment formen, inspirieren oder herausfordern.",
-      "features.multiChannel.title": "3. Deine persönliche Botschaft erhalten",
+        "Wir verbinden deine Angaben mit den aktuellen planetaren Konstellationen. So entstehen tiefgehende astrologische Muster. Sie zeigen Dir, welche Kräfte dich formen, inspirieren oder herausfordern.",
+      "features.multiChannel.title": "3. Deine persönliche Botschaft",
       "features.multiChannel.description":
-        "Es resultieren aktuelle und perfekt auf dich abgestimmte Hinweise für deinen Lebensweg. Das hilft bei deinen Entscheidungen und stärkt deine Entwicklung.",
+        "Es entstehen persönliche Hinweise für deinen Lebensweg. Sie geben Orientierung und unterstützen dich dabei, Entscheidungen klarer zu treffen und deine persönliche Entwicklung bewusster zu gestalten.",
       /*"features.lunarTracking.title": "Mondphasen-Verfolgung",
       "features.lunarTracking.description":
         "Bleibe mit den Mondphasen und Dem Einfluss auf Dein Sternzeichen für optimales Timing ausgerichtet.",
@@ -816,6 +847,21 @@ const getTranslations = () => {
       "footer.aboutUs": "À propos de nous",
       "footer.careers": "Carrières",
       "footer.contact": "Contact",
+      // Legal
+      "footer.legal.privacyPolicy": "Politique de confidentialité",
+      "footer.legal.termsOfService": "Conditions d’utilisation",
+      "footer.legal.cookies": "Cookies",
+      // Footer – Formulaire de contact
+      "footer.contactForm.title": "Contact",
+      "footer.contactForm.namePlaceholder": "Votre nom",
+      "footer.contactForm.emailPlaceholder": "Votre adresse e-mail",
+      "footer.contactForm.messagePlaceholder": "Votre message",
+      "footer.contactForm.sendButton": "Envoyer le message",
+      "footer.contactForm.sending": "Envoi en cours...",
+      "footer.contactForm.successMessage": "Message envoyé avec succès.",
+      "footer.contactForm.errorMessage": "L’envoi du message a échoué. Veuillez réessayer.",
+      
+      
 
       // Hero Section Startseite
       "hero.badge": "Un message pour toi",
@@ -849,16 +895,17 @@ const getTranslations = () => {
         
       // Kacheln Wie es funktioniert
       "features.personalizedChart.title":
-      "1. Saisir les données de naissance",
+        "1. Ta configuration de naissance",
       "features.personalizedChart.description":
-      "Indique ta date, ton heure et ton lieu de naissance. Ces informations constituent la base du calcul astrologique de ton profil personnel.",
-      "features.dailyUpdates.title": "2. Analyse cosmique",
+        "Ta date de naissance, l’heure exacte et le lieu constituent la base pour rendre visible ta configuration personnelle.",
+      "features.dailyUpdates.title":
+        "2. Mise en perspective cosmique",
       "features.dailyUpdates.description":
-      "Nous relions tes informations aux configurations planétaires actuelles. Il en résulte des schémas astrologiques profonds. Ils révèlent les forces qui, en ce moment, te façonnent, t’inspirent ou te mettent au défi.",
-      "features.multiChannel.title": "3. Recevoir ton message personnel",
+        "Nous relions tes données aux configurations planétaires actuelles. Il en résulte des schémas astrologiques approfondis, qui montrent quelles forces te façonnent, t’inspirent ou te mettent au défi.",
+      "features.multiChannel.title":
+        "3. Ton message personnel",
       "features.multiChannel.description":
-      "Il en résulte des indications actuelles et parfaitement adaptées à ton parcours de vie. Elles t’aident dans tes décisions et renforcent ton développement personnel.",
-      /*"features.lunarTracking.title": "Suivi du cycle lunaire",
+        "Il en résulte des indications personnelles pour ton chemin de vie. Elles offrent une orientation et t’aident à prendre des décisions plus claires et à façonner ton développement personnel de manière plus consciente.",      /*"features.lunarTracking.title": "Suivi du cycle lunaire",
       "features.lunarTracking.description":
         "Restez aligné avec les phases lunaires et leur influence sur votre signe du zodiaque pour un timing optimal.",
       "features.compatibility.title": "Aperçus de compatibilité",
