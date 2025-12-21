@@ -1220,7 +1220,7 @@ const SignupForm: React.FC = () => {
               )}
 
               {/* Navigation buttons */}
-              <div className="flex justify-between mt-8">
+              <div className="flex justify-center mt-8">
                 <div>
                   {currentStep > 1 && (
                     <button

@@ -14,7 +14,13 @@ const Header: React.FC = () => {
   const { user, loading } = useAuth();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/20 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+    <header
+      className="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-white px-4"
+      style={{
+        paddingLeft: "max(1rem, env(safe-area-inset-left))",
+        paddingRight: "max(1rem, env(safe-area-inset-right))",
+      }}
+    >
       <Container>
         <div className="flex items-center justify-between py-4">
           <div className="flex items-center">

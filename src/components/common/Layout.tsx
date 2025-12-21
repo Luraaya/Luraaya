@@ -10,9 +10,9 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <AuroraBackground className="min-h-[100svh]">
-      <div className="relative z-10 flex min-h-[100svh] flex-col">
+      <div className="relative z-10 flex w-full min-h-[100svh] flex-col">
         <Header />
-        <main className="flex-grow">
+        <main className="flex-grow pt-[72px]">
           {children}
         </main>
         <Footer />

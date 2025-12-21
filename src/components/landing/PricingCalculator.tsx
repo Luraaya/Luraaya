@@ -241,7 +241,7 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({
           </div>
 
           {/* Features */}
-          <ul className="space-y-2 mb-4">
+          <ul className="space-y-2 mb-4 flex-grow">
             {planFeatures.basic.map((feature, index) => (
               <li key={index} className="flex items-start text-sm">
                 <Check className="text-green-500 mr-2 h-4 w-4 mt-0.5 flex-shrink-0" />

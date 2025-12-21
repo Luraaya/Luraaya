@@ -35,10 +35,10 @@ export const AuroraBackground = ({
               "--white-gradient":
                 "repeating-linear-gradient(100deg,#fff_0%,#fff_7%,transparent_10%,transparent_12%,#fff_16%)",
 
-              "--blue-300": "#70d0e0ff",
-              "--blue-400": "#59c4eeff",
-              "--blue-500": "#77abffff",
-              "--indigo-300": "#b4c0fcff",
+              "--blue-300": "#88fff9ff",
+              "--blue-400": "#8bd5ffff",
+              "--blue-500": "#888affa6",
+              "--indigo-300": "#d9defaff",
               "--violet-200": "#ddd6fe",
               "--black": "#000",
               "--white": "#fff",
