@@ -15,17 +15,17 @@ export const AuroraBackground = ({
   ...props
 }: AuroraBackgroundProps) => {
   return (
-    <main>
+    <main className="w-full overflow-x-hidden">
       <div
         className={cn(
-          // iOS: 100vh ist unzuverlaessig, deshalb stabile Viewport-Units + Desktop-Fallback
-          "transition-bg relative flex min-h-[100svh] min-h-[100dvh] sm:h-[100vh] flex-col items-center justify-center bg-zinc-50 text-slate-950 dark:bg-zinc-900",
+          "transition-bg relative flex w-full min-h-[100svh] min-h-[100dvh] sm:h-[100vh] flex-col items-center justify-center bg-zinc-50 text-slate-950 dark:bg-zinc-900 overflow-x-hidden",
           className
         )}
         {...props}
       >
+        {/* Clip-Container: bleibt exakt im Viewport */}
         <div
-          className="absolute inset-0 overflow-hidden"
+          className="pointer-events-none absolute inset-0 overflow-hidden"
           style={
             {
               "--aurora":
@@ -46,35 +46,35 @@ export const AuroraBackground = ({
             } as React.CSSProperties
           }
         >
-<div
-  className={cn(
-    `after:animate-aurora after:[animation-duration:35s] sm:after:[animation-duration:60s]
-     pointer-events-none absolute -inset-[10px]
-     [background-image:var(--white-gradient),var(--aurora)]
-     [background-size:400%,_300%]
-     [background-position:50%_50%,50%_50%]
-     opacity-70
-     blur-[10px]
-     will-change-transform
-     [--aurora:repeating-linear-gradient(90deg,var(--blue-500)_10%,var(--indigo-300)_15%,var(--blue-300)_20%,var(--violet-200)_25%,var(--blue-400)_10%)]
-     [--dark-gradient:repeating-linear-gradient(100deg,var(--black)_0%,var(--black)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--black)_16%)]
-     [--white-gradient:repeating-linear-gradient(100deg,var(--white)_0%,var(--white)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--white)_16%)]
-     after:absolute
-     after:inset-0
-     after:[background-image:var(--white-gradient),var(--aurora)]
-     after:[background-size:200%,_100%]
-     after:[background-attachment:scroll]
-     sm:after:[background-attachment:fixed]
-     after:mix-blend-normal
-     after:content-[""]`,
-    showRadialGradient &&
-      `[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]`
-  )}
-/>
-
-
-
-
+          {/* Puffer: verhindert sichtbaren Clip-Rand beim Blur */}
+          <div className="absolute inset-0 p-8 sm:p-12">
+            <div
+              className={cn(
+                `absolute -inset-8 sm:-inset-12
+                 after:animate-aurora after:[animation-duration:35s] sm:after:[animation-duration:60s]
+                 [background-image:var(--white-gradient),var(--aurora)]
+                 [background-size:400%,_300%]
+                 [background-position:50%_50%,50%_50%]
+                 opacity-70
+                 blur-[10px]
+                 will-change-transform
+                 [--aurora:repeating-linear-gradient(90deg,var(--blue-500)_10%,var(--indigo-300)_15%,var(--blue-300)_20%,var(--violet-200)_25%,var(--blue-400)_30%)]
+                 [--dark-gradient:repeating-linear-gradient(100deg,var(--black)_0%,var(--black)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--black)_16%)]
+                 [--white-gradient:repeating-linear-gradient(100deg,var(--white)_0%,var(--white)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--white)_16%)]
+                 after:absolute
+                 after:inset-0
+                 after:[background-image:var(--white-gradient),var(--aurora)]
+                 after:[background-size:200%,_100%]
+                 after:[background-attachment:scroll]
+                 sm:after:[background-attachment:fixed]
+                 after:mix-blend-normal
+                 after:content-[""]`,
+                // Mask nur ab sm anwenden, weil sie auf Mobile oft wie "Rahmen" wirkt
+                showRadialGradient &&
+                  `sm:[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]`
+              )}
+            />
+          </div>
         </div>
 
         {children}
