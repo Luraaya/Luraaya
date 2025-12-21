@@ -26,7 +26,7 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-between py-4">
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-white/60 backdrop-blur border border-white/30">
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-white border border-gray-200">
                 <img src="/logo.jpg" alt="logo" />
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-teal-500 bg-clip-text text-transparent">
@@ -113,7 +113,8 @@ const Header: React.FC = () => {
               onClick={() => setIsMenuOpen(false)}
             />
             {/* Dropdown Menu */}
-            <div className="fixed left-0 right-0 top-[4.5rem] z-50 rounded-b-2xl bg-white/90 backdrop-blur shadow-lg p-6 animate-dropdown">
+            <div className="fixed left-0 right-0 top-[4.5rem] z-50 rounded-b-2xl bg-white shadow-lg p-6 animate-dropdown">
+
               <nav className="flex flex-col space-y-4">
                 <a
                   href="#signup"

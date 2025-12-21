@@ -53,7 +53,7 @@ export const AuroraBackground = ({
                 `absolute -inset-8 sm:-inset-12
                  after:animate-aurora after:[animation-duration:35s] sm:after:[animation-duration:60s]
                  [background-image:var(--white-gradient),var(--aurora)]
-                 [background-size:400%,_300%]
+                 [background-size:300%,_300%]
                  [background-position:50%_50%,50%_50%]
                  opacity-70
                  blur-[10px]
