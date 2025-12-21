@@ -18,7 +18,7 @@ export const AuroraBackground = ({
     <main className="w-full overflow-x-hidden bg-zinc-50">
       <div
         className={cn(
-          "transition-bg relative flex w-full min-h-[75svh] sm:min-h-[80vh] flex-col items-center justify-center bg-zinc-50 text-slate-950 dark:bg-zinc-900 overflow-x-hidden",
+          "transition-bg relative flex w-full min-h-[75svh] sm:min-h-[80vh] flex-col items-center justify-center bg-zinc-50 text-slate-950 overflow-x-hidden",
           className
         )}
         {...props}
@@ -30,9 +30,7 @@ export const AuroraBackground = ({
             {
               "--aurora":
                 "repeating-linear-gradient(100deg,#3b82f6_10%,#a5b4fc_15%,#93c5fd_20%,#ddd6fe_25%,#60a5fa_30%)",
-              "--dark-gradient":
-                "repeating-linear-gradient(100deg,#000_0%,#000_7%,transparent_10%,transparent_12%,#000_16%)",
-              "--white-gradient":
+                "--white-gradient":
                 "repeating-linear-gradient(100deg,#fff_0%,#fff_7%,transparent_10%,transparent_12%,#fff_16%)",
 
               "--blue-300": "#bafffcff",
@@ -59,7 +57,6 @@ export const AuroraBackground = ({
                  blur-[10px]
                  will-change-transform
                  [--aurora:repeating-linear-gradient(90deg,var(--blue-500)_10%,var(--indigo-300)_15%,var(--blue-300)_20%,var(--violet-200)_25%,var(--blue-400)_30%)]
-                 [--dark-gradient:repeating-linear-gradient(100deg,var(--black)_0%,var(--black)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--black)_16%)]
                  [--white-gradient:repeating-linear-gradient(100deg,var(--white)_0%,var(--white)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--white)_16%)]
                  after:absolute
                  after:inset-0
