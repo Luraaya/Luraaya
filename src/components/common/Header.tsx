@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import Container from "./Container";
 import Button from "./Button";
-import { HashLink } from "react-router-hash-link";
 import LanguageSelector from "./LanguageSelector";
 import UserDropdown from "./UserDropdown";
 import { useLanguage } from "../../contexts/LanguageContext";
@@ -14,9 +13,29 @@ const Header: React.FC = () => {
   const { t } = useLanguage();
   const { user, loading } = useAuth();
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const goToSection = (id: string) => {
+    const scroll = () => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+
+    if (location.pathname !== "/") {
+      navigate(`/#${id}`);
+      setTimeout(scroll, 80);
+    } else {
+      scroll();
+    }
+  };
+
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-white px-4"
+      className="fixed top-0 left-0 right-0 z-[9999] border-b border-gray-200 bg-white px-4"
       style={{
         paddingLeft: "max(1rem, env(safe-area-inset-left))",
         paddingRight: "max(1rem, env(safe-area-inset-right))",
@@ -24,44 +43,50 @@ const Header: React.FC = () => {
     >
       <Container>
         <div className="flex items-center justify-between py-4">
-          <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-white border border-gray-200">
-                <img src="/logo.jpg" alt="logo" />
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-teal-500 bg-clip-text text-transparent">
-                Luraaya
-              </span>
-            </Link>
-          </div>
+          <Link to="/" className="flex items-center gap-2">
+            <img
+              src="/logo.png"
+              alt="Luraaya Logo"
+              className="h-10 w-10 object-contain"
+            />
+            <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-teal-500 bg-clip-text text-transparent">
+              Luraaya
+            </span>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a
-              href="#signup"
+            <button
+              type="button"
+              onClick={() => goToSection("signup")}
               className="text-gray-700 hover:text-purple-600 transition-colors"
             >
               {t("nav.getStarted")}
-            </a>
-            <a
-              href="#features"
+            </button>
+
+            <button
+              type="button"
+              onClick={() => goToSection("features")}
               className="text-gray-700 hover:text-purple-600 transition-colors"
             >
               {t("nav.howItWorks")}
-            </a>
-            <a
-              href="#signup"
+            </button>
+
+            <button
+              type="button"
+              onClick={() => goToSection("signup")}
               className="text-gray-700 hover:text-purple-600 transition-colors"
             >
               {t("nav.pricing")}
-            </a>
-            {/* Contact */}
-            <a
-              href="#footer"
+            </button>
+
+            <button
+              type="button"
+              onClick={() => goToSection("footer")}
               className="text-gray-700 hover:text-purple-600 transition-colors"
             >
               {t("nav.contact")}
-            </a>
+            </button>
 
             {user && (
               <Link
@@ -75,24 +100,21 @@ const Header: React.FC = () => {
 
           <div className="hidden md:flex items-center space-x-4">
             <LanguageSelector variant="header" />
-            {!loading && (
-              <>
-                {user ? (
-                  <UserDropdown variant="header" />
-                ) : (
-                  <>
-                    <Link to="/auth/login">
-                      <Button variant="outline" size="sm">
-                        {t("nav.login")}
-                      </Button>
-                    </Link>
-                    <Link to="/auth/signup">
-                      <Button size="sm">{t("nav.signup")}</Button>
-                    </Link>
-                  </>
-                )}
-              </>
-            )}
+            {!loading &&
+              (user ? (
+                <UserDropdown variant="header" />
+              ) : (
+                <>
+                  <Link to="/auth/login">
+                    <Button variant="outline" size="sm">
+                      {t("nav.login")}
+                    </Button>
+                  </Link>
+                  <Link to="/auth/signup">
+                    <Button size="sm">{t("nav.signup")}</Button>
+                  </Link>
+                </>
+              ))}
           </div>
 
           {/* Mobile Menu Button */}
@@ -107,82 +129,79 @@ const Header: React.FC = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <>
-            {/* Backdrop */}
             <div
               className="fixed inset-0 top-[4.5rem] bg-black bg-opacity-40 z-40"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={closeMenu}
             />
-            {/* Dropdown Menu */}
-            <div className="fixed left-0 right-0 top-[4.5rem] z-50 rounded-b-2xl bg-white shadow-lg p-6 animate-dropdown">
 
+            <div className="fixed left-0 right-0 top-[4.5rem] z-50 rounded-b-2xl bg-white shadow-lg p-6 animate-dropdown">
               <nav className="flex flex-col space-y-4">
-                <a
-                  href="#signup"
-                  className="text-gray-700 hover:text-purple-600 transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
+                <button
+                  type="button"
+                  onClick={() => {
+                    goToSection("signup");
+                    closeMenu();
+                  }}
+                  className="text-left text-gray-700 hover:text-purple-600 transition-colors"
                 >
                   {t("nav.getStarted")}
-                </a>
-                <a
-                  href="#features"
-                  className="text-gray-700 hover:text-purple-600 transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    goToSection("features");
+                    closeMenu();
+                  }}
+                  className="text-left text-gray-700 hover:text-purple-600 transition-colors"
                 >
                   {t("nav.howItWorks")}
-                </a>
-                <a
-                  href="#signup"
-                  className="text-gray-700 hover:text-purple-600 transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    goToSection("signup");
+                    closeMenu();
+                  }}
+                  className="text-left text-gray-700 hover:text-purple-600 transition-colors"
                 >
                   {t("nav.pricing")}
-                </a>
-                <a
-                  href="#footer"
-                  className="text-gray-700 hover:text-purple-600 transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    goToSection("footer");
+                    closeMenu();
+                  }}
+                  className="text-left text-gray-700 hover:text-purple-600 transition-colors"
                 >
                   {t("nav.contact")}
-                </a>
+                </button>
 
                 {user && (
                   <Link
                     to="/dashboard"
+                    onClick={closeMenu}
                     className="text-gray-700 hover:text-purple-600 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
                   >
                     {t("nav.dashboard")}
                   </Link>
                 )}
-                {!loading && (
-                  <div className="flex flex-col space-y-2 pt-2">
-                    {user ? (
-                      <div className="pt-2 flex space-x-4 items-center">
-                        <LanguageSelector variant="mobile" />
-                        <UserDropdown variant="mobile" />
-                      </div>
-                    ) : (
-                      <>
-                        <div className="pt-2">
-                          <LanguageSelector variant="mobile" />
-                        </div>
-                        <Link
-                          to="/auth/login"
-                          onClick={() => setIsMenuOpen(false)}
-                        >
-                          <Button variant="outline" fullWidth>
-                            {t("nav.login")}
-                          </Button>
-                        </Link>
-                        <Link
-                          to="/auth/signup"
-                          onClick={() => setIsMenuOpen(false)}
-                        >
-                          <Button fullWidth>{t("nav.signup")}</Button>
-                        </Link>
-                      </>
-                    )}
-                  </div>
+
+                {!loading && !user && (
+                  <>
+                    <LanguageSelector variant="mobile" />
+                    <Link to="/auth/login" onClick={closeMenu}>
+                      <Button variant="outline" fullWidth>
+                        {t("nav.login")}
+                      </Button>
+                    </Link>
+                    <Link to="/auth/signup" onClick={closeMenu}>
+                      <Button fullWidth>{t("nav.signup")}</Button>
+                    </Link>
+                  </>
                 )}
               </nav>
             </div>
