@@ -9,7 +9,7 @@ export default function PrivacyPolicy() {
 
   return (
     <Layout>
-      <section className="py-16">
+      <section className="relative py-16 bg-white min-h-screen z-10">
         <Container className="max-w-3xl">
           <div className="mb-8 flex items-center justify-between gap-4">
             <button
