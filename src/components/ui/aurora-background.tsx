@@ -19,7 +19,7 @@ export function AuroraBackground({
       <div
         className={cn(
           // eigener Stacking Context, damit mix-blend-difference sauber begrenzt ist
-          "transition-bg relative flex w-full min-h-[75svh] sm:min-h-[80vh] flex-col items-center justify-center overflow-x-hidden bg-zinc-50 text-slate-950 [isolation:isolate]",
+          "transition-bg relative flex w-full min-h-[60svh] sm:min-h-[60vh] flex-col items-center justify-center overflow-x-hidden bg-zinc-50 text-slate-950 [isolation:isolate]",
           className
         )}
         {...props}
@@ -38,9 +38,9 @@ export function AuroraBackground({
                 "repeating-linear-gradient(100deg,#fff_0%,#fff_7%,transparent_10%,transparent_12%,#fff_16%)",
 
               // Original-Farbwerte (keine Alpha-Werte, keine Pastell-Overrides)
-              "--blue-300": "#93c5fd",
-              "--blue-400": "#60a5fa",
-              "--blue-500": "#3b82f6",
+              "--blue-300": "#abf2f7ff",
+              "--blue-400": "#8bdaffff",
+              "--blue-500": "#65a0ffff",
               "--indigo-300": "#a5b4fc",
               "--violet-200": "#ddd6fe",
               "--white": "#fff",
@@ -64,7 +64,8 @@ export function AuroraBackground({
                  invert filter
                  will-change-transform
 
-                 [--aurora:repeating-linear-gradient(100deg,var(--blue-500)_10%,var(--indigo-300)_15%,var(--blue-300)_20%,var(--violet-200)_25%,var(--blue-400)_30%)]
+                 [--aurora:repeating-linear-gradient(100deg,var(--blue-500)_10%,var(--indigo-300)_12%,var(--blue-300)_14%,var(--violet-200)_16%,var(--blue-400)_18%)]
+
                  [--white-gradient:repeating-linear-gradient(100deg,var(--white)_0%,var(--white)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--white)_16%)]
 
                  after:absolute
