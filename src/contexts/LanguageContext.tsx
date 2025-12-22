@@ -200,7 +200,7 @@ const getTranslations = () => {
       "privacy.navigation.home": "Home",
 
       // Hero Section Startseite
-      "hero.badge": "A Message for You",
+      "hero.badge": " ",
       "hero.title": "Your Personal",
       "hero.titleHighlight": "Horoscope",
       "hero.description":
@@ -598,7 +598,7 @@ const getTranslations = () => {
       "privacy.navigation.home": "Startseite",      
 
       // Hero Section Startseite
-      "hero.badge": "Eine Botschaft für dich",
+      "hero.badge": " ",
       "hero.title": "Dein persönliches",
       "hero.titleHighlight": "Horoskop",
       "hero.description":
@@ -1001,7 +1001,7 @@ const getTranslations = () => {
 
 
       // Hero Section Startseite
-      "hero.badge": "Un message pour toi",
+      "hero.badge": " ",
       "hero.title": "Ton",
       "hero.titleHighlight": "horoscope personnel",
       "hero.description":

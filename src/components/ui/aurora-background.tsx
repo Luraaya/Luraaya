@@ -33,16 +33,16 @@ export function AuroraBackground({
           style={
             {
               "--aurora":
-                "repeating-linear-gradient(100deg,#3b82f6_10%,#a5b4fc_15%,#93c5fd_20%,#ddd6fe_25%,#60a5fa_30%)",
+                "repeating-linear-gradient(90deg,#3b82f6_10%,#a5b4fc_15%,#93c5fd_20%,#ddd6fe_25%,#60a5fa_30%)",
               "--white-gradient":
-                "repeating-linear-gradient(100deg,#fff_0%,#fff_7%,transparent_10%,transparent_12%,#fff_16%)",
+                "repeating-linear-gradient(90deg,#fff_0%,#fff_7%,transparent_10%,transparent_12%,#fff_16%)",
 
               // Original-Farbwerte (keine Alpha-Werte, keine Pastell-Overrides)
-              "--blue-300": "#abf2f7ff",
-              "--blue-400": "#8bdaffff",
+              "--blue-300": "#90ffe7ff",
+              "--blue-400": "#93d8f8ff",
               "--blue-500": "#65a0ffff",
-              "--indigo-300": "#a5b4fc",
-              "--violet-200": "#ddd6fe",
+              "--indigo-300": "#c69affff",
+              "--violet-200": "#f5c4ffff",
               "--white": "#fff",
               "--transparent": "transparent",
             } as React.CSSProperties
@@ -64,9 +64,9 @@ export function AuroraBackground({
                  invert filter
                  will-change-transform
 
-                 [--aurora:repeating-linear-gradient(100deg,var(--blue-500)_10%,var(--indigo-300)_12%,var(--blue-300)_14%,var(--violet-200)_16%,var(--blue-400)_18%)]
+                 [--aurora:repeating-linear-gradient(95deg,var(--blue-500)_10%,var(--indigo-300)_12%,var(--blue-300)_14%,var(--violet-200)_16%,var(--blue-400)_18%)]
 
-                 [--white-gradient:repeating-linear-gradient(100deg,var(--white)_0%,var(--white)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--white)_16%)]
+                 [--white-gradient:repeating-linear-gradient(95deg,var(--white)_0%,var(--white)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--white)_16%)]
 
                  after:absolute
                  after:inset-0
@@ -78,7 +78,11 @@ export function AuroraBackground({
                  after:content-[""]`,
                 // Mask nur ab sm, um Mobile-Artefakte zu vermeiden
                 showRadialGradient &&
-                  `sm:[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]`
+                    `[mask-image:linear-gradient(to_bottom,black_0%,black_10%,transparent_40%)]
+                    [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_30%,transparent_60%)]
+                    sm:[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]
+                    sm:[-webkit-mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]
+                    `
               )}
             />
           </div>

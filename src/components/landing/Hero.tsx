@@ -15,17 +15,14 @@ const Hero: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-  <AuroraBackground className="w-full">
-    <section className="relative py-20 overflow-hidden">
+  <AuroraBackground className="w-full lg:justify-start lg:py-32">
+    <section className="relative pt-32 pb-20 lg:pt-28 lg:pb-40 overflow-hidden">
 
       <Container className="relative z-10">
         <div className="flex flex-col lg:flex-row items-center">
           {/* Left side - Content */}
           <div className="w-full lg:w-1/2 mb-12 lg:mb-0 text-center lg:text-left">
-            <div className="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-800 rounded-full mb-6 animate-fade-in">
-              <Star size={16} className="mr-2" />
-              <span className="text-sm font-medium">{t("hero.badge")}</span>
-            </div>
+
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               {t("hero.title")}{" "}
@@ -34,7 +31,7 @@ const Hero: React.FC = () => {
               </span>
             </h1>
 
-            <p className="text-lg text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0">
+            <p className="text-lg text-gray-800 mb-8 max-w-lg mx-auto lg:mx-0">
               {t("hero.description")}
             </p>
 
@@ -65,18 +62,26 @@ const Hero: React.FC = () => {
 
 
           {/* Right side - Sample message card */}
-          <div className="w-full lg:w-1/2 relative">
+          <div className="w-full lg:w-1/2 relative mt-20 lg:mt-0">
             <div className="relative bg-white rounded-xl shadow-xl p-6 max-w-md mx-auto transition-transform duration-300 hover:scale-105">
               {/* New message indicator */}
               <div
                 className="
-                  bg-teal-500 text-white text-sm font-medium
-                  px-4 py-2
-                  inline-flex items-center justify-center
-                  rounded-full rounded-r-n
-                  absolute top-4 right-4
-                "
-              >
+                    absolute
+                    -top-3
+                    left-1/2
+                    -translate-x-1/2
+                    bg-teal-500
+                    text-white
+                    text-xs
+                    font-medium
+                    px-3
+                    py-1
+                    rounded-full
+                    z-20
+                    shadow-sm
+                  "
+                >
                 {t("hero.newReading")}
               </div>
 
