@@ -115,7 +115,7 @@ const getTranslations = () => {
     en: {
       // Navigationsleiste
       "nav.howItWorks": "How It Works",
-      "nav.pricing": "Pricing",
+      "nav.pricing": "Subscrition",
       "nav.reviews": "Reviews",
       "nav.contact": "Contact",
       "nav.getStarted": "Get Started",
@@ -513,7 +513,7 @@ const getTranslations = () => {
     de: {
       // Navigationsleiste
       "nav.howItWorks": "Wie es funktioniert",
-      "nav.pricing": "Preise",
+      "nav.pricing": "Abo",
       "nav.reviews": "Bewertungen",
       "nav.getStarted": "Loslegen",
       "nav.contact": "Kontakt",
@@ -915,7 +915,7 @@ const getTranslations = () => {
     fr: {
       // Navigationsleiste
       "nav.howItWorks": "Comment ça marche",
-      "nav.pricing": "Prix",
+      "nav.pricing": "Abonnement",
       "nav.reviews": "Èvaluations",
       "nav.getStarted": "Commencer",
       "nav.contact": "Contact",

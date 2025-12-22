@@ -3,7 +3,9 @@ import {
   Routes,
   Route,
   Navigate,
+  useLocation,
 } from "react-router-dom";
+import { useEffect } from "react";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import LandingPage from "./pages/LandingPage";
@@ -18,7 +20,6 @@ import EmailVerify from "./pages/EmailVerifyPage";
 import AuthCallback from "./pages/AuthCallback";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 
-
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user, loading } = useAuth();
 
@@ -31,12 +32,28 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   }
 
   if (!user) {
-    // Not authenticated, redirect to login
     return <Navigate to="/auth/login" replace />;
   }
 
-  // Authenticated, render children
   return <>{children}</>;
+};
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
+
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    });
+  }, [pathname]);
+
+  return null;
 };
 
 function App() {
@@ -44,6 +61,7 @@ function App() {
     <LanguageProvider>
       <AuthProvider>
         <Router>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/datenschutz" element={<PrivacyPolicy />} />

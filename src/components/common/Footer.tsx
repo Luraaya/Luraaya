@@ -221,12 +221,12 @@ const Footer: React.FC = () => {
               <div className="flex items-center space-x-6">
                 <LanguageSelector variant="footer" />
 
-<Link
-  to="/datenschutz"
-  className="text-gray-500 hover:text-white text-sm transition-colors"
->
-  {t("footer.legal.privacyPolicy")}
-</Link>
+            <Link
+              to="/datenschutz"
+              className="text-gray-500 hover:text-white text-sm transition-colors"
+            >
+              {t("footer.legal.privacyPolicy")}
+            </Link>
 
 
                 <a
