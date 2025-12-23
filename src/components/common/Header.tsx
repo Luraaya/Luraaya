@@ -139,10 +139,10 @@ const Header: React.FC = () => {
             />
 
             <div className="fixed left-0 right-0 top-[4.5rem] z-50 rounded-b-2xl bg-white shadow-lg p-6 animate-dropdown">
-              <nav className="flex flex-col space-y-4">
+              <nav className="flex flex-col space-y-5">
                 {/* Sprache ganz oben, zentriert */}
                 <div className="flex justify-center">
-                  <LanguageSelector variant="mobile" className="font-normal" />
+                  <LanguageSelector variant="mobile" className="font-normal text-sm opacity-80" />
                 </div>
 
                 <button
@@ -151,7 +151,7 @@ const Header: React.FC = () => {
                     goToSection("signup");
                     closeMenu();
                   }}
-                  className="text-left text-gray-700 hover:text-purple-600 transition-colors"
+                  className="text-center text-gray-700 hover:text-purple-600 transition-colors"
                 >
                   {t("nav.getStarted")}
                 </button>
@@ -162,7 +162,7 @@ const Header: React.FC = () => {
                     goToSection("features");
                     closeMenu();
                   }}
-                  className="text-left text-gray-700 hover:text-purple-600 transition-colors"
+                  className="text-center text-gray-700 hover:text-purple-600 transition-colors"
                 >
                   {t("nav.howItWorks")}
                 </button>
@@ -173,7 +173,7 @@ const Header: React.FC = () => {
                     goToSection("signup");
                     closeMenu();
                   }}
-                  className="text-left text-gray-700 hover:text-purple-600 transition-colors"
+                  className="text-center text-gray-700 hover:text-purple-600 transition-colors"
                 >
                   {t("nav.pricing")}
                 </button>
@@ -184,7 +184,7 @@ const Header: React.FC = () => {
                     goToSection("footer");
                     closeMenu();
                   }}
-                  className="text-left text-gray-700 hover:text-purple-600 transition-colors"
+                  className="text-center text-gray-700 hover:text-purple-600 transition-colors"
                 >
                   {t("nav.contact")}
                 </button>
@@ -198,18 +198,18 @@ const Header: React.FC = () => {
                     {t("nav.dashboard")}
                   </Link>
                 )}
-
                 {!loading && !user && (
-                  <>
-                    <Link to="/auth/login" onClick={closeMenu}>
+                  <div className="mt-4 pt-4 border-t border-gray-100 flex gap-3">
+                    <Link to="/auth/login" onClick={closeMenu} className="flex-1">
                       <Button variant="outline" fullWidth>
                         {t("nav.login")}
                       </Button>
                     </Link>
-                    <Link to="/auth/signup" onClick={closeMenu}>
+
+                    <Link to="/auth/signup" onClick={closeMenu} className="flex-1">
                       <Button fullWidth>{t("nav.signup")}</Button>
                     </Link>
-                  </>
+                  </div>
                 )}
               </nav>
             </div>

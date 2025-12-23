@@ -249,16 +249,6 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({
               </li>
             ))}
           </ul>
-
-          {/* Selection indicator */}
-          {selectedPlan === "basic" && (
-            <div className="text-center">
-              <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-600 text-white">
-                <Check className="w-4 h-4 mr-1" />
-                {t("signup.selected")}
-              </div>
-            </div>
-          )}
         </div>
 
         {/* Premium Plan */}
@@ -270,13 +260,7 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({
           }`}
           onClick={() => onPlanChange("premium")}
         >
-          {/* Popular badge */}
-          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <span className="bg-gradient-to-r from-purple-600 to-teal-500 text-white text-xs font-medium px-3 py-1 rounded-full flex items-center">
-              <Star size={12} className="mr-1" />
-              {t("signup.mostPopular")}
-            </span>
-          </div>
+
 
           <div className="text-center mb-4">
             <h4 className="text-lg font-bold text-gray-900 mb-1">
@@ -336,15 +320,7 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({
             })}
           </ul>
 
-          {/* Selection indicator */}
-          {selectedPlan === "premium" && (
-            <div className="text-center">
-              <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-600 text-white">
-                <Check className="w-4 h-4 mr-1" />
-                {t("signup.selected")}
-              </div>
-            </div>
-          )}
+
         </div>
       </div>
 

@@ -11,7 +11,7 @@ import {
   getZodiacSign,
   getZodiacDisplayName,
 } from "../../utils/astrologyUtils";
-import { Star, Moon, Sun, Mail, MessageCircle, MessagesSquare, Smartphone } from "lucide-react";
+import { Star, Sun, Mail, MessageCircle, MessagesSquare, Smartphone } from "lucide-react";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { supabase } from "../../lib/supabase";
 import { useAuth } from "../../contexts/AuthContext";
@@ -656,8 +656,8 @@ const SignupForm: React.FC = () => {
                                   <Smartphone className="w-7 h-7 text-purple-600" />
                                 )}
                               </div>
-                              <div className="font-medium capitalize">
-                                {channel}
+                              <div className="font-medium">
+                                {t(`common.${channel}`)}
                               </div>
                             </div>
                           </div>
@@ -724,7 +724,11 @@ const SignupForm: React.FC = () => {
               {currentStep === 2 && (
                 <div className="space-y-6">
                   <div className="text-center mb-6">
-                    <Moon className="w-12 h-12 text-blue-500 mx-auto mb-2" />
+                    <img
+                      src="/logo.png"
+                      alt="Luraaya Logo"
+                      className="w-12 h-12 mx-auto mb-2"
+                    />
                     <h3 className="text-2xl font-bold">
                       {t("signup.step2.title")}
                     </h3>
@@ -794,25 +798,28 @@ const SignupForm: React.FC = () => {
                         htmlFor="language"
                         className="block text-sm font-medium text-gray-700 mb-1"
                       >
-                        Language *
+                        {t("signup.language")} *
                       </label>
+
                       <select
                         id="language"
                         name="language"
-                        value={currentLanguage}
+                        value={formData.language || currentLanguage}
                         onChange={(e) => {
-                          setLanguage(e.target.value as any);
+                          setFormData({ ...formData, language: e.target.value });
                         }}
                         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
                       >
-                        <option value="en">English</option>
-                        <option value="de">Deutsch</option>
-                        <option value="fr">Français</option>
+                        <option value="en">{t("language.english")}</option>
+                        <option value="de">{t("language.german")}</option>
+                        <option value="fr">{t("language.french")}</option>
                       </select>
+
                       <p className="mt-1 text-xs text-gray-500">
-                        Choose your preferred language for horoscope delivery
+                        {t("signup.language.note")}
                       </p>
                     </div>
+
 
                     {/* Send To */}
                     <div
@@ -1219,65 +1226,61 @@ const SignupForm: React.FC = () => {
                 </div>
               )}
 
-              {/* Navigation buttons */}
-              <div className="flex justify-center mt-8">
-                <div>
-                  {currentStep > 1 && (
-                    <button
-                      type="button"
-                      onClick={prevStep}
-                      className="px-6 py-2 rounded-md font-medium transition-all duration-200 border border-gray-300 text-gray-700 bg-white hover:bg-gray-100"
-                    >
-                      {t("signup.previous")}
-                    </button>
-                  )}
-                </div>
+             {/* Navigation buttons */}
+              <div className="mt-8 flex items-center justify-center gap-4">
+                {currentStep > 1 && (
+                  <button
+                    type="button"
+                    onClick={prevStep}
+                    className="h-12 px-6 rounded-md font-medium transition-all duration-200 border border-gray-300 text-gray-700 bg-white hover:bg-gray-100"
+                  >
+                    {t("signup.previous")}
+                  </button>
+                )}
 
-                <div>
-                  {currentStep < 3 ? (
-                    <button
-                      type="button"
-                      onClick={nextStep}
-                      className="px-8 py-3 rounded-md font-bold transition-all duration-200 bg-purple-600 text-white hover:bg-purple-700 disabled:opacity-60 disabled:cursor-not-allowed text-lg"
-                    >
-                      {t("signup.nextStep")}
-                    </button>
-                  ) : (
-                    <button
-                      type="submit"
-                      disabled={loading}
-                      className="px-8 py-3 rounded-md font-bold transition-all duration-200 bg-purple-600 text-white hover:bg-purple-700 disabled:opacity-60 disabled:cursor-not-allowed text-lg"
-                    >
-                      {loading ? (
-                        <span className="flex items-center gap-2">
-                          <svg
-                            className="animate-spin h-5 w-5 text-white"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                          >
-                            <circle
-                              className="opacity-25"
-                              cx="12"
-                              cy="12"
-                              r="10"
-                              stroke="currentColor"
-                              strokeWidth="4"
-                            ></circle>
-                            <path
-                              className="opacity-75"
-                              fill="currentColor"
-                              d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                            ></path>
-                          </svg>
-                          Loading...
-                        </span>
-                      ) : (
-                        t("signup.startJourney")
-                      )}
-                    </button>
-                  )}
-                </div>
+                {currentStep < 3 ? (
+                  <button
+                    type="button"
+                    onClick={nextStep}
+                    className="h-12 px-8 rounded-md font-bold transition-all duration-200 bg-purple-600 text-white hover:bg-purple-700 disabled:opacity-60 disabled:cursor-not-allowed text-lg"
+                  >
+                    {t("signup.nextStep")}
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="h-12 px-8 rounded-md font-bold transition-all duration-200 bg-purple-600 text-white hover:bg-purple-700 disabled:opacity-60 disabled:cursor-not-allowed text-lg"
+                  >
+                    {loading ? (
+                      <span className="flex items-center gap-2">
+                        <svg
+                          className="animate-spin h-5 w-5 text-white"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          />
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                          />
+                        </svg>
+                        Loading...
+                      </span>
+                    ) : (
+                      t("signup.startJourney")
+                    )}
+                  </button>
+                )}
               </div>
             </form>
 
