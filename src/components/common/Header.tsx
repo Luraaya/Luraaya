@@ -103,7 +103,7 @@ const Header: React.FC = () => {
           </nav>
 
           <div className="hidden md:flex items-center space-x-4">
-            <LanguageSelector variant="header" className="font-bold" />
+            <LanguageSelector variant="header" className="font-normal" />
             {!loading &&
               (user ? (
                 <UserDropdown variant="header" />
@@ -142,7 +142,7 @@ const Header: React.FC = () => {
               <nav className="flex flex-col space-y-4">
                 {/* Sprache ganz oben, zentriert */}
                 <div className="flex justify-center">
-                  <LanguageSelector variant="mobile" className="font-bold" />
+                  <LanguageSelector variant="mobile" className="font-normal" />
                 </div>
 
                 <button

@@ -27,3 +27,6 @@
 .animate-aurora {
   animation: aurora 60s linear infinite;
 }
+html {
+  scroll-behavior: auto;
+}

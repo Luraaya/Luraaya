@@ -33,9 +33,7 @@ const Footer: React.FC = () => {
               <span className="text-xl font-bold text-white">Luraaya</span>
             </div>
 
-            <p className="text-gray-400 mb-4">
-              {t("footer.content")}
-            </p>
+            <p className="text-gray-400 mb-4">{t("footer.content")}</p>
 
             <div className="flex items-center gap-4">
               <a
@@ -130,7 +128,21 @@ const Footer: React.FC = () => {
             </p>
 
             <div className="shrink-0">
-              <LanguageSelector variant="footer" />
+              <LanguageSelector
+                variant="header"
+                className="
+                  font-medium
+                  [&>button]:bg-transparent
+                  [&>button]:border-0
+                  [&>button]:shadow-none
+                  [&>button]:text-white
+                  [&>button:hover]:text-gray-300
+                  [&>button:focus]:outline-none
+                  [&>button:hover]:bg-transparent
+                  [&>button:focus]:ring-0
+                  [&>button:focus-visible]:ring-0
+                "
+              />
             </div>
           </div>
         </div>

@@ -752,7 +752,7 @@ const SignupForm: React.FC = () => {
                         className={`w-full px-4 py-2 border rounded-md focus:ring-purple-500 focus:border-purple-500 ${
                           errors.name ? "border-red-500" : "border-gray-300"
                         }`}
-                        placeholder="Sarah Johnson"
+                        placeholder="Laura Romero"
                       />
                       {errors.name && (
                         <p className="mt-1 text-sm text-red-600">

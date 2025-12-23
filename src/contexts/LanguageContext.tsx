@@ -114,14 +114,15 @@ const getTranslations = () => {
   return {
     en: {
       // Navigationsleiste
-      "nav.howItWorks": "Journey",
-      "nav.pricing": "Subscrition",
+      "nav.howItWorks": "Experience",
+      "nav.pricing": "Membership",
       "nav.reviews": "Reviews",
       "nav.contact": "Contact",
-      "nav.getStarted": "Get Started",
+      "nav.getStarted": " ",
       "nav.dashboard": "Dashboard",
       "nav.login": "Log in",
       "nav.signup": "Sign up",
+      "language.selectTitle": "Select language",
 
       // Footer ganz unten
       "footer.content":
@@ -199,7 +200,7 @@ const getTranslations = () => {
       "hero.titleHighlight": "Horoscope",
       "hero.description":
       "Insights to guide your life path.",
-      "hero.cta": "Receive your personal insights now",
+      "hero.cta": "Receive your insights",
       "hero.learnMore": "How It Works",
       "hero.rating": "",
       "hero.users": " ",
@@ -323,7 +324,7 @@ const getTranslations = () => {
       /*"signup.step1.description":
         "How would you like to receive your cosmic insights?",
       "signup.step2.title": "Personal Information",*/
-      "signup.step2.description": "Tell us about yourself",
+      "signup.step2.description": " ",
       "signup.step3.title": "Birth Information",
       "signup.step3.description":
         "This data is essential for accurate astrological readings",
@@ -508,12 +509,14 @@ const getTranslations = () => {
       // Navigationsleiste
       "nav.howItWorks": "Ablauf",
       "nav.pricing": "Abo",
-      "nav.reviews": "Bewertungen",
-      "nav.getStarted": "Loslegen",
+      "nav.reviews": " ",
+      "nav.getStarted": " ",
       "nav.contact": "Kontakt",
-      "nav.dashboard": "Dashboard",
+      "nav.dashboard": " ",
       "nav.login": "Anmelden",
       "nav.signup": "Registrieren",
+      "language.selectTitle": "Sprache auswählen",
+
 
       // Footer ganz unten
       "footer.content":
@@ -671,7 +674,7 @@ const getTranslations = () => {
       "hero.titleHighlight": "Horoskop",
       "hero.description":
       "Hinweise für deinen Lebensweg.",
-      "hero.cta": "Jetzt persönliche Botschaft erhalten",
+      "hero.cta": "Deine Botschaft erhalten",
       "hero.learnMore": "Wie es funktioniert",
       "hero.rating": " ",
       "hero.users": " ",
@@ -796,7 +799,7 @@ const getTranslations = () => {
       /*"signup.step1.description":
         "Wie möchtest du dein Horoskop erhalten?",*/
       "signup.step2.title": "Persönliche Informationen",
-      "signup.step2.description": "Erzähle uns von Dir",
+      "signup.step2.description": " ",
       "signup.step3.title": "Geburtsinformationen",
       "signup.step3.description":
         "Diese Daten sind für genaue astrologische Lesungen unerlässlich",
@@ -810,7 +813,7 @@ const getTranslations = () => {
       "signup.selected": "Ausgewählt",
       "signup.communicationChannel": "Kommunikationskanal",
       "signup.messageFrequency": "Nachrichtenhäufigkeit",
-      "signup.fullName": "Vollständiger Name",
+      "signup.fullName": "Vorname Name",
       "signup.email": "E-Mail-Adresse",
       "signup.sms": "SMS-Nummer",
       "signup.whatsapp": "WhatsApp-Nummer",
@@ -985,11 +988,12 @@ const getTranslations = () => {
       "nav.howItWorks": "Déroulement",
       "nav.pricing": "Abonnement",
       "nav.reviews": "Èvaluations",
-      "nav.getStarted": "Commencer",
+      "nav.getStarted": " ",
       "nav.contact": "Contact",
       "nav.dashboard": "Tableau de bord",
       "nav.login": "Se connecter",
       "nav.signup": "S'inscrire",
+      "language.selectTitle": "Choisir la langue",
 
       // Footer ganz unten
       "footer.content":
@@ -1067,7 +1071,7 @@ const getTranslations = () => {
       "hero.titleHighlight": "horoscope personnel",
       "hero.description":
         "Des éclairages pour ton chemin de vie.",
-      "hero.cta": "Reçois maintenant tes indications personnelles",
+      "hero.cta": "Recevoir ton message",
       "hero.learnMore": "Comment ça marche",
       "hero.rating": " ",
       "hero.users": " ",
@@ -1191,7 +1195,7 @@ const getTranslations = () => {
       /*"signup.step1.description":
         "dd",*/
       "signup.step2.title": "Informations personnelles",
-      "signup.step2.description": "Parlez-nous de vous",
+      "signup.step2.description": " ",
       "signup.step3.title": "Informations de naissance",
       "signup.step3.description":
         "Ces données sont essentielles pour des lectures astrologiques précises",
