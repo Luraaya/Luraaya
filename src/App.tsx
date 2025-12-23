@@ -19,6 +19,8 @@ import DashboardSettings from "./pages/DashboardSettings";
 import EmailVerify from "./pages/EmailVerifyPage";
 import AuthCallback from "./pages/AuthCallback";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import Cookies from "./pages/Cookies";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user, loading } = useAuth();
@@ -64,7 +66,11 @@ function App() {
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<LandingPage />} />
+
             <Route path="/datenschutz" element={<PrivacyPolicy />} />
+            <Route path="/agb" element={<TermsOfService />} />
+            <Route path="/cookies" element={<Cookies />} />
+
             <Route path="/auth/login" element={<LoginPage />} />
             <Route path="/auth/signup" element={<SignUpPage />} />
             <Route
@@ -77,6 +83,7 @@ function App() {
             />
             <Route path="/auth/verify" element={<EmailVerify />} />
             <Route path="/auth/callback" element={<AuthCallback />} />
+
             <Route
               path="/dashboard"
               element={

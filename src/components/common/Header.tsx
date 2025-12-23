@@ -43,7 +43,11 @@ const Header: React.FC = () => {
     >
       <Container>
         <div className="flex items-center justify-between py-4">
-          <Link to="/" className="flex items-center gap-2">
+          <Link
+            to="/"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="flex items-center gap-2"
+          >
             <img
               src="/logo.png"
               alt="Luraaya Logo"
@@ -99,7 +103,7 @@ const Header: React.FC = () => {
           </nav>
 
           <div className="hidden md:flex items-center space-x-4">
-            <LanguageSelector variant="header" />
+            <LanguageSelector variant="header" className="font-bold" />
             {!loading &&
               (user ? (
                 <UserDropdown variant="header" />
@@ -136,6 +140,11 @@ const Header: React.FC = () => {
 
             <div className="fixed left-0 right-0 top-[4.5rem] z-50 rounded-b-2xl bg-white shadow-lg p-6 animate-dropdown">
               <nav className="flex flex-col space-y-4">
+                {/* Sprache ganz oben, zentriert */}
+                <div className="flex justify-center">
+                  <LanguageSelector variant="mobile" className="font-bold" />
+                </div>
+
                 <button
                   type="button"
                   onClick={() => {
@@ -192,7 +201,6 @@ const Header: React.FC = () => {
 
                 {!loading && !user && (
                   <>
-                    <LanguageSelector variant="mobile" />
                     <Link to="/auth/login" onClick={closeMenu}>
                       <Button variant="outline" fullWidth>
                         {t("nav.login")}
