@@ -313,7 +313,7 @@ const SignupForm: React.FC = () => {
           .eq("id", user?.id);
 
         if (updateErr) {
-          throw new Error("Failed to save profile before checkout");
+          console.warn("Profile update failed before checkout:", updateErr);
         }
 
         window.location.href = session.url;

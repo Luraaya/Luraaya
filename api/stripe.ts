@@ -27,7 +27,21 @@
           if (req.method !== 'POST') return method(res, 'POST');
           const { userId, email, paymentMethodId } = body as any;
           if (!userId || !email) return res.status(400).json({ error: 'userId and email are required' });
-          
+          // Ensure public.users row exists (server-side)
+          try {
+            const { data: existing } = await supabase
+              .from('users')
+              .select('id')
+              .eq('id', userId)
+              .maybeSingle();
+
+            if (!existing) {
+              await supabase.from('users').insert({ id: userId, email });
+            }
+          } catch (e) {
+            console.warn('Ensure user profile failed; continuing:', (e as any)?.message || e);
+          }
+
           let customerId: string | undefined = undefined;
           try {
             const { data: profile, error: profileError } = await supabase
