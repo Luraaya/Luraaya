@@ -547,8 +547,23 @@ async function generateAndDeliverHoroscope(userId) {
     
     const subject = getSubject(msgType, user.language || 'en');
     const channel = (user.communicationChannel || 'email').toLowerCase();
-    const destination = user.send_to || user.email;
+    const rawDestination = user.send_to || user.email || '';
+    const destination = String(rawDestination).trim();
 
+    if (!destination) {
+      console.error('❌ Missing destination (send_to/email). Aborting delivery.');
+      return;
+    }
+
+    if ((channel === 'sms' || channel === 'whatsapp') && !destination.startsWith('+')) {
+      console.error('❌ Invalid phone number format. Expected E.164 with + prefix. Aborting delivery.', { destination });
+      return;
+    }
+
+    if (channel === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(destination)) {
+      console.error('❌ Invalid email format. Aborting delivery.', { destination });
+      return;
+    }
     console.log(`Delivering via ${channel} to: ${destination}`);
 
     try {

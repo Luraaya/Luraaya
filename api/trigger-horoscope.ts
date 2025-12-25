@@ -142,6 +142,15 @@ async function saveMessage(userId: string, content: string, messageType: string)
 }
 
 async function deliver(user: any, content: string, msgType: string) {
+    if (process.env.DELIVERY_DISABLED === "true") {
+    console.log("DELIVERY_DISABLED=true: skip deliver", {
+      userId: user?.id,
+      channel: user?.communicationChannel,
+      send_to: user?.send_to,
+      msgType,
+    });
+    return;
+  }
   const subjectMap: Record<string, string> = {
     daily_horoscope: 'Your daily horoscope ✨',
     weekly_forecast: 'Your weekly forecast ✨',
@@ -149,11 +158,19 @@ async function deliver(user: any, content: string, msgType: string) {
   };
   const subject = subjectMap[msgType] || 'Your horoscope ✨';
   const channel = String(user.communicationChannel || 'email').toLowerCase();
-  const destination = user.send_to || user.email;
+  const destination = user.send_to;
+  if (!destination) throw new Error('Missing send_to destination');
+  if (channel === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(destination)) {
+    throw new Error('Invalid email in send_to');
+  }
+  if ((channel === 'sms' || channel === 'whatsapp') && !/^\+?[1-9]\d{7,14}$/.test(destination)) {
+    throw new Error('Invalid phone (E.164) in send_to');
+  }
   if (channel === 'email') {
     if (!hasSendGrid) { console.log('Would send email to', destination); return; }
     await sgMail.send({ to: destination, from: process.env.SENDGRID_FROM_EMAIL || 'luraaya@outlook.com', subject, html: `<div>${content.replace(/\n/g, '<br/>')}</div>` } as any);
-  } else if ((channel === 'sms' || channel === 'whatsapp') && twilioClient) {
+  } else if (channel === 'sms' || channel === 'whatsapp') {
+    if (!twilioClient) throw new Error('Twilio not configured');
     const text = content.length > 1500 ? content.slice(0, 1497) + '...' : content;
     if (channel === 'sms') {
       await twilioClient.messages.create({ from: process.env.TWILIO_FROM_SMS, to: destination, body: text });

@@ -364,6 +364,14 @@ const getTranslations = () => {
       "signup.privacyNotice":
         "🔒 Your birth data is encrypted and secure. We never share your personal information. By signing up, you agree to our Terms of Service and Privacy Policy.",
 
+      // Payment
+      "payment.success.title": "Payment successful",
+      "payment.success.body": "Your subscription is active. You will be redirected to your dashboard shortly.",
+      "payment.success.cta": "Go to dashboard",
+      "payment.canceled.title": "Payment canceled",
+      "payment.canceled.body": "The payment was canceled. You can try again below at any time.",
+      "errors.genericCheckout": "Payment could not be started. Please try again.",
+ 
       // Dashboard
       "dashboard.myHoroscopes": "My Horoscopes",
       "dashboard.profile": "Profile",
@@ -844,6 +852,14 @@ const getTranslations = () => {
       "signup.startJourney": "Meine kosmische Reise beginnen",
       "signup.privacyNotice":
         "🔒 Deine Geburtsdaten sind verschlüsselt und sicher. Wir teilen niemals Deine persönlichen Informationen. Mit der Anmeldung stimmst Du unseren Nutzungsbedingungen und Datenschutzrichtlinien zu.",
+      
+        // Zahlung
+      "payment.success.title": "Zahlung erfolgreich",
+      "payment.success.body": "Dein Abonnement ist aktiv. Du wirst in Kürze zum Dashboard weitergeleitet.",
+      "payment.success.cta": "Zum Dashboard",
+      "payment.canceled.title": "Zahlung abgebrochen",
+      "payment.canceled.body": "Die Zahlung wurde abgebrochen. Du kannst den Vorgang unten jederzeit erneut starten.",
+      "errors.genericCheckout": "Zahlung konnte nicht gestartet werden. Bitte versuche es erneut.",
 
       // Dashboard
       "dashboard.myHoroscopes": "Meine Horoskope",
@@ -1242,6 +1258,14 @@ const getTranslations = () => {
       "signup.startJourney": "Commencer mon voyage cosmique",
       "signup.privacyNotice":
         "🔒 Vos données de naissance sont cryptées et sécurisées. Nous ne partageons jamais vos informations personnelles. En vous inscrivant, vous acceptez nos conditions de service et notre politique de confidentialité.",
+
+      // Paiement
+      "payment.success.title": "Paiement réussi",
+      "payment.success.body": "Ton abonnement est actif. Tu seras redirigé vers ton tableau de bord dans quelques instants.",
+      "payment.success.cta": "Aller au tableau de bord",
+      "payment.canceled.title": "Paiement annulé",
+      "payment.canceled.body": "Le paiement a été annulé. Tu peux réessayer à tout moment ci-dessous.",
+      "errors.genericCheckout": "Le paiement n’a pas pu etre demarre. Veuillez reessayer.",
 
       // Dashboard
       "dashboard.myHoroscopes": "Mes horoscopes",

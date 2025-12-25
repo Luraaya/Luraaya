@@ -26,11 +26,11 @@ const mapSubscriptionStatus = (stripeStatus: string, priceId: string): string =>
 
 const handleSubscriptionCreated = async (subscription: Stripe.Subscription) => {
   const customerId = subscription.customer as string;
-  
+
   // Get user ID from customer metadata
   const customer = await stripe.customers.retrieve(customerId);
   const userId = customer.metadata.user_id;
-  
+
   if (!userId) {
     console.error("No user_id found in customer metadata");
     return;
@@ -38,6 +38,23 @@ const handleSubscriptionCreated = async (subscription: Stripe.Subscription) => {
 
   const priceId = subscription.items.data[0].price.id;
   const mappedStatus = mapSubscriptionStatus(subscription.status, priceId);
+
+  // Required field check (prevent active subscription without delivery config)
+  const { data: u, error: uErr } = await supabase
+    .from("users")
+    .select("send_to, communicationChannel, subscriptionType, language, dateOfBirth")
+    .eq("id", userId)
+    .maybeSingle();
+
+  if (uErr) {
+    console.error("Error loading user for required-field check:", uErr);
+    return;
+  }
+
+  if (!u?.send_to || !u?.communicationChannel || !u?.subscriptionType || !u?.language || !u?.dateOfBirth) {
+    console.error("Missing required user fields after checkout:", { userId, u });
+    return;
+  }
 
   // Update user's subscription status in database
   const { error } = await supabase
@@ -47,7 +64,7 @@ const handleSubscriptionCreated = async (subscription: Stripe.Subscription) => {
       subscription_period_end: new Date(subscription.current_period_end * 1000).toISOString(),
       stripe_subscription_id: subscription.id,
       stripe_customer_id: customerId,
-      subscription_plan: priceId
+      subscription_plan: priceId,
     })
     .eq("id", userId);
 
@@ -57,13 +74,29 @@ const handleSubscriptionCreated = async (subscription: Stripe.Subscription) => {
 };
 
 const handleSubscriptionUpdated = async (subscription: Stripe.Subscription) => {
-  // Similar to created, but only update necessary fields
   const customerId = subscription.customer as string;
   const customer = await stripe.customers.retrieve(customerId);
   const userId = customer.metadata.user_id;
 
   if (!userId) {
     console.error("No user_id found in customer metadata");
+    return;
+  }
+
+  // Required field check (prevent active subscription without delivery config)
+  const { data: u, error: uErr } = await supabase
+    .from("users")
+    .select("send_to, communicationChannel, subscriptionType, language, dateOfBirth")
+    .eq("id", userId)
+    .maybeSingle();
+
+  if (uErr) {
+    console.error("Error loading user for required-field check:", uErr);
+    return;
+  }
+
+  if (!u?.send_to || !u?.communicationChannel || !u?.subscriptionType || !u?.language || !u?.dateOfBirth) {
+    console.error("Missing required user fields after checkout:", { userId, u });
     return;
   }
 
@@ -82,6 +115,7 @@ const handleSubscriptionUpdated = async (subscription: Stripe.Subscription) => {
     console.error("Error updating user subscription:", error);
   }
 };
+
 
 const handleSubscriptionDeleted = async (subscription: Stripe.Subscription) => {
   const customerId = subscription.customer as string;

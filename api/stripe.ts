@@ -1,8 +1,11 @@
   import Stripe from 'stripe';
   import { supabase } from './_lib/supabase.js';
 
-  // Support both env names
-  const STRIPE_KEY = process.env.STRIPE_SECRET_KEY || process.env.VITE_STRIPE_SECRET_KEY || '';
+  // Server-only: use STRIPE_SECRET_KEY (never VITE_)
+  const STRIPE_KEY = process.env.STRIPE_SECRET_KEY || '';
+  if (process.env.VITE_STRIPE_SECRET_KEY) {
+     console.error('SECURITY: VITE_STRIPE_SECRET_KEY is set. Remove it and use STRIPE_SECRET_KEY server-side only.');
+   }
   const stripe = new Stripe(STRIPE_KEY, { apiVersion: '2025-08-27.basil' });
 
   export default async function handler(req: any, res: any) {
@@ -77,19 +80,27 @@
           const { userId, customerId, priceId, successUrl, cancelUrl } = body as any;
           if (!userId || !customerId || !priceId || !successUrl || !cancelUrl) return res.status(400).json({ error: 'Missing required fields' });
           console.log('Creating checkout session:', { userId, customerId, priceId });
+
+          // Server-side subscription guard (authoritative)
+          const existing = await stripe.subscriptions.list({ customer: customerId, limit: 10 });
+          const blocking = existing.data.find(s => s.status === 'active' || s.status === 'trialing');
+          if (blocking) {
+            return res.status(409).json({ error: 'active subscription exists', status: blocking.status });
+          }
+
+          const idempotencyKey = `checkout:${userId}:${customerId}:${priceId}`;
           const session = await stripe.checkout.sessions.create({
             mode: 'subscription',
             payment_method_types: ['card'],
             customer: customerId,
             line_items: [{ price: priceId, quantity: 1 }],
             subscription_data: {
-              //trial_period_days: 7,
               metadata: { user_id: userId }
             },
             success_url: successUrl,
             cancel_url: cancelUrl,
             metadata: { user_id: userId },
-          });
+          }, { idempotencyKey });
           console.log('Checkout session created:', { sessionId: session.id });
           return res.status(200).json(session);
         }

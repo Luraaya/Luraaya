@@ -11,7 +11,7 @@ import {
   getZodiacSign,
   getZodiacDisplayName,
 } from "../../utils/astrologyUtils";
-import { Star, Sun, Mail, MessageCircle, MessagesSquare, Smartphone } from "lucide-react";
+import { Mail, MessageCircle, Smartphone } from "lucide-react";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { supabase } from "../../lib/supabase";
 import { useAuth } from "../../contexts/AuthContext";
@@ -76,21 +76,24 @@ const keys = {
 };
 
 const SignupForm: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, currentLanguage } = useLanguage();
   const navigate = useNavigate();
 
   // Form state management
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    sendTo: "",
-    sex: Sex.FEMALE,
-    dateOfBirth: "",
-    timeOfBirth: "",
-    placeOfBirth: "",
-    subscriptionType: SubscriptionType.WEEKLY,
-    communicationChannel: CommunicationChannel.EMAIL,
-  });
+    const [formData, setFormData] = useState({
+      name: "",
+      email: "",
+      sendTo: "",
+      sex: Sex.FEMALE,
+      dateOfBirth: "",
+      timeOfBirth: "",
+      placeOfBirth: "",
+      subscriptionType: SubscriptionType.WEEKLY,
+      communicationChannel: CommunicationChannel.EMAIL,
+
+      // neu: Delivery-Sprache (wird in users.language gespeichert)
+      deliveryLanguage: "de" as "de" | "en" | "fr",
+    });
 
   const [currentStep, setCurrentStep] = useState(1);
   const [zodiacSign, setZodiacSign] = useState<string>("");
@@ -102,8 +105,7 @@ const SignupForm: React.FC = () => {
     "monthly"
   );
   const [loading, setLoading] = useState(false);
-  const { user, signUp, signIn } = useAuth();
-  const { currentLanguage, setLanguage } = useLanguage();
+  const { user, signUp } = useAuth();
   const [countryCode, setCountryCode] = useState("+1");
 
   const [showCountryDropdown, setShowCountryDropdown] = useState(false);
@@ -122,6 +124,7 @@ const SignupForm: React.FC = () => {
   const [existingAccountEmail, setExistingAccountEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [uiError, setUiError] = useState("");
 
   const formTopRef = useRef<HTMLDivElement>(null);
 
@@ -181,33 +184,42 @@ const SignupForm: React.FC = () => {
   useEffect(() => {
     const getUser = async () => {
       if (!user) return;
+
       const { data } = await supabase
         .from("users")
         .select("*")
-        .eq("id", user?.id)
+        .eq("id", user.id)
         .maybeSingle();
 
-      if (data) {
-        setFormData({
-          name: data.fullname || "",
-          email: data.email || "",
-          sendTo: data.sendTo || "",
-          sex: data.sex || Sex.FEMALE,
-          dateOfBirth: data.dateOfBirth || "",
-          timeOfBirth: data.timeOfBirth || "",
-          placeOfBirth: data.placeOfBirth || "",
-          subscriptionType: data.subscriptionType || SubscriptionType.WEEKLY,
-          communicationChannel:
-            data.communicationChannel === CommunicationChannel.WHATSAPP
-              ? CommunicationChannel.SMS
-              : data.communicationChannel || CommunicationChannel.EMAIL,
-        });
-        setZodiacSign(data.zodiacSign || "");
-      }
+      if (!data) return;
+
+      setFormData({
+        name: data.fullname || "",
+        email: data.email || "",
+
+        // DB-Feld heisst send_to
+        sendTo: data.send_to || "",
+
+        sex: data.sex || Sex.FEMALE,
+        dateOfBirth: data.dateOfBirth || "",
+        timeOfBirth: data.timeOfBirth || "",
+        placeOfBirth: data.placeOfBirth || "",
+        subscriptionType: data.subscriptionType || SubscriptionType.WEEKLY,
+        communicationChannel:
+          data.communicationChannel === CommunicationChannel.WHATSAPP
+            ? CommunicationChannel.SMS
+            : data.communicationChannel || CommunicationChannel.EMAIL,
+
+        // Delivery-Sprache aus users.language
+        deliveryLanguage: (data.language as "de" | "en" | "fr") || "de",
+      });
+
+      setZodiacSign(data.zodiacSign || "");
     };
 
     getUser();
   }, [user]);
+
 
   // Handle input changes
   const handleInputChange = (
@@ -235,6 +247,7 @@ const SignupForm: React.FC = () => {
 
     try {
       setLoading(true);
+      setUiError("");
 
       // First get user profile and check subscription status
       const { data: profile } = await supabase
@@ -281,13 +294,13 @@ const SignupForm: React.FC = () => {
       );
 
       if (session?.url) {
-        await supabase
+        const { error: updateErr } = await supabase
           .from("users")
           .update({
             send_to:
               formData.communicationChannel === CommunicationChannel.EMAIL
-                ? formData.email
-                : countryCode + formData.sendTo,
+                ? profile.email
+                : `${countryCode}${formData.sendTo}`,
             sex: formData.sex,
             dateOfBirth: formData.dateOfBirth,
             timeOfBirth: formData.timeOfBirth,
@@ -295,13 +308,24 @@ const SignupForm: React.FC = () => {
             communicationChannel: formData.communicationChannel,
             subscriptionType: formData.subscriptionType,
             zodiacSign: zodiacSign,
-            language: currentLanguage,
+            language: formData.deliveryLanguage,
           })
           .eq("id", user?.id);
+
+        if (updateErr) {
+          throw new Error("Failed to save profile before checkout");
+        }
+
         window.location.href = session.url;
       }
-    } catch (err) {
+    } catch (err: any) {
+      const msg = err?.message || "";
+      if (msg.includes("409") || msg.toLowerCase().includes("active subscription exists")) {
+        setShowActiveSubscriptionModal(true);
+        return;
+      }
       console.error("Error:", err);
+      setUiError(t("errors.genericCheckout") || "Payment could not be started. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -373,7 +397,7 @@ const SignupForm: React.FC = () => {
           id: data.user.id,
               email: data.user.email || formData.email,
               fullname: data.user.user_metadata?.fullname || formData.name,
-          language: currentLanguage,
+          language: formData.deliveryLanguage,
             },
           ],
           { onConflict: "id" }
@@ -402,6 +426,7 @@ const SignupForm: React.FC = () => {
         setShowPasswordModal(false);
       setShowExistingAccountModal(false);
         setLoading(true);
+        setUiError("");
 
       // Create/update customer if needed
       let customerId = existingCustomerId;
@@ -422,13 +447,13 @@ const SignupForm: React.FC = () => {
         );
 
         if (session?.url) {
-          await supabase
+          const { error: updateErr } = await supabase
             .from("users")
             .update({
               send_to:
                 formData.communicationChannel === CommunicationChannel.EMAIL
-                ? userEmail
-                  : countryCode + formData.sendTo,
+                  ? userEmail
+                  : `${countryCode}${formData.sendTo}`,
               sex: formData.sex,
               dateOfBirth: formData.dateOfBirth,
               timeOfBirth: formData.timeOfBirth,
@@ -436,21 +461,33 @@ const SignupForm: React.FC = () => {
               communicationChannel: formData.communicationChannel,
               subscriptionType: formData.subscriptionType,
               zodiacSign: zodiacSign,
-              language: currentLanguage,
+              language: formData.deliveryLanguage,
             })
-          .eq("id", userId);
+            .eq("id", userId);
+
+          if (updateErr) {
+            throw new Error("Failed to save profile before checkout");
+          }
+
           window.location.href = session.url;
         }
-      } catch (err) {
+      } catch (err: any) {
+        const msg = err?.message || "";
+
+        if (msg.includes("409") || msg.toLowerCase().includes("active subscription exists")) {
+          setShowActiveSubscriptionModal(true);
+          setLoading(false);
+          return;
+        }
+
         console.error("Error:", err);
-      setPasswordError("Failed to process subscription. Please try again.");
+        setUiError(t("errors.genericCheckout") || "Payment could not be started. Please try again.");
         setLoading(false);
-    }
+      }
   };
 
   // Validation logic for each step
   const validateStep = () => {
-    console.log(currentLanguage);
     const newErrors: { [key: string]: string } = {};
 
     if (currentStep === 1) {
@@ -474,16 +511,6 @@ const SignupForm: React.FC = () => {
         newErrors.timeOfBirth = "Required for Premium plans";
       }
       if (!formData.placeOfBirth) newErrors.placeOfBirth = "Required";
-      if (
-        formData.communicationChannel === CommunicationChannel.EMAIL &&
-        formData.sendTo &&
-        formData.sendTo !== ""
-      ) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(formData.sendTo)) {
-          newErrors.sendTo = "Invalid email address";
-        }
-      }
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -792,22 +819,25 @@ const SignupForm: React.FC = () => {
                       )}
                     </div>
 
-                    {/* Language Selection */}
+                    {/* Delivery Language Selection (unabhaengig von UI-Sprache) */}
                     <div>
                       <label
-                        htmlFor="language"
+                        htmlFor="deliveryLanguage"
                         className="block text-sm font-medium text-gray-700 mb-1"
                       >
                         {t("signup.language")} *
                       </label>
 
                       <select
-                        id="language"
-                        name="language"
-                        value={formData.language || currentLanguage}
-                        onChange={(e) => {
-                          setFormData({ ...formData, language: e.target.value });
-                        }}
+                        id="deliveryLanguage"
+                        name="deliveryLanguage"
+                        value={formData.deliveryLanguage}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            deliveryLanguage: e.target.value as "de" | "en" | "fr",
+                          })
+                        }
                         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
                       >
                         <option value="en">{t("language.english")}</option>
@@ -1282,6 +1312,13 @@ const SignupForm: React.FC = () => {
                   </button>
                 )}
               </div>
+
+              {uiError && (
+                <p className="mt-4 text-sm text-red-600 text-center">
+                  {uiError}
+                </p>
+              )}
+
             </form>
 
             {showPasswordModal && (
