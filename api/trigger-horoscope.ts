@@ -189,8 +189,11 @@ export default async function handler(req: any, res: any) {
   // If there is no userId, it's the batch cron job.
   // We MUST check for the cron secret.
   if (!userId) {
-    const { authorization } = req.headers;
-    const cronSecret = process.env.CRON_SECRET;
+      const cronSecret = process.env.CRON_SECRET;
+      const key = (req.query?.key as string) || (req.body && (req.body as any).key);
+      console.log('CRON_CHECK', { hasSecret: !!cronSecret, keyReceived: key ? 'yes' : 'no' });
+
+
 
 
     // --- (IMPROVEMENT) ---
@@ -202,7 +205,7 @@ export default async function handler(req: any, res: any) {
     }
     // --- (END IMPROVEMENT) ---
 
-    if (authorization !== `Bearer ${cronSecret}`) {
+    if (!key || key !== cronSecret) {
       // If secrets don't match, reject the request.
       return res.status(401).json({ success: false, error: 'Unauthorized' });
     }
