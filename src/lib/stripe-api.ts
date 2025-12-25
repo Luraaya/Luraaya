@@ -150,7 +150,7 @@ export class StripeAPI extends APIClient {
       }
       return await res.json();
     } catch (error) {
-      return super.handleError(error);
+      throw error;
     }
   }
 
