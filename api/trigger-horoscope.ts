@@ -191,11 +191,8 @@ export default async function handler(req: any, res: any) {
   if (!userId) {
       const cronSecret = process.env.CRON_SECRET;
       const key = (req.query?.key as string) || (req.body && (req.body as any).key);
-      console.log('CRON_CHECK', { hasSecret: !!cronSecret, keyReceived: key ? 'yes' : 'no' });
-
-
-
-
+   
+      
     // --- (IMPROVEMENT) ---
     // First, check if the secret is even configured on the server.
     if (!cronSecret) {
