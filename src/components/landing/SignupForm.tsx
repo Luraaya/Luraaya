@@ -389,28 +389,6 @@ const SignupForm: React.FC = () => {
         return;
       }
 
-      const { error: insertError } = await supabase
-        .from("users")
-        .upsert(
-          [
-            {
-          id: data.user.id,
-              email: data.user.email || formData.email,
-              fullname: data.user.user_metadata?.fullname || formData.name,
-          language: formData.deliveryLanguage,
-            },
-          ],
-          { onConflict: "id" }
-        );
-
-      if (insertError) {
-        console.error("User upsert failed:", insertError);
-        setPasswordError("Failed to create user profile. Please try again.");
-        setLoading(false);
-        return;
-      }
- 
-      console.log("User record created successfully for:", data.user.email);
  
       // Proceed with subscription for new user
       await proceedWithSubscription(data.user.id, data.user.email);
