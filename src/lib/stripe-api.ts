@@ -148,7 +148,9 @@ export class StripeAPI extends APIClient {
         const text = await res.text();
         throw new Error(`HTTP ${res.status}: ${text}`);
       }
-      return await res.json();
+      const data = await res.json();
+      console.log("Stripe checkout response:", data);
+      return data;
     } catch (error) {
       throw error;
     }
