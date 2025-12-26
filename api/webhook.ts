@@ -371,7 +371,22 @@ export default async function handler(req: any, res: any) {
   if (!sig || !webhookSecret) return res.status(400).send('Webhook signature or secret missing');
 
   try {
-    const raw = await readRawBody(req);
+    const raw =
+      (req as any).rawBody
+        ? Buffer.isBuffer((req as any).rawBody)
+          ? (req as any).rawBody
+          : Buffer.from((req as any).rawBody)
+        : Buffer.isBuffer(req.body)
+          ? req.body
+          : typeof req.body === 'string'
+            ? Buffer.from(req.body)
+            : await readRawBody(req);
+
+    console.log('stripe webhook raw body', {
+      hasRawBody: !!(req as any).rawBody,
+      bodyType: typeof req.body,
+      rawLen: raw?.length,
+    });
     const event = stripe.webhooks.constructEvent(raw, sig, webhookSecret);
     console.log('Received webhook event:', event.type);
 
