@@ -30,11 +30,13 @@ const LoginPage: React.FC = () => {
 
     try {
       const { error } = await signIn(email, password);
+
       if (error) {
         setError(error.message);
-      } else {
-        navigate("/");
+        return;
       }
+
+      navigate("/");
     } catch {
       setError("An unexpected error occurred");
     } finally {
