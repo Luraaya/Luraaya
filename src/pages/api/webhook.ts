@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 import OpenAI from 'openai';
 import sgMail from '@sendgrid/mail';
 import twilio from 'twilio';
+import { buffer } from 'micro';
 
 // Resolve env with fallbacks for Vercel where VITE_ may have been used
 const ENV = {
@@ -354,14 +355,6 @@ async function generateAndDeliverHoroscope(userId: string) {
   }
 }
 
-async function readRawBody(req: any): Promise<Buffer> {
-  return await new Promise((resolve, reject) => {
-    const chunks: Buffer[] = [];
-    (req as any).on('data', (chunk: Buffer) => chunks.push(chunk));
-    (req as any).on('end', () => resolve(Buffer.concat(chunks)));
-    (req as any).on('error', reject);
-  });
-}
 
 export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
@@ -371,16 +364,7 @@ export default async function handler(req: any, res: any) {
   if (!sig || !webhookSecret) return res.status(400).send('Webhook signature or secret missing');
 
   try {
-    const raw =
-      (req as any).rawBody
-        ? Buffer.isBuffer((req as any).rawBody)
-          ? (req as any).rawBody
-          : Buffer.from((req as any).rawBody)
-        : Buffer.isBuffer(req.body)
-          ? req.body
-          : typeof req.body === 'string'
-            ? Buffer.from(req.body)
-            : await readRawBody(req);
+    const raw = await buffer(req);
 
     console.log('stripe webhook raw body', {
       hasRawBody: !!(req as any).rawBody,
