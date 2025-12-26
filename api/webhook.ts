@@ -34,18 +34,20 @@ const stripe = new Stripe(ENV.STRIPE_SECRET_KEY, {
 });
 
 // Supabase client (service role if available for server-side updates)
-let supabase: ReturnType<typeof createClient> | null = null;
+let supabase: ReturnType<typeof createClient>;
+
 if (!ENV.SUPABASE_URL) {
-  console.error('Config error: SUPABASE_URL is missing (set SUPABASE_URL or VITE_SUPABASE_URL)');
-} else if (!(ENV.SUPABASE_SERVICE_ROLE_KEY || ENV.SUPABASE_ANON_KEY)) {
-  console.error('Config error: SUPABASE key missing (set SUPABASE_SERVICE_ROLE_KEY or SUPABASE_ANON_KEY)');
-} else {
-  supabase = createClient(
-    ENV.SUPABASE_URL as string,
-    (ENV.SUPABASE_SERVICE_ROLE_KEY || ENV.SUPABASE_ANON_KEY) as string,
-    { auth: { autoRefreshToken: false, persistSession: false } }
-  );
+  throw new Error('Config error: SUPABASE_URL is missing (set SUPABASE_URL or VITE_SUPABASE_URL)');
 }
+if (!(ENV.SUPABASE_SERVICE_ROLE_KEY || ENV.SUPABASE_ANON_KEY)) {
+  throw new Error('Config error: SUPABASE key missing (set SUPABASE_SERVICE_ROLE_KEY or SUPABASE_ANON_KEY)');
+}
+
+supabase = createClient(
+  ENV.SUPABASE_URL,
+  ENV.SUPABASE_SERVICE_ROLE_KEY || ENV.SUPABASE_ANON_KEY,
+  { auth: { autoRefreshToken: false, persistSession: false } }
+);
 
 // OpenAI
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -222,7 +224,7 @@ async function saveHoroscopeMessage(userId: string, content: string, messageType
   const now = new Date();
   const since = new Date(now.getTime() - 10 * 60 * 1000).toISOString();
 
-  const { data: existing, error: checkErr } = await supabase!
+  const { data: existing, error: checkErr } = await supabase
     .from('horoscope')
     .select('id, sentAt')
     .eq('user_id', userId)
@@ -235,7 +237,7 @@ async function saveHoroscopeMessage(userId: string, content: string, messageType
     return null;
   }
 
-  const { data, error } = await supabase!
+  const { data, error } = await supabase
     .from('horoscope')
     .insert({ user_id: userId, content, messagetype: messageType, read: false, sentAt: now.toISOString() })
     .select();
@@ -244,13 +246,17 @@ async function saveHoroscopeMessage(userId: string, content: string, messageType
 }
 
 async function deliverViaEmail(to: string, subject: string, html: string) {
+  if (process.env.DELIVERY_DISABLED === "true") {
+    console.log("DELIVERY_DISABLED=true: skip email", { to, subject });
+    return;
+  }
   if (!hasSendGrid) {
-    console.log('SendGrid not configured. Would send email to', to, 'subject:', subject);
+    console.log("SendGrid not configured. Would send email to", to, "subject:", subject);
     return;
   }
   const msg = {
     to,
-    from: process.env.SENDGRID_FROM_EMAIL || 'luraaya@outlook.com',
+    from: process.env.SENDGRID_FROM_EMAIL || "luraaya@outlook.com",
     subject,
     html,
   };
@@ -264,20 +270,24 @@ function truncateMessageForSMS(message: string, maxLength = 1500) {
   return (lastEnd > maxLength * 0.8 ? truncated.substring(0, lastEnd + 1) : truncated) + '..';
 }
 
-async function deliverViaTwilio(channel: 'sms' | 'whatsapp', to: string, body: string) {
+async function deliverViaTwilio(channel: "sms" | "whatsapp", to: string, body: string) {
+  if (process.env.DELIVERY_DISABLED === "true") {
+    console.log("DELIVERY_DISABLED=true: skip twilio", { channel, to });
+    return;
+  }
   if (!hasTwilio || !twilioClient) {
     console.log(`Twilio not configured. Would send ${channel} to`, to);
     return;
   }
   const text = truncateMessageForSMS(body);
-  if (channel === 'sms') {
-    if (!process.env.TWILIO_FROM_SMS) throw new Error('TWILIO_FROM_SMS not set');
+  if (channel === "sms") {
+    if (!process.env.TWILIO_FROM_SMS) throw new Error("TWILIO_FROM_SMS not set");
     await twilioClient.messages.create({ from: process.env.TWILIO_FROM_SMS as string, to, body: text });
   } else {
-    const fromWhats = (process.env.TWILIO_FROM_WHATSAPP || '').startsWith('whatsapp:')
+    const fromWhats = (process.env.TWILIO_FROM_WHATSAPP || "").startsWith("whatsapp:")
       ? (process.env.TWILIO_FROM_WHATSAPP as string)
       : `whatsapp:${process.env.TWILIO_FROM_WHATSAPP as string}`;
-    const toWhats = to.startsWith('whatsapp:') ? to : `whatsapp:${to}`;
+    const toWhats = to.startsWith("whatsapp:") ? to : `whatsapp:${to}`;
     await twilioClient.messages.create({ from: fromWhats, to: toWhats, body: text });
   }
 }
@@ -288,7 +298,7 @@ async function generateAndDeliverHoroscope(userId: string) {
 
   // Add retry logic to handle replication lag
   for (let i = 0; i < 3; i++) {
-    const { data: userRaw, error } = await supabase!
+    const { data: userRaw, error } = await supabase
       .from('users')
       .select('*')
       .eq('id', userId)
@@ -382,7 +392,7 @@ export default async function handler(req: any, res: any) {
             userId = (customer as any)?.metadata?.user_id as string | undefined;
           } catch {}
           if (!userId) {
-            const { data: match } = await supabase!
+            const { data: match } = await supabase
               .from('users')
               .select('id')
               .eq('stripe_customer_id', customerId as string)
@@ -445,7 +455,7 @@ export default async function handler(req: any, res: any) {
           };
           if (subscriptionPeriodEnd) updatePayload.subscription_period_end = subscriptionPeriodEnd;
 
-          await supabase!
+          await supabase
             .from('users')
             .update(updatePayload)
             .eq('id', userId as string);
@@ -463,7 +473,7 @@ case 'customer.subscription.created': {
         // --- START NEW LOGIC ---
         // ALWAYS trust your database first.
         let userId: string | undefined;
-        const { data: match } = await supabase!
+        const { data: match } = await supabase
           .from('users')
           .select('id')
           .eq('stripe_customer_id', sub.customer as string)
@@ -501,7 +511,7 @@ case 'customer.subscription.created': {
           subscriptionPeriodEnd
         });
         
-        await supabase!
+        await supabase
           .from('users')
           .update({
             subscription_status: mapped || 'trialing',
@@ -521,7 +531,7 @@ case 'customer.subscription.created': {
         const customer = await stripe.customers.retrieve(sub.customer as string);
         let userId = (customer as any)?.metadata?.user_id as string | undefined;
         if (!userId) {
-          const { data: match } = await supabase!
+          const { data: match } = await supabase
             .from('users')
             .select('id')
             .eq('stripe_customer_id', sub.customer as string)
@@ -549,7 +559,7 @@ case 'customer.subscription.created': {
           subscriptionPeriodEnd
         });
         
-        await supabase!
+        await supabase
           .from('users')
           .update({ 
             subscription_status: mapped, 
@@ -565,7 +575,7 @@ case 'customer.subscription.created': {
         const customerId = sub.customer as string;
 
         // Find user by customer ID
-        const { data: match } = await supabase!
+        const { data: match } = await supabase
           .from('users')
           .select('id')
           .eq('stripe_customer_id', customerId)
@@ -591,7 +601,7 @@ case 'customer.subscription.created': {
           ended_at: subscriptionPeriodEnd
         });
         
-        await supabase!
+        await supabase
           .from('users')
           .update({ 
             subscription_status: 'canceled',
@@ -615,7 +625,7 @@ case 'customer.subscription.created': {
 
             // Try DB match first
             let userId: string | undefined;
-            const { data: match } = await supabase!
+            const { data: match } = await supabase
               .from('users')
               .select('id')
               .eq('stripe_customer_id', customerId)
@@ -654,7 +664,7 @@ case 'customer.subscription.created': {
               });
 
               // This update is crucial. It corrects any missing data from earlier events.
-              await supabase!
+              await supabase
                 .from('users')
                 .update({
                   subscription_status: mappedStatus,
@@ -666,7 +676,7 @@ case 'customer.subscription.created': {
                 .eq('id', userId);
 
               // Secondary safety update by subscription id (covers rare mapping gaps)
-              await supabase!
+              await supabase
                 .from('users')
                 .update({
                   subscription_status: mappedStatus,
@@ -688,7 +698,7 @@ case 'customer.subscription.created': {
               const subscriptionType = mapPriceIdToSubscriptionType(priceId);
 
               console.warn('invoice.payment_succeeded: updating by stripe_subscription_id fallback');
-              await supabase!
+              await supabase
                 .from('users')
                 .update({
                   subscription_status: mappedStatus,
