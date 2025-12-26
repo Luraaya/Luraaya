@@ -21,27 +21,36 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
+useEffect(() => {
+  const handleInitialSession = async () => {
+    const { data } = await supabase.auth.getSession();
 
-    console.log(session);
+    setSession(data.session);
+    setUser(data.session?.user ?? null);
+    setLoading(false);
 
-    // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (_, session) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
+    const hash = window.location.hash.substring(1);
+    const params = new URLSearchParams(hash);
+    const type = params.get("type");
 
-    return () => subscription.unsubscribe();
-  }, []);
+    if (type === "recovery") {
+      window.history.replaceState(null, "", "/auth/reset-password");
+    }
+  };
+
+  handleInitialSession();
+
+  const {
+    data: { subscription },
+  } = supabase.auth.onAuthStateChange((_event, session) => {
+    setSession(session);
+    setUser(session?.user ?? null);
+    setLoading(false);
+  });
+
+  return () => subscription.unsubscribe();
+}, []);
+
 
   const signUp = async (fullname: string, email: string, password: string) => {
     const { data, error } = await supabase.auth.signUp({
