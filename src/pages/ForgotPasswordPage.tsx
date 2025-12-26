@@ -29,8 +29,6 @@ const ForgotPasswordPage: React.FC = () => {
       if (error) {
         setError(error.message);
       } else {
-        const resetLink = data.properties?.action_link;
-        await sendPasswordResetEmail(email, resetLink);
         setSuccess("Check your email for the password reset link!");
       }
     } catch {
