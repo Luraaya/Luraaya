@@ -36,7 +36,7 @@ const LoginPage: React.FC = () => {
         return;
       }
 
-      navigate("/");
+      navigate("/dashboard");
     } catch {
       setError("An unexpected error occurred");
     } finally {
