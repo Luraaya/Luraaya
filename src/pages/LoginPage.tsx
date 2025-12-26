@@ -33,17 +33,6 @@ const LoginPage: React.FC = () => {
       if (error) {
         setError(error.message);
       } else {
-        const { data, error } = await supabase
-          .from("users")
-          .select("email")
-          .eq("email", email)
-          .single();
-
-        if (!data || error) {
-          setError("Email is not verified. Please check your inbox.");
-          return;
-        }
-
         navigate("/");
       }
     } catch {
