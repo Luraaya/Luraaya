@@ -59,14 +59,7 @@ const Header: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <button
-              type="button"
-              onClick={() => goToSection("signup")}
-              className="text-gray-700 hover:text-purple-600 transition-colors"
-            >
-              {t("nav.getStarted")}
-            </button>
+          <nav className="hidden md:flex items-center space-x-12">
 
             <button
               type="button"
@@ -78,7 +71,7 @@ const Header: React.FC = () => {
 
             <button
               type="button"
-              onClick={() => goToSection("signup")}
+              onClick={() => goToSection("pricing")}
               className="text-gray-700 hover:text-purple-600 transition-colors"
             >
               {t("nav.pricing")}
@@ -142,7 +135,7 @@ const Header: React.FC = () => {
               <nav className="flex flex-col space-y-5">
                 {/* Sprache ganz oben, zentriert */}
                 <div className="flex justify-center">
-                  <LanguageSelector variant="mobile" className="font-normal text-sm opacity-80" />
+                  <LanguageSelector variant="mobile" className="font-normal text-sm opacity-100" />
                 </div>
 
                 <button
@@ -167,15 +160,16 @@ const Header: React.FC = () => {
                   {t("nav.howItWorks")}
                 </button>
 
+
                 <button
                   type="button"
                   onClick={() => {
-                    goToSection("signup");
+                    goToSection("pricing");
                     closeMenu();
                   }}
                   className="text-center text-gray-700 hover:text-purple-600 transition-colors"
                 >
-                  {t("nav.pricing")}
+                  Preise
                 </button>
 
                 <button

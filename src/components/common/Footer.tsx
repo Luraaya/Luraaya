@@ -24,12 +24,6 @@ const Footer: React.FC = () => {
           {/* Spalte 1: Brand */}
           <div className="min-w-0">
             <div className="flex items-center gap-3 mb-4">
-              <img
-                src="/logo.png"
-                alt="Luraaya"
-                className="h-7 w-7 object-contain"
-                loading="lazy"
-              />
               <span className="text-xl font-bold text-white">Luraaya</span>
             </div>
 
@@ -106,6 +100,7 @@ const Footer: React.FC = () => {
                 >
                   luraaya@outlook.com
                 </a>
+                
               </li>
             </ul>
           </div>

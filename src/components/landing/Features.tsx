@@ -29,27 +29,32 @@ const Features: React.FC = () => {
   ];
 
   return (
-    <section id="features" className="py-20 bg-white">
+    <section
+      id="features"
+      className="py-20 bg-white"
+      style={{ backgroundColor: "#f8fdff" }}
+    >
       <Container>
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 whitespace-pre-line">
-            {t('features.title')}
+            {t("features.title")}
           </h2>
 
           <p className="text-center text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            {t('features.description')}
+            {t("features.description")}
             <br />
-            {t('features.description2')}
+            {t("features.description2")}
           </p>
 
-          {t('features.description3').trim() !== '' && (
+          {t("features.description3").trim() !== "" && (
             <p className="text-center text-xl text-gray-600 max-w-2xl mx-auto whitespace-pre-line m-0 mt-2">
-              {t('features.description3')}
+              {t("features.description3")}
             </p>
           )}
         </div>
 
         <div className="flex flex-col lg:flex-row gap-10 lg:items-center">
+          {/* Bild bleibt unverändert */}
           <div className="flex items-center justify-center h-[360px] sm:h-[420px] md:h-[480px] lg:h-[560px] max-h-[70vh]">
             <img
               src="/Bild2.jpg"
@@ -58,16 +63,20 @@ const Features: React.FC = () => {
             />
           </div>
 
+          {/* Feature-Boxen */}
           <div className="flex flex-col gap-6 lg:flex-1">
             {features.map((feature) => (
               <div
                 key={feature.id}
-                className="rounded-2xl bg-white border border-gray-200 p-7 lg:p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-teal-200"
+                className="rounded-2xl border border-gray-200 p-7 lg:p-8 transition-all duration-300"
+                style={{ backgroundColor: "#f8fdff" }}
               >
                 <h3 className="text-lg font-semibold mb-2">
                   {t(feature.titleKey)}
                 </h3>
-                <p className="text-gray-600">{t(feature.descriptionKey)}</p>
+                <p className="text-gray-600">
+                  {t(feature.descriptionKey)}
+                </p>
               </div>
             ))}
           </div>

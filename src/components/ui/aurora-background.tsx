@@ -64,9 +64,9 @@ export function AuroraBackground({
                  invert filter
                  will-change-transform
 
-                 [--aurora:repeating-linear-gradient(95deg,var(--blue-500)_10%,var(--indigo-300)_12%,var(--blue-300)_14%,var(--violet-200)_16%,var(--blue-400)_18%)]
+                 [--aurora:repeating-linear-gradient(100deg,var(--blue-500)_10%,var(--indigo-300)_12%,var(--blue-300)_14%,var(--violet-200)_16%,var(--blue-400)_18%)]
 
-                 [--white-gradient:repeating-linear-gradient(95deg,var(--white)_0%,var(--white)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--white)_16%)]
+                 [--white-gradient:repeating-linear-gradient(100deg,var(--white)_0%,var(--white)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--white)_16%)]
 
                  after:absolute
                  after:inset-0

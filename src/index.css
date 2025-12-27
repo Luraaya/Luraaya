@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial,
+      "Noto Sans", "Liberation Sans", sans-serif;
+    scroll-behavior: auto;
+  }
+}
+
 @keyframes dropdown {
   0% {
     transform: translateY(-40px);
@@ -12,9 +20,11 @@
     opacity: 1;
   }
 }
+
 .animate-dropdown {
   animation: dropdown 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 @keyframes aurora {
   from {
     background-position: 50% 50%, 50% 50%;
@@ -26,7 +36,4 @@
 
 .animate-aurora {
   animation: aurora 60s linear infinite;
-}
-html {
-  scroll-behavior: auto;
 }

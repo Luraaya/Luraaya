@@ -10,7 +10,7 @@ export default {
         },
       },
       animation: {
-        aurora: "aurora 60s linear infinite",
+        aurora: "aurora 40s linear infinite",
       },
     },
   },

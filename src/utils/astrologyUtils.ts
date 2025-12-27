@@ -41,28 +41,57 @@ export function getZodiacSign(date: Date): ZodiacSign {
   }
 }
 
-/**
- * Gets the display name for a zodiac sign
- * @param sign - ZodiacSign enum value
- * @returns Formatted display name
- */
-export function getZodiacDisplayName(sign: ZodiacSign): string {
-  const names: Record<ZodiacSign, string> = {
-    [ZodiacSign.ARIES]: 'Aries ♈',
-    [ZodiacSign.TAURUS]: 'Taurus ♉',
-    [ZodiacSign.GEMINI]: 'Gemini ♊',
-    [ZodiacSign.CANCER]: 'Cancer ♋',
-    [ZodiacSign.LEO]: 'Leo ♌',
-    [ZodiacSign.VIRGO]: 'Virgo ♍',
-    [ZodiacSign.LIBRA]: 'Libra ♎',
-    [ZodiacSign.SCORPIO]: 'Scorpio ♏',
-    [ZodiacSign.SAGITTARIUS]: 'Sagittarius ♐',
-    [ZodiacSign.CAPRICORN]: 'Capricorn ♑',
-    [ZodiacSign.AQUARIUS]: 'Aquarius ♒',
-    [ZodiacSign.PISCES]: 'Pisces ♓'
+
+export function getZodiacDisplayName(
+  sign: ZodiacSign,
+  lang: "de" | "en" | "fr" = "en"
+): string {
+  const names: Record<"de" | "en" | "fr", Record<ZodiacSign, string>> = {
+    en: {
+      [ZodiacSign.ARIES]: "Your sign is Aries ♈",
+      [ZodiacSign.TAURUS]: "Your sign is Taurus ♉",
+      [ZodiacSign.GEMINI]: "Your sign is Gemini ♊",
+      [ZodiacSign.CANCER]: "Your sign is Cancer ♋",
+      [ZodiacSign.LEO]: "Your sign is Leo ♌",
+      [ZodiacSign.VIRGO]: "Your sign is Virgo ♍",
+      [ZodiacSign.LIBRA]: "Your sign is Libra ♎",
+      [ZodiacSign.SCORPIO]: "Your sign is Scorpio ♏",
+      [ZodiacSign.SAGITTARIUS]: "Your sign is Sagittarius ♐",
+      [ZodiacSign.CAPRICORN]: "Your sign is Capricorn ♑",
+      [ZodiacSign.AQUARIUS]: "Your sign is Aquarius ♒",
+      [ZodiacSign.PISCES]: "Your sign is Pisces ♓",
+    },
+    de: {
+      [ZodiacSign.ARIES]: "Du bist ein Widder ♈",
+      [ZodiacSign.TAURUS]: "Du bist ein Stier ♉",
+      [ZodiacSign.GEMINI]: "Du bist ein Zwilling ♊",
+      [ZodiacSign.CANCER]: "Du bist ein Krebs ♋",
+      [ZodiacSign.LEO]: "Du bist ein Löwe ♌",
+      [ZodiacSign.VIRGO]: "Du bist eine Jungfrau ♍",
+      [ZodiacSign.LIBRA]: "Du bist eine Waage ♎",
+      [ZodiacSign.SCORPIO]: "Du bist ein Skorpion ♏",
+      [ZodiacSign.SAGITTARIUS]: "Du bist ein Schütze ♐",
+      [ZodiacSign.CAPRICORN]: "Du bist ein Steinbock ♑",
+      [ZodiacSign.AQUARIUS]: "Du bist ein Wassermann ♒",
+      [ZodiacSign.PISCES]: "Du bist ein Fisch ♓",
+    },
+    fr: {
+      [ZodiacSign.ARIES]: "Votre signe est Bélier ♈",
+      [ZodiacSign.TAURUS]: "Votre signe est Taureau ♉",
+      [ZodiacSign.GEMINI]: "Votre signe est Gémeaux ♊",
+      [ZodiacSign.CANCER]: "Votre signe est Cancer ♋",
+      [ZodiacSign.LEO]: "Votre signe est Lion ♌",
+      [ZodiacSign.VIRGO]: "Votre signe est Vierge ♍",
+      [ZodiacSign.LIBRA]: "Votre signe est Balance ♎",
+      [ZodiacSign.SCORPIO]: "Votre signe est Scorpion ♏",
+      [ZodiacSign.SAGITTARIUS]: "Votre signe est Sagittaire ♐",
+      [ZodiacSign.CAPRICORN]: "Votre signe est Capricorne ♑",
+      [ZodiacSign.AQUARIUS]: "Votre signe est Verseau ♒",
+      [ZodiacSign.PISCES]: "Votre signe est Poissons ♓",
+    },
   };
-  
-  return names[sign];
+
+  return (names[lang] || names.en)[sign];
 }
 
 /**

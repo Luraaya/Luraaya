@@ -6,7 +6,7 @@
 import React from "react";
 import Container from "../common/Container";
 import Button from "../common/Button";
-import { ArrowRight, Star, Moon } from "lucide-react";
+import { Star, Moon } from "lucide-react";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { AuroraBackground } from "../ui/aurora-background";
 

@@ -6,7 +6,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Container from "../common/Container";
 import PricingCalculator from "./PricingCalculator";
-import { SubscriptionType, CommunicationChannel, Sex } from "../../types";
+import { SubscriptionType, CommunicationChannel, Sex, ZodiacSign } from "../../types";
 import {
   getZodiacSign,
   getZodiacDisplayName,
@@ -96,7 +96,7 @@ const SignupForm: React.FC = () => {
     });
 
   const [currentStep, setCurrentStep] = useState(1);
-  const [zodiacSign, setZodiacSign] = useState<string>("");
+  const [zodiacSign, setZodiacSign] = useState<ZodiacSign | null>(null);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [selectedPlan, setSelectedPlan] = useState<"basic" | "premium">(
     "basic"
@@ -136,9 +136,9 @@ const SignupForm: React.FC = () => {
   );
 
   const sexOptions = [
-    { value: Sex.FEMALE, label: "Female" },
-    { value: Sex.MALE, label: "Male" },
-    { value: Sex.OTHER, label: "Other" },
+    { value: Sex.FEMALE, label: t("sex.female") },
+    { value: Sex.MALE, label: t("sex.male") },
+    { value: Sex.OTHER, label: t("sex.other") },
   ];
 
   // Close dropdown on outside click
@@ -214,7 +214,7 @@ const SignupForm: React.FC = () => {
         deliveryLanguage: (data.language as "de" | "en" | "fr") || "de",
       });
 
-      setZodiacSign(data.zodiacSign || "");
+      setZodiacSign((data.zodiacSign as ZodiacSign) || null);
     };
 
     getUser();
@@ -231,7 +231,7 @@ const SignupForm: React.FC = () => {
     if (name === "dateOfBirth" && value) {
       const birthDate = new Date(value);
       const sign = getZodiacSign(birthDate);
-      setZodiacSign(getZodiacDisplayName(sign));
+      setZodiacSign(sign);
     }
   };
 
@@ -474,21 +474,21 @@ const SignupForm: React.FC = () => {
       if (!formData.subscriptionType) newErrors.subscriptionType = "Required";
     }
     if (currentStep === 2) {
-      if (!formData.name) newErrors.name = "Required";
-      if (!formData.email) newErrors.email = "Required";
+      if (!formData.name) newErrors.name = " ";
+      if (!formData.email) newErrors.email = " ";
       if (
         formData.communicationChannel !== CommunicationChannel.EMAIL &&
         (!formData.sendTo || formData.sendTo === "")
       )
-        newErrors.sendTo = "Required";
-      if (!formData.sex) newErrors.sex = "Required";
+        newErrors.sendTo = " ";
+      if (!formData.sex) newErrors.sex = " ";
       // Date of Birth is mandatory for all plans
-      if (!formData.dateOfBirth) newErrors.dateOfBirth = "Required";
+      if (!formData.dateOfBirth) newErrors.dateOfBirth = " ";
       // Time of Birth is mandatory only for Premium plans
       if (selectedPlan === "premium" && !formData.timeOfBirth) {
-        newErrors.timeOfBirth = "Required for Premium plans";
+        newErrors.timeOfBirth = t("errors.timeOfBirthRequiredPremium");
       }
-      if (!formData.placeOfBirth) newErrors.placeOfBirth = "Required";
+      if (!formData.placeOfBirth) newErrors.placeOfBirth = " ";
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -515,19 +515,30 @@ const SignupForm: React.FC = () => {
       const resp = await fetch(
         `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(
           query
-        )}&type=city&format=json&apiKey=${
+        )}&type=city&format=json&lang=de&apiKey=${
           import.meta.env.VITE_GEOAPIFY_API_KEY
-        }&limit=10`
+        }&limit=20`
       );
       const data = await resp.json();
+      const priorityCountries = ["CH", "DE", "AT", "FR", "US"];
+
+      const results = (data.results || []).map((item: any) => ({
+        label: `${item.city || item.name}, ${
+          item.country ||
+          (item.country_code ? item.country_code.toUpperCase() : "")
+        }`,
+        countryCode: (item.country_code || "").toUpperCase(),
+      }));
+
+      results.sort((a, b) => {
+        const aPrio = priorityCountries.includes(a.countryCode);
+        const bPrio = priorityCountries.includes(b.countryCode);
+        if (aPrio === bPrio) return 0;
+        return aPrio ? -1 : 1;
+      });
+
       setPlaceSuggestions(
-        (data.results || []).map(
-          (item: any) =>
-            `${item.city || item.name}, ${
-              item.country ||
-              (item.country_code ? item.country_code.toUpperCase() : "")
-            }`
-        )
+        Array.from(new Set(results.map((r) => r.label))).filter((s) => s && s.trim().length > 0)
       );
     } catch (err) {
       setPlaceSuggestions([]);
@@ -564,57 +575,64 @@ const SignupForm: React.FC = () => {
   return (
     <section
       id="signup"
-      className="py-20 bg-gradient-to-br from-teal-50 to-indigo-50"
+      className="py-20"
+      style={{ backgroundColor: "#ffffffff" }}
     >
       <Container>
         <div className="max-w-4xl mx-auto">
           <div ref={formTopRef} />
           {/* Section header */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-6">
+
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               {t("signup.title")}
             </h2>
             <p className="text-xl text-gray-600">{t("signup.description")}</p>
           </div>
 
-          {/* Progress indicator */}
-          <div className="flex justify-center mb-8">
-            <div className="flex items-center space-x-4">
-              {[1, 2, 3].map((step) => (
-                <div key={step} className="flex items-center">
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-                      currentStep >= step
-                        ? "bg-purple-600 text-white"
-                        : "bg-gray-200 text-gray-600"
-                    }`}
-                  >
-                    {step}
-                  </div>
-                  {step < 3 && (
-                    <div
-                      className={`w-12 h-1 mx-2 ${
-                        currentStep > step ? "bg-purple-600" : "bg-gray-200"
-                      }`}
-                    ></div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
           {/* Form card */}
           <div className="bg-white rounded-xl shadow-lg p-8">
             <form onSubmit={handleSubmit}>
+
+              {/* Progress indicator inside form */}
+              <div className="flex justify-center mb-6">
+                <div className="flex items-center space-x-4">
+                  {[1, 2, 3].map((step) => (
+                    <div key={step} className="flex items-center">
+                      <div
+                        className={`flex items-center justify-center rounded-full ${
+                          currentStep === step ? "border border-purple-400 p-[3px]" : ""
+                        }`}
+                      >
+                        <div
+                          className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+                            currentStep >= step
+                              ? "bg-purple-600 text-white"
+                              : "bg-gray-200 text-gray-600"
+                          }`}
+                        >
+                          {step}
+                        </div>
+                      </div>
+                      {step < 3 && (
+                        <div
+                          className={`w-12 h-1 mx-2 ${
+                            currentStep > step
+                              ? "bg-purple-600"
+                              : "bg-gray-200"
+                          }`}
+                        ></div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               {/* Step 1: Service Selection */}
               {currentStep === 1 && (
                 <div className="space-y-6">
                   <div className="text-center mb-6">
-                    <img
-                      src="/logo.jpg"
-                      alt="Luraaya"
-                      className="w-12 h-12 mx-auto mb-2 object-contain"
-                    />
+
                     <h3 className="text-2xl font-bold">
                       {t("signup.step1.title")}
                     </h3>
@@ -623,62 +641,21 @@ const SignupForm: React.FC = () => {
                     </p>
                   </div>
 
-                  {/* Communication Channel Selection */}
-                  <div>
-                    <label className="block text-lg font-medium text-gray-00 mb-3">
-                      {t("signup.communicationChannel")}
-                    </label>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {Object.values(CommunicationChannel)
-                        .filter((c) => c !== CommunicationChannel.WHATSAPP)
-                        .map((channel) => (
-                        <label key={channel} className="relative">
-                          <input
-                            type="radio"
-                            name="communicationChannel"
-                            value={channel}
-                            checked={formData.communicationChannel === channel}
-                            onChange={handleInputChange}
-                            className="sr-only"
-                          />
-                          <div
-                            className={`border-2 rounded-lg p-4 cursor-pointer transition-all h-20 flex flex-col justify-center ${
-                              formData.communicationChannel === channel
-                                ? "border-purple-500 bg-purple-50"
-                                : "border-gray-200 hover:border-gray-300"
-                            }`}
-                          >
-                            <div className="text-center">
-                              <div className="mb-2 flex justify-center">
-                                {channel === CommunicationChannel.EMAIL && (
-                                  <Mail className="w-4.5 h-4.5 text-slate-500
-" />
-                                )}
-                                {channel === CommunicationChannel.SMS && (
-                                  <MessageCircle className="w-4.5 h-4.5 text-slate-500" />
-                                )}
-                                {channel === CommunicationChannel.WHATSAPP && (
-                                  <Smartphone className="w-7 h-7 text-purple-600" />
-                                )}
-                              </div>
-                              <div className="font-medium">
-                                {t(`common.${channel}`)}
-                              </div>
-                            </div>
-                          </div>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
 
                   {/* Frequency Selection */}
-                  <div>
+                  <div className="!mt-10">
                     <label className="block text-lg font-medium text-gray-00 mb-3">
                       {t("signup.messageFrequency")}
                     </label>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       {Object.values(SubscriptionType).map((type) => (
                         <label key={type} className="relative">
+                          {type === SubscriptionType.WEEKLY &&
+                            formData.subscriptionType === SubscriptionType.WEEKLY && (
+                              <div className="absolute -top-2 right-3 z-10 px-2 py-0.5 text-[11px] font-medium rounded-full bg-purple-100 text-purple-600">
+                                {t("common.recommended")}
+                              </div>
+                          )}
                           <input
                             type="radio"
                             name="subscriptionType"
@@ -688,9 +665,9 @@ const SignupForm: React.FC = () => {
                             className="sr-only"
                           />
                           <div
-                            className={`border-2 rounded-lg p-4 cursor-pointer transition-all h-20 flex flex-col justify-center ${
+                            className={`border-2 rounded-lg p-4 cursor-pointer transition-all h-16 flex flex-col justify-center ${
                               formData.subscriptionType === type
-                                ? "border-purple-500 bg-purple-50"
+                                ? "border-purple-300 bg-purple-50/60"
                                 : "border-gray-200 hover:border-gray-300"
                             }`}
                           >
@@ -713,15 +690,59 @@ const SignupForm: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Dynamic Pricing Display */}
-                  <PricingCalculator
-                    frequency={formData.subscriptionType}
-                    channel={formData.communicationChannel}
-                    selectedPlan={selectedPlan}
-                    onPlanChange={setSelectedPlan}
-                    billingCycle={billingCycle}
-                    setBillingCycle={setBillingCycle}
-                  />
+                  {/* Communication Channel Selection */}
+                  <div className="!mt-12">
+                    <label className="block text-lg font-medium text-gray-700 mb-3">
+                      {t("signup.communicationChannel")}
+                    </label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {Object.values(CommunicationChannel)
+                        .filter((c) => c !== CommunicationChannel.WHATSAPP)
+                        .map((channel) => (
+                        <label key={channel} className="relative">
+                          {channel === CommunicationChannel.EMAIL &&
+                            formData.communicationChannel === CommunicationChannel.EMAIL && (
+                              <div className="absolute -top-2 right-3 z-10 px-2 py-0.5 text-[11px] font-medium rounded-full bg-purple-100 text-purple-600">
+                                {t("common.recommended")}
+                              </div>
+                          )}
+                          <input
+                            type="radio"
+                            name="communicationChannel"
+                            value={channel}
+                            checked={formData.communicationChannel === channel}
+                            onChange={handleInputChange}
+                            className="sr-only"
+                          />
+                          <div
+                            className={`border-2 rounded-lg p-4 cursor-pointer transition-all h-16 flex flex-col justify-center ${
+                              formData.communicationChannel === channel
+                                ? "border-purple-300 bg-purple-50/60"
+                                : "border-gray-200 hover:border-gray-300"
+                            }`}
+                          >
+                            <div className="text-center">
+                              <div className="mb-1 flex justify-center">
+                                {channel === CommunicationChannel.EMAIL && (
+                                  <Mail className="w-4.5 h-4.5 text-slate-400" />
+                                )}
+                                {channel === CommunicationChannel.SMS && (
+                                  <MessageCircle className="w-4.5 h-4.5 text-slate-400" />
+                                )}
+                                {channel === CommunicationChannel.WHATSAPP && (
+                                  <Smartphone className="w-7 h-7 text-purple-600" />
+                                )}
+                              </div>
+                              <div className="font-medium text-gray-700">
+                                {t(`common.${channel}`)}
+                              </div>
+                            </div>
+                          </div>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
                 </div>
               )}
 
@@ -729,11 +750,7 @@ const SignupForm: React.FC = () => {
               {currentStep === 2 && (
                 <div className="space-y-6">
                   <div className="text-center mb-6">
-                    <img
-                      src="/logo.png"
-                      alt="Luraaya Logo"
-                      className="w-12 h-12 mx-auto mb-2"
-                    />
+
                     <h3 className="text-2xl font-bold">
                       {t("signup.step2.title")}
                     </h3>
@@ -761,7 +778,7 @@ const SignupForm: React.FC = () => {
                         className={`w-full px-4 py-2 border rounded-md focus:ring-purple-500 focus:border-purple-500 ${
                           errors.name ? "border-red-500" : "border-gray-300"
                         }`}
-                        placeholder="Laura Romero"
+                        placeholder=" "
                       />
                       {errors.name && (
                         <p className="mt-1 text-sm text-red-600">
@@ -788,7 +805,7 @@ const SignupForm: React.FC = () => {
                         className={`w-full px-4 py-2 border rounded-md focus:ring-purple-500 focus:border-purple-500 ${
                           errors.email ? "border-red-500" : "border-gray-300"
                         }`}
-                        placeholder="sarah@example.com"
+                        placeholder=" "
                       />
                       {errors.email && (
                         <p className="mt-1 text-sm text-red-600">
@@ -975,7 +992,7 @@ const SignupForm: React.FC = () => {
                       <div className="relative" ref={sexDropdownRef}>
                         <button
                           type="button"
-                          className="w-full flex justify-between items-center px-4 py-2 border rounded-md bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 border-gray-300 font-medium"
+                          className="w-full flex justify-between items-center px-4 py-2 border rounded-md bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 border-gray-300 font-normal"
                           onClick={() => setShowSexDropdown((prev) => !prev)}
                         >
                           {sexOptions.find((s) => s.value === formData.sex)
@@ -1049,7 +1066,7 @@ const SignupForm: React.FC = () => {
                       />
                       {zodiacSign && (
                         <p className="mt-1 text-sm text-purple-600 font-medium">
-                          Your zodiac sign: {zodiacSign}
+                          {getZodiacDisplayName(zodiacSign, formData.deliveryLanguage)}
                         </p>
                       )}
                     </div>
@@ -1078,7 +1095,7 @@ const SignupForm: React.FC = () => {
                       <p className="mt-1 text-xs text-gray-500">
                         {selectedPlan === "premium" 
                           ? t("signup.birthTime.note") 
-                          : "Required for Premium plans only"}
+                          : t("signup.birthTime.premiumOnly")}
                       </p>
                       {errors.timeOfBirth && (
                         <p className="mt-1 text-sm text-red-600">
@@ -1109,7 +1126,7 @@ const SignupForm: React.FC = () => {
                               ? "border-red-500"
                               : "border-gray-300"
                           }`}
-                          placeholder="City, State/Province, Country"
+                          placeholder={t("signup.placeOfBirthPlaceholder")}
                           onFocus={() => {
                             if (formData.placeOfBirth)
                               setShowPlaceDropdown(true);
@@ -1154,9 +1171,11 @@ const SignupForm: React.FC = () => {
               {currentStep === 3 && (
                 <div className="space-y-6">
                   <div className="text-center mb-6">
-                    <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <span className="text-white font-bold text-xl">✨</span>
-                    </div>
+                    <img
+                      src="/logo.png"
+                      alt="Luraaya Logo"
+                      className="w-12 h-12 mx-auto mb-2 object-contain"
+                    />
                     <h3 className="text-2xl font-bold">
                       {t("signup.step4.title")}
                     </h3>
@@ -1171,6 +1190,22 @@ const SignupForm: React.FC = () => {
                       {t("signup.yourSelection")}
                     </h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <span className="text-gray-600">
+                          {t("signup.communicationChannel")}:
+                        </span>
+                        <span className="ml-2 font-medium">
+                          {t(`common.${formData.communicationChannel}`)}
+                        </span>
+                      </div>
+                      <div>
+                        <span className="text-gray-600">
+                          {t("signup.messageFrequency")}:
+                        </span>
+                        <span className="ml-2 font-medium">
+                          {t(`subscription.${String(formData.subscriptionType).toLowerCase()}`)}
+                        </span>
+                      </div>
                       <div>
                         <span className="text-gray-600">
                           {t("signup.fullName")}:
@@ -1216,7 +1251,9 @@ const SignupForm: React.FC = () => {
                           {t("signup.zodiacSign")}:
                         </span>
                         <span className="ml-2 font-medium text-purple-600">
-                          {zodiacSign || "Not calculated"}
+                          {zodiacSign
+                            ? getZodiacDisplayName(zodiacSign, formData.deliveryLanguage)
+                            : "Not calculated"}
                         </span>
                       </div>
                     </div>
@@ -1235,7 +1272,7 @@ const SignupForm: React.FC = () => {
               )}
 
              {/* Navigation buttons */}
-              <div className="mt-8 flex items-center justify-center gap-4">
+              <div className="mt-20 flex items-center justify-center gap-4">
                 {currentStep > 1 && (
                   <button
                     type="button"

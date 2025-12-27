@@ -119,6 +119,7 @@ const getTranslations = () => {
       "nav.reviews": "Reviews",
       "nav.contact": "Contact",
       "nav.getStarted": " ",
+      "nav.pricing": "Prices",
       "nav.dashboard": "Dashboard",
       "nav.login": "Log in",
       "nav.signup": "Sign up",
@@ -160,7 +161,7 @@ const getTranslations = () => {
       "privacy.section3.1.title": "3.1 Categories of Personal Data",
       "privacy.section3.1.body": "We process in particular the following personal data: first and last name, date of birth, time of birth, place of birth, gender, email address, telephone number, preferred language, payment and billing information (via payment service providers) for contract performance, as well as technical data such as IP address, device and browser information. No particularly sensitive personal data such as health data, religious beliefs, or political or ideological views are collected.",
       "privacy.section3.2.title": "3.2 Profiling",
-      "privacy.section3.2.body": "Based on the data you provide, individual astrological profiles are created. This constitutes automated data processing for the purpose of personalizing content. There is no automated decision-making with legal effect or similarly significant impact within the meaning of data protection law.",
+      "privacy.section3.2.body": "Sur la base des données que vous fournissez, des profils astrologiques individuels sont créés. Il s’agit d’un traitement automatisé des données visant à personnaliser les contenus. Aucune prise de décision automatisée produisant des effets juridiques ou des effets significatifs similaires au sens du droit de la protection des données n’a lieu.",
       "privacy.section4.title": "4. Legal Bases for Processing",
       "privacy.section4.body": "We process personal data for the following purposes on the basis of the applicable legal grounds: performance of a contract and pre-contractual measures for the provision of the application, the creation of personalized content, the processing of subscriptions and customer support; consent for optional features such as marketing communications, analytics and tracking technologies or comparable processing activities, where required by law, whereby any consent given may be withdrawn at any time; legitimate interests to ensure the security, stability and further development of our service, for the prevention of misuse and fraud, and for internal analysis and optimization; as well as legal obligations to which we are subject in connection with the processing of personal data.",
       "privacy.section5.title": "5. Use of Our Website and Application",
@@ -170,7 +171,7 @@ const getTranslations = () => {
       "privacy.section6.1.title": "6.1 Cookies",
       "privacy.section6.1.body": "We use cookies to ensure the functionality, security and user-friendliness of our website. Technically necessary cookies are used automatically. All other cookies are only set after prior consent. Consent can be withdrawn or adjusted at any time via the cookie settings.",
       "privacy.section6.2.title": "6.2 Analytics and Marketing Technologies",
-      "privacy.section6.2.body": "If analytics, marketing or optimization technologies are used, this is done exclusively on the basis of your consent, where required by law. In this context, data may also be transferred to third-party providers in Switzerland or abroad.",
+      "privacy.section6.2.body": "Lorsque des technologies d’analyse, de marketing ou d’optimisation sont utilisées, cela se fait exclusivement sur la base de votre consentement, dans la mesure où la loi l’exige. Dans ce cadre, des données peuvent également être transmises à des prestataires tiers en Suisse ou à l’étranger.",
       "privacy.section6.3.title": "6.3 Data Security",
       "privacy.section6.3.body": "We implement appropriate technical and organizational measures to protect personal data against unauthorized access, loss, misuse or unlawful processing. These measures include, in particular, access restrictions, role-based authorization concepts, encryption and regular security reviews. The measures are continuously adapted to the state of the art.",
       "privacy.section7.title": "7. Third-Party Providers and Data Processing Agreements",
@@ -181,7 +182,7 @@ const getTranslations = () => {
       "privacy.section8.title": "8. Retention and Deletion",
       "privacy.section8.body": "Personal data is retained only for as long as necessary for the provision of the services, for contract performance, for the protection of legitimate interests, or due to statutory retention obligations. After the respective purpose ceases to apply or upon a justified request, the data is deleted or anonymized in accordance with the applicable legal requirements.",
       "privacy.section9.title": "9. Communication",
-      "privacy.section9.body": "If you contact us via a contact form or email, the information transmitted will be stored for the purpose of processing your request. Unencrypted emails are considered insecure. We recommend that particularly confidential information should not be transmitted by email.",
+      "privacy.section9.body": "Lorsque vous nous contactez via un formulaire de contact ou par e-mail, les informations transmises sont enregistrées afin de traiter votre demande. Les e-mails non chiffrés sont considérés comme non sécurisés. Nous recommandons de ne pas transmettre d’informations particulièrement confidentielles par e-mail.",
       "privacy.section10.title": "10. Rights of Data Subjects",
       "privacy.section10.body": "Within the scope of the applicable data protection law, you have in particular the right to obtain information about your processed personal data, to request the correction of inaccurate data, to request the deletion or restriction of processing, to object to certain processing activities, and to receive or transfer your data, where applicable. Requests should be addressed to the contact details provided in section 1.1.",
       "privacy.section11.title": "11. Liability and Advisory Disclaimer",
@@ -198,8 +199,7 @@ const getTranslations = () => {
       "hero.badge": " ",
       "hero.title": "Your Personal",
       "hero.titleHighlight": "Horoscope",
-      "hero.description":
-      "Insights to guide your life path.",
+      "hero.description": "Astrological insights for your current phase of life",
       "hero.cta": "Receive your insights",
       "hero.learnMore": "How It Works",
       "hero.rating": "",
@@ -225,43 +225,25 @@ const getTranslations = () => {
         " ",
 
       // Kacheln Wie es funktioniert
-      "features.personalizedChart.title":
-        "1. Your birth configuration",
-      "features.personalizedChart.description":
-        "Your date of birth, exact time and place form the basis for making your personal configuration visible.",
-      "features.dailyUpdates.title":
-        "2. Cosmic context",
-      "features.dailyUpdates.description":
-        "We connect your details with the current planetary configurations. This gives rise to in-depth astrological patterns that show which forces shape, inspire or challenge you.",
-      "features.multiChannel.title":
-        "3. Your personal message",
-      "features.multiChannel.description":
-        "This results in personal insights for your life path. They provide orientation and support you in making clearer decisions and shaping your personal development more consciously.",
-      /*"features.lunarTracking.title": "Lunar Cycle Tracking",
-      "features.lunarTracking.description":
-        "Stay aligned with lunar phases and their influence on your zodiac sign for optimal timing.",
-      "features.compatibility.title": "Compatibility Insights",
-      "features.compatibility.description":
-        "Understand your relationships better with personalized compatibility readings and advice.",
-      "features.secure.title": "Secure & Private",
-      "features.secure.description":
-        "Your birth data and personal information are encrypted and never shared with third parties.",
-      */
-      /*
-      "features.howItWorks": "How Luraaya Works",
-      "features.step1.title": "Share Your Birth Details",
-      "features.step1.description":
-        "Provide your birth date, time, and location for accurate astrological calculations",
-      "features.step2.title": "Choose Your Preferences",
-      "features.step2.description":
-        "Select your delivery frequency and preferred communication channel",
-      "features.step3.title": "Receive Cosmic Insights",
-      "features.step3.description":
-        "Get personalized astrological messages delivered on your schedule",
-      "features.deliveryChannels":
-        "Choose your preferred way to receive cosmic insights",
-        */
-
+      "features.personalizedChart.title": "1. Your birth configuration",
+      "features.personalizedChart.description": "Your date of birth, exact time and place form the basis for making your personal configuration visible.",
+      "features.dailyUpdates.title": "2. Cosmic context",
+      "features.dailyUpdates.description": "We connect your details with the current planetary configurations. This gives rise to in-depth astrological patterns that show which forces shape, inspire or challenge you.",
+      "features.multiChannel.title": "3. Your personal message",
+      "features.multiChannel.description": "This results in personal insights for your life path. They provide orientation and support you in making clearer decisions and shaping your personal development more consciously.",
+      
+       
+       // Pricing Info
+      "pricing.title": "Prices and subscriptions",
+      "pricing.subtitle": "Transparent, flexible, and cancel anytime.",
+      "pricing.priceLine": "From CHF 16 per month",
+      "pricing.description": "Personal astrology insights, individually aligned with your birth configuration.",
+      "pricing.bullets.customizable": "Individually customizable",
+      "pricing.bullets.swissProvider": "Swiss provider",
+      "pricing.bullets.cancelAnytime": "Cancel anytime",
+      "pricing.cta": "Start your personal journey", 
+      
+        /*
       // Testimonials
       "testimonials.title": "Loved by Cosmic Seekers",
       "testimonials.description":
@@ -278,9 +260,10 @@ const getTranslations = () => {
       "testimonials.activeUsers": "Active Users",
       "testimonials.averageRating": "Average Rating",
       "testimonials.messagesDelivered": "Messages Delivered",
+      */
 
       // Signup Form
-      "signup.title": "Begin Your Cosmic Journey",
+      "signup.title": " ",
       "signup.description": " ",
       "signup.freeTrialNote": " ",
 
@@ -321,8 +304,7 @@ const getTranslations = () => {
 
 
       "signup.step1.title": "How would you like to receive your horoscope?",
-      /*"signup.step1.description":
-        "How would you like to receive your cosmic insights?",
+      /*"signup.step1.description": "How would you like to receive your cosmic insights?",
       "signup.step2.title": "Personal Information",*/
       "signup.step2.description": " ",
       "signup.step3.title": "Birth Information",
@@ -332,8 +314,7 @@ const getTranslations = () => {
       "signup.step4.description":
         "Select the perfect plan for your cosmic journey",
       "signup.birthTime.note": " ",
-      "signup.birthPlace.note":
-        "Include city and country for precise calculations",
+      "signup.birthPlace.note": " ",
       "signup.communicationChannel": "Preferred Communication Channel",
       "signup.messageFrequency": "Message Frequency",
       "signup.fullName": "Full Name",
@@ -345,9 +326,15 @@ const getTranslations = () => {
       "language.german": "German",
       "language.french": "French",
       "signup.sex": "Sex",
+      "sex.female": "Female",
+      "sex.male": "Male",
+      "sex.other": "Other",
       "signup.dateOfBirth": "Date of Birth",
       "signup.timeOfBirth": "Time of Birth",
+      "signup.birthTime.premiumOnly": "Bonus for more depth",
+      "errors.timeOfBirthRequiredPremium": "Required for Premium plans",
       "signup.placeOfBirth": "Place of Birth",
+      "signup.placeOfBirthPlaceholder": "City, Country",
       "signup.yourSelection": "Your Selection",
       "signup.messages": "Messages",
       "signup.via": "via",
@@ -359,7 +346,7 @@ const getTranslations = () => {
       "signup.premiumPlan": "Premium",
       "signup.mostPopular": "Most Popular",
       "signup.previous": "Previous",
-      "signup.nextStep": "Next Step",
+      "signup.nextStep": "Continue",
       "signup.startJourney": "Start My Cosmic Journey",
       "signup.privacyNotice":
         "🔒 Your birth data is encrypted and secure. We never share your personal information. By signing up, you agree to our Terms of Service and Privacy Policy.",
@@ -505,9 +492,9 @@ const getTranslations = () => {
       "common.email": "Email",
       "common.sms": "SMS",
       "common.whatsapp": "WhatsApp",
-      "common.daily": "Personal guidance",
-      "common.weekly": "Conscious alignment",
-      "common.monthly": "Deep insights for your life",
+      "common.daily": " ",
+      "common.weekly": " ",
+      "common.monthly": " ",
       "common.save": "Save",
       "common.cancel": "Cancel",
       "common.edit": "Edit",
@@ -522,6 +509,7 @@ const getTranslations = () => {
       "nav.pricing": "Abo",
       "nav.reviews": " ",
       "nav.getStarted": " ",
+      "nav.pricing": "Preise",
       "nav.contact": "Kontakt",
       "nav.dashboard": " ",
       "nav.login": "Anmelden",
@@ -683,8 +671,7 @@ const getTranslations = () => {
       "hero.badge": " ",
       "hero.title": "Dein persönliches",
       "hero.titleHighlight": "Horoskop",
-      "hero.description":
-      "Hinweise für deinen Lebensweg.",
+      "hero.description": "Astrologische Hinweise für Deine aktuelle Lebensphase",
       "hero.cta": "Deine Botschaft erhalten",
       "hero.learnMore": "Wie es funktioniert",
       "hero.rating": " ",
@@ -710,40 +697,24 @@ const getTranslations = () => {
         " ",
 
       // Kacheln Wie es funktioniert
-      "features.personalizedChart.title":
-        "1. Deine Geburtskonstellation",
-      "features.personalizedChart.description":
-        "Dein Geburtsdatum, die genaue Zeit und der Geburtsort bilden die Grundlage, um deine persönliche Konstellation sichtbar zu machen.",
+      "features.personalizedChart.title": "1. Deine Geburtskonstellation",
+      "features.personalizedChart.description": "Dein Geburtsdatum, die genaue Zeit und der Geburtsort bilden die Grundlage, um deine persönliche Konstellation sichtbar zu machen.",
       "features.dailyUpdates.title": "2. Kosmische Einordnung",
-      "features.dailyUpdates.description":
-        "Wir verbinden deine Angaben mit den aktuellen planetaren Konstellationen. So entstehen tiefgehende astrologische Muster. Sie zeigen Dir, welche Kräfte dich formen, inspirieren oder herausfordern.",
+      "features.dailyUpdates.description": "Wir verbinden deine Angaben mit den aktuellen planetaren Konstellationen. So entstehen tiefgehende astrologische Muster. Sie zeigen Dir, welche Kräfte dich formen, inspirieren oder herausfordern.",
       "features.multiChannel.title": "3. Deine persönliche Botschaft",
-      "features.multiChannel.description":
-        "Es entstehen persönliche Hinweise für deinen Lebensweg. Sie geben Orientierung und unterstützen dich dabei, Entscheidungen klarer zu treffen und deine persönliche Entwicklung bewusster zu gestalten.",
-      /*"features.lunarTracking.title": "Mondphasen-Verfolgung",
-      "features.lunarTracking.description":
-        "Bleibe mit den Mondphasen und Dem Einfluss auf Dein Sternzeichen für optimales Timing ausgerichtet.",
-      "features.compatibility.title": "Kompatibilitäts-Einblicke",
-      "features.compatibility.description":
-        "Verstehe deine Beziehungen besser mit personalisierten Kompatibilitäts-Lesungen und Ratschlägen.",
-      "features.secure.title": "Sicher & Privat",
-      "features.secure.description":
-        "Deine Geburtsdaten und persönlichen Informationen sind verschlüsselt und werden niemals mit Dritten geteilt.",*/
-      /*
-      "features.howItWorks": "Wie Luraaya funktioniert",
-      "features.step1.title": "Teile Deine Geburtsdaten",
-      "features.step1.description":
-        "Gebe Dein Geburtsdatum, die Zeit und den Ort für genaue astrologische Berechnungen an",
-      "features.step2.title": "Wählen Dein Präferenzen",
-      "features.step2.description":
-        "Wähle Deine Kommunikationsfrequenz und den bevorzugten Kommunikationskanal",
-      "features.step3.title": "Erhalte kosmische Einblicke",
-      "features.step3.description":
-        "Erhalten  personalisierte astrologische Nachrichten nach Deinem Zeitplan",
-      "features.deliveryChannels":
-        "Wähle Deine bevorzugte Art, kosmische Einblicke zu erhalten",
-        */
+      "features.multiChannel.description": "Es entstehen persönliche Hinweise für deinen Lebensweg. Sie geben Orientierung und unterstützen dich dabei, Entscheidungen klarer zu treffen und deine persönliche Entwicklung bewusster zu gestalten.",
+     
+      // Pricing Info
+      "pricing.title": "Preise und Abonnemente",
+      "pricing.subtitle": "Transparent, flexibel und jederzeit kündbar.",
+      "pricing.priceLine": "Ab CHF 16.– pro Monat",
+      "pricing.description": "Persönliche astrologische Hinweise, individuell auf deine Geburtskonstellation abgestimmt.",
+      "pricing.bullets.customizable": "Individuell anpassbar",
+      "pricing.bullets.swissProvider": "Schweizer Anbieter",
+      "pricing.bullets.cancelAnytime": "Jederzeit kündbar",
+      "pricing.cta": "Zum persönlichen Einstieg",
 
+        /*
       // Testimonials
       "testimonials.title": "Geliebt von kosmischen Suchenden",
       "testimonials.description":
@@ -760,15 +731,17 @@ const getTranslations = () => {
       "testimonials.activeUsers": "Aktive Nutzer",
       "testimonials.averageRating": "Durchschnittsbewertung",
       "testimonials.messagesDelivered": "Nachrichten geliefert",
+      */
 
       // Signup Form
-      "signup.title": "Beginne deine kosmische Reise",
+      "signup.title": " ",
       "signup.description":   " ",
       "signup.freeTrialNote":  " ",
 
       "subscription.daily": "Täglich",
       "subscription.weekly": "Wöchentlich",
       "subscription.monthly": "Monatlich",
+      "common.recommended": "Empfohlen",
 
 
       "signup.guarantees": "✓ Flexible Laufzeiten",
@@ -806,9 +779,7 @@ const getTranslations = () => {
       
       
 
-      "signup.step1.title": "Wie möchtest du dein Horoskop erhalten?",
-      /*"signup.step1.description":
-        "Wie möchtest du dein Horoskop erhalten?",*/
+      "signup.step1.title": "Wie möchtest du deine Hinweise erhalten?",
       "signup.step2.title": "Persönliche Informationen",
       "signup.step2.description": " ",
       "signup.step3.title": "Geburtsinformationen",
@@ -817,10 +788,8 @@ const getTranslations = () => {
       "signup.step4.title": "Wähle Deinen Plan",
       "signup.step4.description":
         "Wähle den perfekten Plan für Deine kosmische Reise",
-      "signup.birthTime.note":
-        " ",
-      "signup.birthPlace.note":
-        "Stadt und Land für präzise Berechnungen angeben",
+      "signup.birthTime.note": " ",
+      "signup.birthPlace.note": " ",
       "signup.communicationChannel": "Kommunikationskanal",
       "signup.messageFrequency": "Nachrichtenhäufigkeit",
       "signup.fullName": "Vorname Name",
@@ -833,9 +802,15 @@ const getTranslations = () => {
       "language.german": "Deutsch",
       "language.french": "Französisch",
       "signup.sex": "Geschlecht",
+      "sex.female": "Weiblich",
+      "sex.male": "Männlich",
+      "sex.other": "Divers",
       "signup.dateOfBirth": "Geburtsdatum",
       "signup.timeOfBirth": "Geburtszeit",
+      "signup.birthTime.premiumOnly": "Bonus für mehr Tiefe",
+      "errors.timeOfBirthRequiredPremium": "Für Premium erforderlich",
       "signup.placeOfBirth": "Geburtsort",
+      "signup.placeOfBirthPlaceholder": "Ort, Land",
       "signup.yourSelection": "Deine Auswahl",
       "signup.messages": "Nachrichten",
       "signup.via": "über",
@@ -848,7 +823,7 @@ const getTranslations = () => {
       "signup.premiumPlan": "Premium",
       "signup.mostPopular": " ",
       "signup.previous": "Zurück",
-      "signup.nextStep": "Nächster Schritt",
+      "signup.nextStep": "Weiter",
       "signup.startJourney": "Meine kosmische Reise beginnen",
       "signup.privacyNotice":
         "🔒 Deine Geburtsdaten sind verschlüsselt und sicher. Wir teilen niemals Deine persönlichen Informationen. Mit der Anmeldung stimmst Du unseren Nutzungsbedingungen und Datenschutzrichtlinien zu.",
@@ -992,12 +967,12 @@ const getTranslations = () => {
         "Erhalte eine wöchentliche Zusammenfassung Deiner kosmischen Einblicke",
 
       // Common
-      "common.email": "E-Mail",
-      "common.sms": "SMS",
+      "common.email": "E-Mail erhalten",
+      "common.sms": "SMS erhalten",
       "common.whatsapp": "WhatsApp",
-      "common.daily": "Persönliche Begleitung",
-      "common.weekly": "Bewusste Ausrichtung",
-      "common.monthly": "Tiefe Einsichten für dein Leben",
+      "common.daily": " ",
+      "common.weekly": " ",
+      "common.monthly": " ",
       "common.save": "Speichern",
       "common.cancel": "Abbrechen",
       "common.edit": "Bearbeiten",
@@ -1010,8 +985,9 @@ const getTranslations = () => {
       // Navigationsleiste
       "nav.howItWorks": "Déroulement",
       "nav.pricing": "Abonnement",
-      "nav.reviews": "Èvaluations",
+      "nav.reviews": "Évaluations",
       "nav.getStarted": " ",
+      "nav.pricing": "Prix",
       "nav.contact": "Contact",
       "nav.dashboard": "Tableau de bord",
       "nav.login": "Se connecter",
@@ -1090,11 +1066,10 @@ const getTranslations = () => {
 
       // Hero Section Startseite
       "hero.badge": " ",
-      "hero.title": "Ton",
+      "hero.title": "Votre",
       "hero.titleHighlight": "horoscope personnel",
-      "hero.description":
-        "Des éclairages pour ton chemin de vie.",
-      "hero.cta": "Recevoir ton message",
+      "hero.description": "Indications astrologiques pour votre phase de vie actuelle",
+      "hero.cta": "Recevoir votre message",
       "hero.learnMore": "Comment ça marche",
       "hero.rating": " ",
       "hero.users": " ",
@@ -1104,76 +1079,52 @@ const getTranslations = () => {
       "hero.personalizedFor": "Personnalisé pour  R.",
 
       // Hero Sample Message Content
-      "hero.sampleMessage.title": "Ton horoscope du jour",
+      "hero.sampleMessage.title": "Votre horoscope du jour",
       "hero.sampleMessage.content":
-        "(...) La phase lunaire croissante forme aujourd’hui un trigone avec Pluton et fait ressortir plus clairement tes mouvements intérieurs les plus profonds. Cette constellation t’accompagne dans le processus de laisser partir l’ancien et de créer l’espace nécessaire pour une décision qui a déjà mûri en toi. (...)",
+        "(...) La phase lunaire croissante forme aujourd’hui un trigone avec Pluton et fait ressortir plus clairement vos mouvements intérieurs les plus profonds. Cette constellation vous accompagne dans le processus de laisser partir l’ancien et de créer l’espace nécessaire pour une décision qui a déjà mûri en vous. (...)",
       "hero.sampleMessage.footer": "SMS • Quotidien • Premium",
 
       // Features Section
       "features.title": "Indications personnelles issues \ndes liens cosmiques",
-      "features.description":
-        "Notre analyse relie l’ensemble de tes données de naissance aux mouvements des corps célestes",
-      "features.description2":
-        " ",
-      "features.description3":
-        " ",
+      "features.description": "Notre analyse relie l’ensemble de vos données de naissance aux mouvements des corps célestes",
+      "features.description2": " ",
+      "features.description3": " ",
         
       // Kacheln Wie es funktioniert
-      "features.personalizedChart.title":
-        "1. Ta configuration de naissance",
-      "features.personalizedChart.description":
-        "Ta date de naissance, l’heure exacte et le lieu constituent la base pour rendre visible ta configuration personnelle.",
-      "features.dailyUpdates.title":
-        "2. Mise en perspective cosmique",
-      "features.dailyUpdates.description":
-        "Nous relions tes données aux configurations planétaires actuelles. Il en résulte des schémas astrologiques approfondis, qui montrent quelles forces te façonnent, t’inspirent ou te mettent au défi.",
-      "features.multiChannel.title":
-        "3. Ton message personnel",
-      "features.multiChannel.description":
-        "Il en résulte des indications personnelles pour ton chemin de vie. Elles offrent une orientation et t’aident à prendre des décisions plus claires et à façonner ton développement personnel de manière plus consciente.",      /*"features.lunarTracking.title": "Suivi du cycle lunaire",
-      "features.lunarTracking.description":
-        "Restez aligné avec les phases lunaires et leur influence sur votre signe du zodiaque pour un timing optimal.",
-      "features.compatibility.title": "Aperçus de compatibilité",
-      "features.compatibility.description":
-        "Comprenez mieux vos relations avec des lectures de compatibilité personnalisées et des conseils.",
-      "features.secure.title": "Sécurisé et privé",
-      "features.secure.description":
-        "Vos données de naissance et informations personnelles sont cryptées et jamais partagées avec des tiers.",
-        */
-      /*
-      "features.howItWorks": "Comment fonctionne Luraaya",
-      "features.step1.title": "Partagez vos détails de naissance",
-      "features.step1.description":
-        "Fournissez votre date, heure et lieu de naissance pour des calculs astrologiques précis",
-      "features.step2.title": "Choisissez vos préférences",
-      "features.step2.description":
-        "Sélectionnez votre fréquence de livraison et votre canal de communication préféré",
-      "features.step3.title": "Recevez des aperçus cosmiques",
-      "features.step3.description":
-        "Obtenez des messages astrologiques personnalisés livrés selon votre horaire",
-      "features.deliveryChannels":
-        "Choisissez votre façon préférée de recevoir des aperçus cosmiques",
-        */
+      "features.personalizedChart.title": "1. Votre configuration de naissance",
+      "features.personalizedChart.description": "Votre date de naissance, l’heure exacte et le lieu constituent la base pour rendre visible votre configuration personnelle.",
+      "features.dailyUpdates.title": "2. Mise en perspective cosmique",
+      "features.dailyUpdates.description": "Nous relions vos données aux configurations planétaires actuelles. Il en résulte des schémas astrologiques approfondis, qui montrent quelles forces vous façonnent, vous inspirent ou vous mettent au défi.",
+      "features.multiChannel.title": "3. Votre message personnel",
+      "features.multiChannel.description": "Il en résulte des indications personnelles pour votre chemin de vie. Elles offrent une orientation et vous aident à prendre des décisions plus claires et à façonner votre développement personnel de manière plus consciente.",
+      
+      // Pricing Info
+      "pricing.title": "Prix et abonnements",
+      "pricing.subtitle": "Transparent, flexible et résiliable à tout moment.",
+      "pricing.priceLine": "Dès CHF 16.– par mois",
+      "pricing.description": "Des indications astrologiques personnelles, basées sur votre configuration de naissance.",
+      "pricing.bullets.customizable": "Personnalisable individuellement",
+      "pricing.bullets.swissProvider": "Prestataire suisse",
+      "pricing.bullets.cancelAnytime": "Résiliable à tout moment",
+      "pricing.cta": "Accéder à votre configuration personnelle",
 
+      /*
       // Testimonials
       "testimonials.title": "Aimé par les chercheurs cosmiques",
-      "testimonials.description":
-        "Découvrez ce que nos utilisateurs de tous les signes du zodiaque disent sur la façon dont les aperçus astrologiques personnalisés ont transformé leur vie quotidienne.",
+      "testimonials.description": "Découvrez ce que nos utilisateurs de tous les signes du zodiaque disent sur la façon dont les aperçus astrologiques personnalisés ont transformé leur vie quotidienne.",
 
       // Individual Testimonial Content
-      "testimonials.luna.content":
-        "Les aperçus quotidiens ont été incroyablement précis et utiles. En tant que Poissons, j'apprécie comment les messages résonnent avec ma nature intuitive et guident mes projets créatifs.",
-      "testimonials.david.content":
-        "En tant que Lion, j'adore comment le service capture ma nature ambitieuse. Les prévisions hebdomadaires m'ont aidé à chronométrer parfaitement les décisions commerciales importantes.",
-      "testimonials.aria.content":
-        "La précision et le détail dans l'analyse du thème natal ont impressionné mon esprit analytique de Vierge. Les aperçus sont pratiques et exploitables, pas seulement des prédictions vagues.",
+      "testimonials.luna.content": "Les aperçus quotidiens ont été incroyablement précis et utiles. En tant que Poissons, j'apprécie comment les messages résonnent avec ma nature intuitive et guident mes projets créatifs.",
+      "testimonials.david.content": "En tant que Lion, j'adore comment le service capture ma nature ambitieuse. Les prévisions hebdomadaires m'ont aidé à chronométrer parfaitement les décisions commerciales importantes.",
+      "testimonials.aria.content": "La précision et le détail dans l'analyse du thème natal ont impressionné mon esprit analytique de Vierge. Les aperçus sont pratiques et exploitables, pas seulement des prédictions vagues.",
 
       "testimonials.activeUsers": "Utilisateurs actifs",
       "testimonials.averageRating": "Note moyenne",
       "testimonials.messagesDelivered": "Messages livrés",
+      */
 
       // Signup Form
-      "signup.title": "Commencez votre voyage cosmique",
+      "signup.title": " ",
       "signup.description": " ",
       "signup.freeTrialNote": " ",
 
@@ -1214,7 +1165,7 @@ const getTranslations = () => {
         "pricing.percentOff": "{{percent}} % de reduction",
 
 
-      "signup.step1.title": "Comment souhaites-tu recevoir ton horoscope ?",
+      "signup.step1.title": "Comment souhaitez-vous recevoir votre horoscope ?",
       /*"signup.step1.description":
         "dd",*/
       "signup.step2.title": "Informations personnelles",
@@ -1223,26 +1174,29 @@ const getTranslations = () => {
       "signup.step3.description":
         "Ces données sont essentielles pour des lectures astrologiques précises",
       "signup.step4.title": "Choisissez votre plan",
-      "signup.step4.description":
-        "Sélectionnez le plan parfait pour votre voyage cosmique",
-      "signup.birthTime.note":
-        " ",
-      "signup.birthPlace.note":
-        "Incluez la ville et le pays pour des calculs précis",
+      "signup.step4.description": "Sélectionnez le plan parfait pour votre voyage cosmique",
+      "signup.birthTime.note": " ",
+      "signup.birthPlace.note": " ",
       "signup.communicationChannel": "Canal de communication préféré",
       "signup.messageFrequency": "Fréquence des messages",
       "signup.fullName": "Nom complet",
       "signup.email": "Adresse e-mail",
       "signup.sms": "Numéro SMS",
       "signup.whatsapp": "Numéro WhatsApp",
-      "signup.language.note": "Langue préférée pour ton horoscope",
+      "signup.language.note": "Langue préférée pour votre horoscope",
       "language.english": "Anglais",
       "language.german": "Allemand",
       "language.french": "Français",
       "signup.sex": "Sexe",
+      "sex.female": "Femme",
+      "sex.male": "Homme",
+      "sex.other": "Autre",
       "signup.dateOfBirth": "Date de naissance",
       "signup.timeOfBirth": "Heure de naissance",
+      "signup.birthTime.premiumOnly": "Bonus pour plus de profondeur",
+      "errors.timeOfBirthRequiredPremium": "Requis pour Premium",
       "signup.placeOfBirth": "Lieu de naissance",
+      "signup.placeOfBirthPlaceholder": "Ville, pays",
       "signup.yourSelection": "Votre sélection",
       "signup.messages": "Messages",
       "signup.via": "via",
@@ -1254,17 +1208,16 @@ const getTranslations = () => {
       "signup.premiumPlan": "Premium",
       "signup.mostPopular": "Le plus populaire",
       "signup.previous": "Précédent",
-      "signup.nextStep": "Étape suivante",
+      "signup.nextStep": "Continuer",
       "signup.startJourney": "Commencer mon voyage cosmique",
-      "signup.privacyNotice":
-        "🔒 Vos données de naissance sont cryptées et sécurisées. Nous ne partageons jamais vos informations personnelles. En vous inscrivant, vous acceptez nos conditions de service et notre politique de confidentialité.",
+      "signup.privacyNotice": "🔒 Vos données de naissance sont cryptées et sécurisées. Nous ne partageons jamais vos informations personnelles. En vous inscrivant, vous acceptez nos conditions de service et notre politique de confidentialité.",
 
       // Paiement
       "payment.success.title": "Paiement réussi",
-      "payment.success.body": "Ton abonnement est actif. Tu seras redirigé vers ton tableau de bord dans quelques instants.",
+      "payment.success.body": "Votre abonnement est actif. Vous serez redirigé vers votre tableau de bord dans quelques instants.",
       "payment.success.cta": "Aller au tableau de bord",
       "payment.canceled.title": "Paiement annulé",
-      "payment.canceled.body": "Le paiement a été annulé. Tu peux réessayer à tout moment ci-dessous.",
+      "payment.canceled.body": "Le paiement a été annulé. Vous pouvez réessayer à tout moment ci-dessous.",
       "errors.genericCheckout": "Le paiement n’a pas pu etre demarre. Veuillez reessayer.",
 
       // Dashboard
@@ -1345,15 +1298,12 @@ const getTranslations = () => {
       "dashboard.toggle": "Basculer",
       "dashboard.dangerZone": "Zone de danger",
       "dashboard.deleteAccount": "Supprimer le compte",
-      "dashboard.deleteAccountDescription":
-        "Supprimez définitivement votre compte et toutes les données associées. Cette action ne peut pas être annulée.",
+      "dashboard.deleteAccountDescription": "Supprimez définitivement votre compte et toutes les données associées. Cette action ne peut pas être annulée.",
       "dashboard.deleteAccountButton": "Supprimer le compte",
       "dashboard.emailUpdated": "E-mail mis à jour avec succès !",
-      "dashboard.passwordMismatch":
-        "Les nouveaux mots de passe ne correspondent pas !",
+      "dashboard.passwordMismatch": "Les nouveaux mots de passe ne correspondent pas !",
       "dashboard.passwordUpdated": "Mot de passe mis à jour avec succès !",
-      "dashboard.cancelSubscriptionConfirm":
-        "Êtes-vous sûr de vouloir annuler votre abonnement ? Vous perdrez l'accès aux fonctionnalités premium.",
+      "dashboard.cancelSubscriptionConfirm": "Êtes-vous sûr de vouloir annuler votre abonnement ? Vous perdrez l'accès aux fonctionnalités premium.",
       "dashboard.cancelSubscriptionError":
         "Erreur lors de l'annulation de l'abonnement. Veuillez réessayer plus tard.",
       "dashboard.subscriptionCancelled":
@@ -1403,9 +1353,9 @@ const getTranslations = () => {
       "common.email": "E-mail",
       "common.sms": "SMS",
       "common.whatsapp": "WhatsApp",
-      "common.daily": "Accompagnement personnel",
-      "common.weekly": "Alignement conscient",
-      "common.monthly": "Analyses profondes pour votre vie",
+      "common.daily": " ",
+      "common.weekly": " ",
+      "common.monthly": " ",
       "common.save": "Enregistrer",
       "common.cancel": "Annuler",
       "common.edit": "Modifier",
