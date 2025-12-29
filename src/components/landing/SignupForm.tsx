@@ -3,7 +3,7 @@
  * Collects birth data, preferences, and subscription details
  */
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Container from "../common/Container";
 import PricingCalculator from "./PricingCalculator";
 import { SubscriptionType, CommunicationChannel, Sex, ZodiacSign } from "../../types";
@@ -129,6 +129,16 @@ const SignupForm: React.FC = () => {
   const [acceptPrivacy, setAcceptPrivacy] = useState(false);
 
   const formTopRef = useRef<HTMLDivElement>(null);
+  const didMountRef = useRef(false);
+  const stepNavTriggeredRef = useRef(false);
+
+  useLayoutEffect(() => {
+  // Autofill/Fokus kann beim Laden scrollen
+  if (document.activeElement instanceof HTMLElement) {
+    document.activeElement.blur();
+  }
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+}, []);
 
   // Filtered country codes based on search
   const filteredCountryCodes = countryCodes.filter(
@@ -222,17 +232,28 @@ const SignupForm: React.FC = () => {
     getUser();
   }, [user]);
 
-    useEffect(() => {
-      if (!formTopRef.current) return;
 
+  useEffect(() => {
+    // Beim initialen Seitenladen nicht scrollen
+    if (!didMountRef.current) {
+      didMountRef.current = true;
+      return;
+    }
+
+    // Nur scrollen, wenn der Step-Wechsel durch Klick (Weiter/Zurück) ausgelöst wurde
+    if (!stepNavTriggeredRef.current) return;
+    stepNavTriggeredRef.current = false;
+
+    if (!formTopRef.current) return;
+
+    requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          formTopRef.current.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
+        formTopRef.current!.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
         });
       });
+    });
   }, [currentStep]);
 
   // Handle input changes
@@ -516,12 +537,14 @@ const SignupForm: React.FC = () => {
 
   const nextStep = (e?: React.MouseEvent<HTMLButtonElement>) => {
     if (e) e.preventDefault();
-    if (validateStep()) {
-      setCurrentStep((prev) => Math.min(prev + 1, 3));
-    }
+    if (!validateStep()) return;
+
+    stepNavTriggeredRef.current = true;
+    setCurrentStep((prev) => Math.min(prev + 1, 3));
   };
 
   const prevStep = () => {
+    stepNavTriggeredRef.current = true;
     setCurrentStep((prev) => Math.max(prev - 1, 1));
   };
 
