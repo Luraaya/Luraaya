@@ -11,11 +11,11 @@ const PricingInfo: React.FC = () => {
         <div className="max-w-3xl mx-auto text-center">
           {/* Subtile Linie als visuelle Klammer */}
           <div className="flex justify-center mb-6">
-            <div className="w-14 h-px bg-gray-300 opacity-15" />
+            <div className="w-14 h-px bg-gray-400 " />
           </div>
 
           {/* Überschrift */}
-          <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
             {t("pricing.title")}
           </h2>
 

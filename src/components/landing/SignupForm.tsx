@@ -99,7 +99,7 @@ const SignupForm: React.FC = () => {
   const [zodiacSign, setZodiacSign] = useState<ZodiacSign | null>(null);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [selectedPlan, setSelectedPlan] = useState<"basic" | "premium">(
-    "basic"
+    "premium"
   );
   const [billingCycle, setBillingCycle] = React.useState<"monthly" | "yearly">(
     "monthly"
@@ -125,6 +125,8 @@ const SignupForm: React.FC = () => {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [uiError, setUiError] = useState("");
+  const [acceptAgb, setAcceptAgb] = useState(false);
+  const [acceptPrivacy, setAcceptPrivacy] = useState(false);
 
   const formTopRef = useRef<HTMLDivElement>(null);
 
@@ -220,6 +222,18 @@ const SignupForm: React.FC = () => {
     getUser();
   }, [user]);
 
+    useEffect(() => {
+      if (!formTopRef.current) return;
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          formTopRef.current.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        });
+      });
+  }, [currentStep]);
 
   // Handle input changes
   const handleInputChange = (
@@ -240,6 +254,15 @@ const SignupForm: React.FC = () => {
     e.preventDefault();
     if (currentStep < 3) return;
     
+    if (!acceptAgb || !acceptPrivacy) {
+      setErrors((prev) => ({
+        ...prev,
+        acceptAgb: acceptAgb ? "" : t("errors.acceptTermsAndPrivacy"),
+        acceptPrivacy: acceptPrivacy ? "" : t("errors.acceptTermsAndPrivacy"),
+      }));
+      return;
+    }
+
     if (!user) {
       setShowPasswordModal(true);
       return;
@@ -484,10 +507,7 @@ const SignupForm: React.FC = () => {
       if (!formData.sex) newErrors.sex = " ";
       // Date of Birth is mandatory for all plans
       if (!formData.dateOfBirth) newErrors.dateOfBirth = " ";
-      // Time of Birth is mandatory only for Premium plans
-      if (selectedPlan === "premium" && !formData.timeOfBirth) {
-        newErrors.timeOfBirth = t("errors.timeOfBirthRequiredPremium");
-      }
+
       if (!formData.placeOfBirth) newErrors.placeOfBirth = " ";
     }
     setErrors(newErrors);
@@ -498,12 +518,11 @@ const SignupForm: React.FC = () => {
     if (e) e.preventDefault();
     if (validateStep()) {
       setCurrentStep((prev) => Math.min(prev + 1, 3));
-      formTopRef.current?.scrollIntoView({ behavior: "smooth" });
     }
   };
+
   const prevStep = () => {
     setCurrentStep((prev) => Math.max(prev - 1, 1));
-    formTopRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const fetchPlaceSuggestions = async (query: string) => {
@@ -580,7 +599,7 @@ const SignupForm: React.FC = () => {
     >
       <Container>
         <div className="max-w-4xl mx-auto">
-          <div ref={formTopRef} />
+          <div ref={formTopRef} className="scroll-mt-24" />
           {/* Section header */}
           <div className="text-center mb-6">
 
@@ -591,7 +610,7 @@ const SignupForm: React.FC = () => {
           </div>
 
           {/* Form card */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
+          <div className={`bg-white rounded-xl shadow-lg p-8 ${currentStep < 3 ? "pb-4" : ""}`}>
             <form onSubmit={handleSubmit}>
 
               {/* Progress indicator inside form */}
@@ -630,7 +649,7 @@ const SignupForm: React.FC = () => {
 
               {/* Step 1: Service Selection */}
               {currentStep === 1 && (
-                <div className="space-y-6">
+                <div className="space-y-4">
                   <div className="text-center mb-6">
 
                     <h3 className="text-2xl font-bold">
@@ -1077,7 +1096,7 @@ const SignupForm: React.FC = () => {
                         htmlFor="timeOfBirth"
                         className="block text-sm font-medium text-gray-700 mb-1"
                       >
-                        {t("signup.timeOfBirth")} {selectedPlan === "premium" ? "*" : ""}
+                        {t("signup.timeOfBirth")}
                       </label>
                       <input
                         type="time"
@@ -1085,23 +1104,8 @@ const SignupForm: React.FC = () => {
                         name="timeOfBirth"
                         value={formData.timeOfBirth}
                         onChange={handleInputChange}
-                        required={selectedPlan === "premium"}
-                        className={`w-full px-4 py-2 border rounded-md focus:ring-purple-500 focus:border-purple-500 ${
-                          errors.timeOfBirth
-                            ? "border-red-500"
-                            : "border-gray-300"
-                        }`}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500"
                       />
-                      <p className="mt-1 text-xs text-gray-500">
-                        {selectedPlan === "premium" 
-                          ? t("signup.birthTime.note") 
-                          : t("signup.birthTime.premiumOnly")}
-                      </p>
-                      {errors.timeOfBirth && (
-                        <p className="mt-1 text-sm text-red-600">
-                          {errors.timeOfBirth}
-                        </p>
-                      )}
                     </div>
 
                     {/* Place of Birth */}
@@ -1171,11 +1175,7 @@ const SignupForm: React.FC = () => {
               {currentStep === 3 && (
                 <div className="space-y-6">
                   <div className="text-center mb-6">
-                    <img
-                      src="/logo.png"
-                      alt="Luraaya Logo"
-                      className="w-12 h-12 mx-auto mb-2 object-contain"
-                    />
+
                     <h3 className="text-2xl font-bold">
                       {t("signup.step4.title")}
                     </h3>
@@ -1271,62 +1271,117 @@ const SignupForm: React.FC = () => {
                 </div>
               )}
 
-             {/* Navigation buttons */}
-              <div className="mt-20 flex items-center justify-center gap-4">
-                {currentStep > 1 && (
-                  <button
-                    type="button"
-                    onClick={prevStep}
-                    className="h-12 px-6 rounded-md font-medium transition-all duration-200 border border-gray-300 text-gray-700 bg-white hover:bg-gray-100"
-                  >
-                    {t("signup.previous")}
-                  </button>
-                )}
+              {currentStep === 3 && (
+                <div className="mt-12 space-y-2 text-sm text-gray-600">
+                  {/* AGB */}
+                  <label className="flex items-start gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={acceptAgb}
+                      onChange={(e) => setAcceptAgb(e.target.checked)}
+                      className={`mt-1 h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500 ${errors.acceptAgb ? "ring-2 ring-red-500" : ""}`}
+                    />
+                    <span>
+                      {t("signup.terms.acceptAgbPrefix")}{" "}
+                      <a
+                        href="/agb"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-purple-600 underline"
+                      >
+                        {t("signup.terms.agb")}
+                      </a>
+                    </span>
+                  </label>
 
-                {currentStep < 3 ? (
-                  <button
-                    type="button"
-                    onClick={nextStep}
-                    className="h-12 px-8 rounded-md font-bold transition-all duration-200 bg-purple-600 text-white hover:bg-purple-700 disabled:opacity-60 disabled:cursor-not-allowed text-lg"
-                  >
-                    {t("signup.nextStep")}
-                  </button>
-                ) : (
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="h-12 px-8 rounded-md font-bold transition-all duration-200 bg-purple-600 text-white hover:bg-purple-700 disabled:opacity-60 disabled:cursor-not-allowed text-lg"
-                  >
-                    {loading ? (
-                      <span className="flex items-center gap-2">
-                        <svg
-                          className="animate-spin h-5 w-5 text-white"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                        >
-                          <circle
-                            className="opacity-25"
-                            cx="12"
-                            cy="12"
-                            r="10"
-                            stroke="currentColor"
-                            strokeWidth="4"
-                          />
-                          <path
-                            className="opacity-75"
-                            fill="currentColor"
-                            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                          />
-                        </svg>
-                        Loading...
-                      </span>
-                    ) : (
-                      t("signup.startJourney")
-                    )}
-                  </button>
-                )}
+                  {/* Datenschutz */}
+                  <label className="flex items-start gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={acceptPrivacy}
+                      onChange={(e) => setAcceptPrivacy(e.target.checked)}
+                      className={`mt-1 h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500 ${errors.acceptPrivacy ? "ring-2 ring-red-500" : ""}`}
+                    />
+                    <span>
+                      {t("signup.terms.acceptPrivacyPrefix")}{" "}
+                      <a
+                        href="/datenschutz"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-purple-600 underline"
+                      >
+                        {t("signup.terms.privacy")}
+                      </a>
+                      {t("signup.terms.acceptPrivacySuffix")
+                        ? ` ${t("signup.terms.acceptPrivacySuffix")}`
+                        : ""}
+                    </span>
+                  </label>
+                  {(errors.acceptAgb || errors.acceptPrivacy) && (
+                    <p className="text-sm text-red-600">
+                      {t("errors.acceptTermsAndPrivacy")}
+                    </p>
+                  )}
+                </div>
+              )}
+              
+              {/* Navigation buttons */}
+              <div className="mt-14 sm:mt-16 flex flex-col sm:grid sm:grid-cols-3 items-stretch sm:items-center gap-3 sm:gap-y-10">
+                {/* Zurück */}
+                <div className="order-2 sm:order-none sm:justify-self-start">
+                  {currentStep > 1 && (
+                    <button
+                      type="button"
+                      onClick={prevStep}
+                      className="h-12 w-full sm:w-auto px-4 sm:px-6 rounded-md font-medium transition-all duration-200 border border-gray-300 text-gray-700 bg-white hover:bg-gray-100"
+                    >
+                      {t("signup.previous")}
+                    </button>
+                  )}
+                </div>
+
+                {/* Weiter / Abschliessen */}
+                <div className="order-1 sm:order-none sm:justify-self-center">
+                  {currentStep < 3 ? (
+                    <button
+                      type="button"
+                      onClick={nextStep}
+                      className="h-auto min-h-[48px] w-full sm:w-auto px-6 sm:px-12 sm:min-w-[220px] rounded-md font-bold transition-all duration-200 bg-purple-600 text-white hover:bg-purple-700 disabled:opacity-60 disabled:cursor-not-allowed text-base sm:text-lg text-center"
+                    >
+                      {currentStep === 1 ? t("signup.nextStep") : t("signup.nextStep2")}
+                    </button>
+                  ) : (
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="min-h-[56px] h-auto w-full px-6 py-3 rounded-md font-bold transition-all duration-200 bg-purple-600 text-white hover:bg-purple-700 disabled:opacity-60 disabled:cursor-not-allowed text-base text-center leading-snug sm:h-12 sm:min-w-[320px] sm:w-auto sm:px-12 sm:py-0 sm:text-lg sm:whitespace-nowrap sm:leading-normal"
+                    >
+                      {loading ? "Loading..." : t("signup.startJourney")}
+                    </button>
+                  )}
+                </div>
+
+                {/* Trust Zeile */}
+                <div className="order-3 sm:order-none sm:col-span-3 mt-3 sm:mt-6">
+                  {currentStep === 3 && (
+                    <div className="flex flex-col gap-2 text-sm font-medium text-gray-500 sm:flex-row sm:items-center sm:justify-center sm:gap-6">
+                      <div className="flex items-center gap-2">
+                        <span className="shrink-0">✓</span>
+                        <span className="leading-snug">{t("signup.support")}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="shrink-0">✓</span>
+                        <span className="leading-snug">{t("signup.guarantees")}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="shrink-0">✓</span>
+                        <span className="leading-snug">{t("signup.securePayments")}</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
+
 
               {uiError && (
                 <p className="mt-4 text-sm text-red-600 text-center">
@@ -1466,14 +1521,6 @@ const SignupForm: React.FC = () => {
               </Modal>
             )}
 
-            {/* Privacy notice */}
-            {currentStep === 3 && (
-              <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-                <p className="text-sm text-gray-600 text-center">
-                  {t("signup.privacyNotice")}
-                </p>
-              </div>
-            )}
           </div>
         </div>
       </Container>

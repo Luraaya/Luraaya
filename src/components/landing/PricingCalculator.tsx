@@ -157,14 +157,14 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({
     <div className="mt-8">
       {/* Billing Cycle Toggle */}
       <div className="flex justify-center mb-8">
-        <div className="bg-gray-50 p-2 rounded-xl inline-flex">
+        <div className="bg-white p-1.5 sm:p-2 rounded-lg sm:rounded-xl inline-flex">
           <button
             type="button"
             onClick={() => setBillingCycle("monthly")}
             className={`px-10 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
               billingCycle === "monthly"
-                ? "bg-white text-gray-900 shadow-sm"
-                : "text-gray-600 hover:text-gray-900"
+                ? "bg-purple-50 shadow-sm border border-purple-300"
+                : "text-gray-600 border border-gray-200 hover:text-gray-900"
             }`}
           >
             {t("signup.monthly")}
@@ -174,8 +174,8 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({
             onClick={() => setBillingCycle("yearly")}
             className={`px-10 py-3 rounded-lg text-base font-medium transition-all duration-200 relative ${
               billingCycle === "yearly"
-                ? "bg-white text-gray-900 shadow-sm"
-                : "text-black-800 hover:text-gray-900"
+                ? "bg-purple-50 shadow-sm border border-purple-300"
+                : "text-black-800 border border-gray-200hover:text-gray-900"
             }`}
           >
             {t("signup.yearly")}
@@ -196,8 +196,8 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({
         <div
           className={`border-2 rounded-xl p-6 cursor-pointer transition-all duration-300 ${
             selectedPlan === "basic"
-              ? "border-purple-500 bg-purple-50 shadow-lg"
-              : "border-gray-200 hover:border-gray-300 hover:shadow-md"
+              ? "border-purple-300 bg-purple-50/60"
+              : "border-gray-200 hover:border-gray-300"
           }`}
           onClick={() => onPlanChange("basic")}
         >
@@ -255,12 +255,16 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({
         <div
           className={`border-2 rounded-xl p-6 cursor-pointer transition-all duration-300 relative ${
             selectedPlan === "premium"
-              ? "border-purple-500 bg-purple-50 shadow-lg"
-              : "border-gray-200 hover:border-gray-300 hover:shadow-md"
+              ? "border-purple-300 bg-purple-50/60"
+              : "border-gray-200 hover:border-gray-300"
           }`}
           onClick={() => onPlanChange("premium")}
         >
-
+          {selectedPlan === "premium" && (
+            <div className="absolute -top-2 right-3 z-10 px-2 py-0.5 text-[11px] font-medium rounded-full bg-purple-100 text-purple-600">
+              {t("common.recommended")}
+            </div>
+          )}
 
           <div className="text-center mb-4">
             <h4 className="text-lg font-bold text-gray-900 mb-1">
@@ -321,18 +325,6 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({
           </ul>
 
 
-        </div>
-      </div>
-
-      {/* Additional info */}
-      <div className="mt-6 text-center">
-        <p className="text-sm text-gray-500 mb-2">
-          {t("signup.freeTrialNote")}
-        </p>
-        <div className="flex justify-center items-center space-x-6 text-sm font-medium text-gray-500">
-          <span>{t("signup.support")}</span>
-          <span>{t("signup.guarantees")}</span>
-          <span>{t("signup.securePayments")}</span>
         </div>
       </div>
     </div>

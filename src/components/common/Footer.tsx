@@ -119,7 +119,7 @@ const Footer: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between gap-4">
             <p className="text-gray-500 text-sm">
-              &copy; {currentYear} Luraaya. All rights reserved.
+              &copy; {currentYear} Luraaya.
             </p>
 
             <div className="shrink-0">

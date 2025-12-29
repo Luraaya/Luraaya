@@ -25,9 +25,15 @@ const Hero: React.FC = () => {
 
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              {t("hero.title")}{" "}
-              <span className="bg-gradient-to-r from-purple-600 to-teal-500 bg-clip-text text-transparent">
-                {t("hero.titleHighlight")}
+              <span className="block">
+                {t("hero.title")}
+                <span className="bg-gradient-to-r from-purple-600 to-teal-500 bg-clip-text text-transparent">
+                  {t("hero.titleHighlight")}
+                </span>
+              </span>
+
+              <span className="block">
+                {t("hero.title2")}
               </span>
             </h1>
 
@@ -107,7 +113,6 @@ const Hero: React.FC = () => {
               {/* Message footer */}
               <div className="flex justify-between items-center pt-3 border-t border-gray-100">
                 <span className="text-sm text-gray-500 flex items-center">
-                  <Star size={14} className="mr-1 text-yellow-400" />
                   {t("hero.sampleMessage.footer")}
                 </span>
                 {/*

@@ -68,7 +68,7 @@ const Features: React.FC = () => {
             {features.map((feature) => (
               <div
                 key={feature.id}
-                className="rounded-2xl border border-gray-200 p-7 lg:p-8 transition-all duration-300"
+                className="rounded-2xl border border-gray-200 p-7 lg:p-7 transition-all duration-300"
                 style={{ backgroundColor: "#f8fdff" }}
               >
                 <h3 className="text-lg font-semibold mb-2">
