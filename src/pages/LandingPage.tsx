@@ -4,6 +4,7 @@ import { useLanguage } from "../contexts/LanguageContext";
 import Layout from "../components/common/Layout";
 import Hero from "../components/landing/Hero";
 import Features from "../components/landing/Features";
+import Astro from "../components/landing/Astro";
 import PricingInfo from "../components/landing/PricingInfo";
 import SignupForm from "../components/landing/SignupForm";
 
@@ -83,6 +84,7 @@ const LandingPage: React.FC = () => {
 
       <SignupForm />
       <Features />
+      <Astro />
       <PricingInfo />
     </Layout>
   );

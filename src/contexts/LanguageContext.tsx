@@ -230,7 +230,49 @@ const getTranslations = () => {
       "features.multiChannel.title": "3. Your personal message",
       "features.multiChannel.description": "From this context emerge personal insights for your everyday life. The underlying connections are clearly articulated and summarised into concise, precise, and personal impulses.",
       
-       
+      // Astro Info Section
+      "astroInfo.title": "Astrological Core Elements",
+      "astroInfo.description": "Each of these eight elements serves a distinct function. Together, they allow for nuanced and individually tailored astrological insights.",
+
+      "astroInfo.cards.birthChart.title": "Birth Chart",
+      "astroInfo.cards.birthChart.title2": "Your personal foundational structure",
+      "astroInfo.cards.birthChart.content": "The birth chart forms the astrological foundation of an individual. It is calculated using date of birth, time of birth, and place of birth, and shows the unique configuration of the Sun, Moon, planets, Ascendant, and houses at the moment of birth. This structure describes fundamental personality patterns, strengths, needs, and recurring life themes. The birth chart does not change; it serves as a reference framework for meaningfully interpreting current developments.\nYou gain a clear understanding of your personal blueprint and why certain themes and behavioural patterns accompany you throughout your life.",
+
+      "astroInfo.cards.planets.title": "Planets",
+      "astroInfo.cards.planets.title2": "Inner drives and principles of development",
+      "astroInfo.cards.planets.content": "In astrology, planets represent core psychological functions and inner drives. The Sun, Moon, Mercury, Venus, and Mars describe fundamental needs, emotions, thinking patterns, relationship dynamics, and action energy. Slower-moving planets such as Jupiter, Saturn, Uranus, Neptune, and Pluto point to longer-term developmental phases and deeper processes of transformation. Each planet expresses itself differently depending on sign, house, and aspects.\nYou recognise which inner forces motivate you, where challenges arise, and how personal development unfolds over time.",
+
+      "astroInfo.cards.zodiacSigns.title": "Zodiac Signs",
+      "astroInfo.cards.zodiacSigns.title2": "How energy is expressed",
+      "astroInfo.cards.zodiacSigns.content": "The twelve zodiac signs describe how astrological energy is expressed. They give planets a specific quality, attitude, and mode of expression—such as initiating, emotional, analytical, or visionary. Each sign has its own strengths, learning themes, and typical response patterns. Key signs in a personal chart include the Sun sign, Moon sign, and Ascendant.\nYou understand how your inner impulses are expressed outwardly and why you experience and shape situations in a particular way.",
+
+      "astroInfo.cards.houses.title": "Houses",
+      "astroInfo.cards.houses.title2": "Life areas and fields of experience",
+      "astroInfo.cards.houses.content": "The twelve astrological houses show where inner potentials and current influences manifest concretely in life. These include, among others, self-expression and identity (1st house), values and security (2nd house), home and inner stability (4th house), relationships (7th house), and career and life direction (10th house). Planets and transits within a house activate these specific areas of life.\nYou gain clarity about which life areas are currently evolving and where attention, decisions, or change can be particularly effective.",
+
+      "astroInfo.cards.aspects.title": "Aspects",
+      "astroInfo.cards.aspects.title2": "How astrological forces interact",
+      "astroInfo.cards.aspects.content": "Aspects describe the angular relationships between planets and show how different inner forces cooperate or come into tension. Common aspects include conjunction, trine, sextile, square, and opposition. Harmonious aspects support expression and development, while challenging aspects foster friction and growth. Aspects operate both in the birth chart and in current transits.\nYou gain a deeper understanding of inner dynamics and recognise where potential can unfold or conscious engagement is required.",
+
+      "astroInfo.cards.transits.title": "Transits",
+      "astroInfo.cards.transits.title2": "Current influences and timing",
+      "astroInfo.cards.transits.content": "Transits describe the ongoing movement of planets in the sky and their relationship to your personal birth chart. They indicate which themes are currently activated and how the prevailing time quality affects you individually. Fast-moving planets shape daily experiences, while slower planets mark longer developmental phases. Transits are temporary and recur in cycles.\nYou gain orientation in the present moment and can consciously interpret and make use of current developments.",
+
+      "astroInfo.cards.moonCycles.title": "Moon Phases and Rhythms",
+      "astroInfo.cards.moonCycles.title2": "Emotional cycles in everyday life",
+      "astroInfo.cards.moonCycles.content": "The Moon moves quickly and reflects emotional moods, needs, and inner reactions. The lunar phases—new moon, waxing moon, full moon, and waning moon—describe recurring cycles of beginnings, growth, culmination, and release. In connection with your chart, they show how these rhythms are personally experienced.\nYou learn to better understand emotional fluctuations and align your daily life more consciously with natural cycles.",
+
+      "astroInfo.cards.forecastMethods.title": "Forecasting Methods",
+      "astroInfo.cards.forecastMethods.title2": "Annual focus and inner development",
+      "astroInfo.cards.forecastMethods.content": "Forecasting methods provide a deeper perspective on temporal developments and personal growth phases. These include, among others, the Solar Return chart, which outlines annual themes around your birthday, as well as selected progressions that make inner maturation processes visible. These methods complement transits with a longer-term perspective.\nYou gain orientation regarding overarching developmental phases and can consciously shape important periods of time.",
+
+      "common.close": "Close",
+      "common.next": "Next",
+      "common.extend": "More",
+      
+      "astroInfo.footerText": "The premium model extends the basic model with forecasting methods and significantly deepens all elements. It examines connections over longer periods with a focus on development and dynamics.",
+      "astroInfo.cta": "Receive your insights",
+
        // Pricing Info
       "pricing.title": "Prices and Subscriptions",
       "pricing.subtitle": "Transparent, flexible, and cancel anytime.",
@@ -700,6 +742,49 @@ const getTranslations = () => {
       "features.multiChannel.title": "3. Deine persönlicher Hinweis",
       "features.multiChannel.description": "Aus der Einordnung entstehen persönliche Hinweise für deinen Alltag. Die zugrunde liegenden Zusammenhänge werden verständlich aufbereitet und zu klaren Impulsen für dich zusammengefasst - präzise und persönlich.",
      
+      // Astro Info Seciton
+      "astroInfo.title": "Astrologische Grundelemente",
+      "astroInfo.description": "Jedes dieser 8 Elemente erfüllt eine eigene Funktion. In ihrer Gesamtheit ermöglichen sie differenzierte und individuell abgestimmte astrologische Hinweise.",
+
+      "astroInfo.cards.birthChart.title": "Geburtshoroskop",
+      "astroInfo.cards.birthChart.title2": "Deine persönliche Grundstruktur",
+      "astroInfo.cards.birthChart.content": "Das Geburtshoroskop bildet die astrologische Ausgangsbasis eines Menschen. Es wird aus Geburtsdatum, Geburtszeit und Geburtsort berechnet und zeigt die individuelle Konstellation von Sonne, Mond, Planeten, Aszendent und Häusern zum Zeitpunkt der Geburt. Diese Struktur beschreibt grundlegende Persönlichkeitsmuster, Stärken, Bedürfnisse und wiederkehrende Lebensthemen. Das Geburtshoroskop verändert sich nicht – es dient als Referenzrahmen, um aktuelle Entwicklungen sinnvoll einzuordnen.\nDu erhältst ein klares Bild deiner persönlichen Grundanlage und verstehst, warum bestimmte Themen und Verhaltensweisen dich ein Leben lang begleiten.",
+
+      "astroInfo.cards.planets.title": "Planeten",
+      "astroInfo.cards.planets.title2": "Innere Antriebe und Entwicklungsprinzipien",
+      "astroInfo.cards.planets.content": "Planeten stehen in der Astrologie für zentrale psychologische Funktionen und innere Antriebe. Sonne, Mond, Merkur, Venus und Mars beschreiben grundlegende Bedürfnisse, Emotionen, Denken, Beziehungsmuster und Handlungsenergie. Die langsameren Planeten wie Jupiter, Saturn, Uranus, Neptun und Pluto weisen auf langfristige Entwicklungsphasen und tiefere Wandlungsprozesse hin. Jeder Planet wirkt unterschiedlich, je nach Zeichen, Haus und Aspekten.\nDu erkennst, welche inneren Kräfte dich motivieren, wo Herausforderungen liegen und wie sich persönliche Entwicklung über die Zeit entfaltet.",
+
+      "astroInfo.cards.zodiacSigns.title": "Tierkreiszeichen",
+      "astroInfo.cards.zodiacSigns.title2": "Wie sich Energie ausdrückt",
+      "astroInfo.cards.zodiacSigns.content": "Die zwölf Tierkreiszeichen beschreiben die Art und Weise, wie astrologische Energie ausgedrückt wird. Sie geben Planeten eine bestimmte Qualität, Haltung und Ausdrucksform – zum Beispiel initiativ, emotional, analytisch oder visionär. Jedes Zeichen hat eigene Stärken, Lernfelder und typische Reaktionsmuster. Wichtige Zeichen im persönlichen Horoskop sind unter anderem das Sonnenzeichen, das Mondzeichen und der Aszendent.\nDu verstehst, wie deine inneren Impulse nach aussen wirken und warum du Situationen auf eine bestimmte Art erlebst und gestaltest.",
+
+      "astroInfo.cards.houses.title": "Häuser",
+      "astroInfo.cards.houses.title2": "Lebensbereiche und Erfahrungsfelder",
+      "astroInfo.cards.houses.content": "Die zwölf astrologischen Häuser zeigen, in welchen Lebensbereichen sich innere Anlagen und aktuelle Einflüsse konkret entfalten. Dazu gehören unter anderem Auftreten und Selbstbild (1. Haus), Werte und Sicherheit (2. Haus), Zuhause und innere Stabilität (4. Haus), Beziehungen (7. Haus) sowie Beruf und Lebensrichtung (10. Haus). Planeten und Transite in einem Haus aktivieren genau diese Themenfelder.\nDu erkennst, in welchem Lebensbereich sich Entwicklungen aktuell zeigen und wo Aufmerksamkeit, Entscheidungen oder Veränderungen besonders wirksam sind.",
+
+      "astroInfo.cards.aspects.title": "Aspekte",
+      "astroInfo.cards.aspects.title2": "Wie astrologische Kräfte zusammenwirken",
+      "astroInfo.cards.aspects.content": "Aspekte beschreiben die Winkelbeziehungen zwischen Planeten und zeigen, wie unterschiedliche innere Kräfte miteinander kooperieren oder in Spannung stehen. Häufige Aspekte sind Konjunktion, Trigon, Sextil, Quadrat und Opposition. Harmonische Aspekte erleichtern Ausdruck und Entwicklung, herausfordernde Aspekte fördern Reibung und Wachstum. Aspekte wirken sowohl im Geburtshoroskop als auch in aktuellen Transiten.\nDu verstehst innere Dynamiken besser und erkennst, wo sich Potenziale entfalten oder bewusste Auseinandersetzung gefragt ist.",
+
+      "astroInfo.cards.transits.title": "Transite",
+      "astroInfo.cards.transits.title2": "Aktuelle Einflüsse und Zeitqualität",
+      "astroInfo.cards.transits.content": "Transite beschreiben die laufenden Bewegungen der Planeten am Himmel und deren Bezug zu deinem persönlichen Geburtshoroskop. Sie zeigen, welche Themen aktuell aktiviert werden und wie sich die gegenwärtige Zeitqualität individuell auswirkt. Schnelle Planeten prägen den Alltag, langsame Planeten markieren längere Entwicklungsphasen. Transite sind zeitlich begrenzt und wiederholen sich in Zyklen.\nDu erhältst Orientierung im Hier und Jetzt und kannst aktuelle Entwicklungen bewusster einordnen und nutzen.",
+
+      "astroInfo.cards.moonCycles.title": "Mondphasen und Rhythmen",
+      "astroInfo.cards.moonCycles.title2": "Emotionale Zyklen im Alltag",
+      "astroInfo.cards.moonCycles.content": "Der Mond bewegt sich schnell und spiegelt emotionale Stimmungen, Bedürfnisse und innere Reaktionen. Die Mondphasen – Neumond, zunehmender Mond, Vollmond und abnehmender Mond – beschreiben wiederkehrende Zyklen von Beginn, Aufbau, Höhepunkt und Loslassen. In Verbindung mit deinem Horoskop zeigen sie, wie diese Rhythmen persönlich erlebt werden.\nDu lernst, emotionale Schwankungen besser zu verstehen und deinen Alltag im Einklang mit natürlichen Zyklen zu gestalten.",
+
+      "astroInfo.cards.forecastMethods.title": "Prognosemethoden",
+      "astroInfo.cards.forecastMethods.title2": "Jahresfokus und innere Entwicklung",
+      "astroInfo.cards.forecastMethods.content": "Prognosemethoden ermöglichen einen vertieften Blick auf zeitliche Entwicklungen und persönliche Wachstumsphasen. Dazu gehören unter anderem das Solarhoroskop, das die Jahresthemen rund um den Geburtstag beschreibt, sowie ausgewählte Progressionen, die innere Reifungsprozesse sichtbar machen. Diese Methoden ergänzen Transite um eine längerfristige Perspektive.\nDu erhältst Orientierung über übergeordnete Entwicklungsphasen und kannst wichtige Zeitabschnitte bewusst gestalten.",
+
+      "common.close": "Schliessen",
+      "common.next": "Nächste",
+      "common.extend": "Mehr",
+
+      "astroInfo.footerText": "Das Premiummodell erweitert das Basismodell um Prognosemethoden und vertieft alle Elemente deutlich. Es werden Zusammenhänge über längere Zeiträume betrachtet mit einem Fokus auf Entwicklung und Dynamik.",
+      "astroInfo.cta": "Deine Hinweise erhalten",
+      
       // Pricing Info
       "pricing.title": "Preise und Abonnemente",
       "pricing.subtitle": "Transparent, flexibel und jederzeit kündbar.",
@@ -1065,7 +1150,7 @@ const getTranslations = () => {
       "hero.titleHighlight": "astrologiques",
       "hero.title2": "pour vous",
       "hero.description": "Comprenez-vous, et le monde qui vous entoure.",
-      "hero.cta": "Recevoir votre Indication",
+      "hero.cta": "Recevoir vos indication",
       "hero.learnMore": "Comment ça marche",
       "hero.rating": " ",
       "hero.users": " ",
@@ -1090,9 +1175,52 @@ const getTranslations = () => {
       "features.personalizedChart.description": "Vos données de naissance constituent le point de départ personnel de toute analyse. Elles permettent d’établir une structure astrologique individuelle, qui sert de base à la mise en perspective cosmique.",
       "features.dailyUpdates.title": "2. Mise en perspective cosmique",
       "features.dailyUpdates.description": "Les mouvements planétaires en cours sont analysés en lien avec votre situation de départ. Cette mise en perspective met en lumière les thèmes actuellement en jeu ainsi que les cycles qui s’inscrivent dans la durée. Les calculs reposent sur des données astronomiques et des méthodes astrologiques reconnues.",
-      "features.multiChannel.title": "3. Votre indication personnel",
+      "features.multiChannel.title": "3. Vos indications personnelles",
       "features.multiChannel.description": "De cette mise en perspective résultent des indications personnelles pour votre quotidien. Les liens sous-jacents sont présentés de manière claire et synthétisés en impulsions précises et personnelles.",
       
+      // Section d’information astrologique
+      "astroInfo.title": "Fondements astrologiques",
+      "astroInfo.description": "Chacun de ces huit éléments remplit une fonction spécifique. Ensemble, ils permettent des indications astrologiques nuancées et adaptées à votre individualité.",
+
+      "astroInfo.cards.birthChart.title": "Thème natal",
+      "astroInfo.cards.birthChart.title2": "Votre structure fondamentale personnelle",
+      "astroInfo.cards.birthChart.content": "Le thème natal constitue la base astrologique d’une personne. Il est calculé à partir de la date de naissance, de l’heure de naissance et du lieu de naissance, et montre la configuration individuelle du Soleil, de la Lune, des planètes, de l’Ascendant et des maisons au moment de la naissance. Cette structure décrit les grands schémas de personnalité, les forces, les besoins et les thèmes de vie récurrents. Le thème natal ne change pas ; il sert de cadre de référence pour interpréter les évolutions actuelles de manière pertinente.\nVous obtenez une vision claire de votre structure de base personnelle et comprenez pourquoi certains thèmes et comportements vous accompagnent tout au long de votre vie.",
+
+      "astroInfo.cards.planets.title": "Planètes",
+      "astroInfo.cards.planets.title2": "Dynamiques intérieures et principes d’évolution",
+      "astroInfo.cards.planets.content": "En astrologie, les planètes représentent des fonctions psychologiques centrales et des dynamiques intérieures. Le Soleil, la Lune, Mercure, Vénus et Mars décrivent les besoins fondamentaux, les émotions, la pensée, les schémas relationnels et l’énergie d’action. Les planètes plus lentes comme Jupiter, Saturne, Uranus, Neptune et Pluton indiquent des phases de développement à long terme et des processus de transformation plus profonds. Chaque planète agit différemment selon le signe, la maison et les aspects.\nVous identifiez les forces intérieures qui vous motivent, les zones de défi et la manière dont votre développement personnel se déploie dans le temps.",
+
+      "astroInfo.cards.zodiacSigns.title": "Signes du zodiaque",
+      "astroInfo.cards.zodiacSigns.title2": "La manière dont l’énergie s’exprime",
+      "astroInfo.cards.zodiacSigns.content": "Les douze signes du zodiaque décrivent la façon dont l’énergie astrologique s’exprime. Ils confèrent aux planètes une qualité, une attitude et une forme d’expression spécifiques — par exemple initiatrice, émotionnelle, analytique ou visionnaire. Chaque signe possède ses forces, ses axes d’apprentissage et ses modes de réaction typiques. Les signes clés dans un thème personnel incluent notamment le signe solaire, le signe lunaire et l’Ascendant.\nVous comprenez comment vos impulsions intérieures se manifestent vers l’extérieur et pourquoi vous vivez et façonnez les situations d’une certaine manière.",
+
+      "astroInfo.cards.houses.title": "Maisons",
+      "astroInfo.cards.houses.title2": "Domaines de vie et champs d’expérience",
+      "astroInfo.cards.houses.content": "Les douze maisons astrologiques montrent dans quels domaines de la vie les dispositions intérieures et les influences actuelles se manifestent concrètement. Elles incluent notamment l’expression de soi et l’identité (1re maison), les valeurs et la sécurité (2e maison), le foyer et la stabilité intérieure (4e maison), les relations (7e maison) ainsi que la carrière et l’orientation de vie (10e maison). Les planètes et les transits dans une maison activent précisément ces thématiques.\nVous identifiez les domaines de vie actuellement concernés par des évolutions et là où l’attention, les décisions ou les changements peuvent être particulièrement efficaces.",
+
+      "astroInfo.cards.aspects.title": "Aspects",
+      "astroInfo.cards.aspects.title2": "L’interaction des forces astrologiques",
+      "astroInfo.cards.aspects.content": "Les aspects décrivent les relations angulaires entre les planètes et montrent comment différentes forces intérieures coopèrent ou entrent en tension. Les aspects courants incluent la conjonction, le trigone, le sextile, le carré et l’opposition. Les aspects harmonieux facilitent l’expression et le développement, tandis que les aspects dynamiques favorisent la confrontation et la croissance. Les aspects agissent à la fois dans le thème natal et dans les transits actuels.\nVous comprenez mieux les dynamiques intérieures et identifiez les potentiels à développer ou les zones nécessitant une prise de conscience.",
+
+      "astroInfo.cards.transits.title": "Transits",
+      "astroInfo.cards.transits.title2": "Influences actuelles et climat temporel",
+      "astroInfo.cards.transits.content": "Les transits décrivent le mouvement actuel des planètes dans le ciel et leur relation avec votre thème natal. Ils indiquent quelles thématiques sont activées et comment la qualité du temps présent se manifeste de manière individuelle. Les planètes rapides influencent le quotidien, tandis que les planètes lentes marquent des phases de développement plus longues. Les transits sont limités dans le temps et s’inscrivent dans des cycles récurrents.\nVous obtenez des repères pour le présent et pouvez interpréter et utiliser les évolutions actuelles de manière plus consciente.",
+
+      "astroInfo.cards.moonCycles.title": "Phases et rythmes lunaires",
+      "astroInfo.cards.moonCycles.title2": "Cycles émotionnels au quotidien",
+      "astroInfo.cards.moonCycles.content": "La Lune se déplace rapidement et reflète les humeurs émotionnelles, les besoins et les réactions intérieures. Les phases lunaires — nouvelle lune, lune croissante, pleine lune et lune décroissante — décrivent des cycles récurrents de commencement, de croissance, d’apogée et de lâcher-prise. En lien avec votre thème, elles montrent comment ces rythmes sont vécus personnellement.\nVous apprenez à mieux comprendre les fluctuations émotionnelles et à organiser votre quotidien en accord avec les rythmes naturels.",
+
+      "astroInfo.cards.forecastMethods.title": "Méthodes de prévision",
+      "astroInfo.cards.forecastMethods.title2": "Orientation annuelle et développement intérieur",
+      "astroInfo.cards.forecastMethods.content": "Les méthodes de prévision permettent une analyse approfondie des évolutions temporelles et des phases de croissance personnelle. Elles incluent notamment le thème solaire, qui décrit les thématiques de l’année autour de votre anniversaire, ainsi que certaines progressions qui rendent visibles les processus de maturation intérieure. Ces méthodes complètent les transits par une perspective à plus long terme.\nVous obtenez une vision claire des grandes phases de développement et pouvez aborder consciemment les périodes importantes.",
+
+      "common.close": "Fermer",
+      "common.next": "Suivant",
+      "common.extend": "Plus",
+
+      "astroInfo.footerText": "Le modèle premium enrichit le modèle de base par des méthodes de prévision et approfondit nettement l’ensemble des éléments. Les liens sont analysés sur des périodes plus longues, avec un accent sur le développement et la dynamique.",
+      "astroInfo.cta": "Recevoir vos indications",
+
       // Pricing Info
       "pricing.title": "Prix et abonnements",
       "pricing.subtitle": "Transparent, flexible et résiliable à tout moment.",
