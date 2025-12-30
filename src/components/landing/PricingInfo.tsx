@@ -25,9 +25,12 @@ const PricingInfo: React.FC = () => {
           </p>
 
           {/* Preiszeile */}
-          <p className="text-xl md:text-2xl font-medium mt-6 mb-2">
-            {t("pricing.priceLine")}
-          </p>
+        <p className="text-xl md:text-2xl font-medium mt-6 mb-0 leading-tight">
+        {t("pricing.priceLine")}
+        </p>
+        <p className="text-xl md:text-2xl font-medium mt-0 mb-2 leading-tight">
+        {t("pricing.priceLine2")}
+        </p>
 
           {/* Sinnzeile direkt unter dem Preis */}
           <p className="text-sm text-gray-700 mb-14">

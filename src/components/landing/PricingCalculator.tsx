@@ -180,7 +180,7 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({
           >
             {t("signup.yearly")}
             {/* Savings badge */}
-            <span className="absolute -top-2 -right-2 bg-green-500 text-white text-xs px-2 py-0.5 rounded-full">
+            <span className="absolute -top-2 -right-2 bg-teal-500 text-white text-xs px-2 py-0.5 rounded-full">
               {t("pricing.savePercent").replace(
                 "{{percent}}",
                 String(calculateSavings(selectedPlan))

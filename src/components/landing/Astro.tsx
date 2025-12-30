@@ -4,8 +4,8 @@ import { useLanguage } from "../../contexts/LanguageContext";
 
 type CardKey =
   | "birthChart"
-  | "zodiacSigns"
   | "planets"
+  | "zodiacSigns"
   | "houses"
   | "aspects"
   | "transits"
@@ -14,8 +14,8 @@ type CardKey =
 
 const CARD_KEYS: CardKey[] = [
   "birthChart",
-  "zodiacSigns",
   "planets",
+  "zodiacSigns",
   "houses",
   "aspects",
   "transits",
@@ -52,15 +52,23 @@ export default function Astro() {
   const [activeKey, setActiveKey] = useState<CardKey | null>(null);
   const isLaptop = useIsLaptop(1024);
 
+  useEffect(() => {
+    setActiveKey(isLaptop ? CARD_KEYS[0] : null);
+  }, [isLaptop]);
+
   const refs = useRef<Record<string, HTMLDivElement | null>>({});
 
-  useEffect(() => {
+    useEffect(() => {
     if (!activeKey) return;
     const el = refs.current[activeKey];
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-  }, [activeKey]);
+    if (!el) return;
+
+    const id = window.setTimeout(() => {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 120);
+
+    return () => window.clearTimeout(id);
+    }, [activeKey]);
 
   return (
     <section className="bg-teal-50 py-12 md:py-20">
@@ -86,10 +94,10 @@ export default function Astro() {
                 key={key}
                 ref={el => (refs.current[key] = el)}
                 className={[
-                  "relative rounded-2xl border bg-white transition flex flex-col",
-                  isActive
+                  "relative rounded-2xl border bg-white transition-all duration-800 ease-in-out flex flex-col",
+                    isActive
                     ? "col-span-1 md:col-span-2 shadow-lg p-6 border-teal-200"
-                    : "p-5 border-gray-200 hover:shadow-md",
+                    : "p-4 md:p-5 border-gray-200 hover:shadow-md",
                   isDimmed ? "opacity-75" : "opacity-100"
                 ].join(" ")}
               >
@@ -108,7 +116,7 @@ export default function Astro() {
                     {t(`astroInfo.cards.${key}.title`)}
                   </h3>
 
-                  <p className="mt-1 text-sm text-gray-700 font-medium">
+                  <p className="mt-0.2 md:mt-1 text-sm text-gray-700 font-medium">
                     {t(`astroInfo.cards.${key}.title2`)}
                   </p>
 
@@ -127,11 +135,18 @@ export default function Astro() {
                 </button>
 
                 {!isActive && (
-                  <div className="mt-auto w-full flex justify-end pt-3">
-                    <span className="text-sm font-medium text-teal-600 underline underline-offset-2">
-                      {t("common.extend")}
-                    </span>
-                  </div>
+                <div className="mt-auto w-full flex justify-end pt-2 md:pt-3">
+                    <button
+                    type="button"
+                    onClick={(e) => {
+                        e.stopPropagation(); // optional, aber sauber, falls du später am Container klickst
+                        setActiveKey(key);
+                    }}
+                    className="text-xs md:text-sm font-medium text-teal-600 underline underline-offset-2"
+                    >
+                    {t("common.extend")}
+                    </button>
+                </div>
                 )}
 
                 {isActive && (
@@ -167,12 +182,23 @@ export default function Astro() {
           })}
         </div>
         {/* Zusatztext unterhalb der Kacheln */}
-        <div className="mt-8 text-left">
-        <p className="text-sm md:text-base text-black">
-            {t("astroInfo.footerText")}
-        </p>
+        <div className="mt-8 text-left border border-gray-200 rounded-lg bg-white p-4 md:p-6">
+        <div className="text-s mb-3">
+            {t("astroInfo.footerTitle")}
         </div>
 
+        <ul className="list-disc pl-5 space-y-1">
+            <li className="text-sm md:text-base text-black">
+            {t("astroInfo.footerText")}
+            </li>
+            <li className="text-sm md:text-base text-black">
+            {t("astroInfo.footerText2")}
+            </li>
+            <li className="text-sm md:text-base text-black">
+            {t("astroInfo.footerText3")}
+            </li>
+        </ul>
+        </div>
         {/* Call To Action Button ganz unten */}
         <div className="mt-10 flex justify-center">
         <a href="#signup">
