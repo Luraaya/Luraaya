@@ -59,19 +59,19 @@ const Footer: React.FC = () => {
             <ul className="space-y-2">
               <li>
                 <Link
-                  to="/datenschutz"
+                  to="/agb"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  {t("footer.legal.privacyPolicy")}
+                  {t("footer.legal.termsOfService")}
                 </Link>
               </li>
 
               <li>
                 <Link
-                  to="/agb"
+                  to="/datenschutz"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  {t("footer.legal.termsOfService")}
+                  {t("footer.legal.privacyPolicy")}
                 </Link>
               </li>
 

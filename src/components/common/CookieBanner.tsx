@@ -40,6 +40,16 @@ const CookieBanner: React.FC = () => {
     document.body.style.width = prevWidth;
   };
 }, [openSettings]);
+
+useEffect(() => {
+  const handler = () => setOpenSettings(true);
+  window.addEventListener("open-cookie-settings", handler);
+
+  return () => {
+    window.removeEventListener("open-cookie-settings", handler);
+  };
+}, []);
+
   if (!mounted) return null;
 
   const showBanner = !hasChoice;
