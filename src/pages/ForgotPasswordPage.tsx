@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { useLanguage } from "../contexts/LanguageContext";
 import Button from "../components/common/Button";
 import Container from "../components/common/Container";
-import { sendPasswordResetEmail } from "../lib/email";
 
 const ForgotPasswordPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -12,27 +12,30 @@ const ForgotPasswordPage: React.FC = () => {
   const [success, setSuccess] = useState("");
 
   const { resetPassword } = useAuth();
+  const { t } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      setError("Please enter a valid email address");
+      setError(t("auth.forgot.invalidEmail"));
       return;
     }
+
     setLoading(true);
     setError("");
     setSuccess("");
 
     try {
-      const { data, error } = await resetPassword(email);
+      const { error } = await resetPassword(email);
       if (error) {
         setError(error.message);
       } else {
-        setSuccess("Check your email for the password reset link!");
+        setSuccess(t("auth.forgot.success"));
       }
     } catch {
-      setError("An unexpected error occurred");
+      setError(t("auth.forgot.unexpectedError"));
     } finally {
       setLoading(false);
     }
@@ -43,25 +46,22 @@ const ForgotPasswordPage: React.FC = () => {
       <Container>
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <Link to="/" className="flex justify-center">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-teal-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">AM</span>
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-teal-500 bg-clip-text text-transparent">
-                Luraaya
-              </span>
-            </div>
+            <span className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-teal-500 bg-clip-text text-transparent">
+              Luraaya
+            </span>
           </Link>
+
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Reset your password
+            {t("auth.forgot.title")}
           </h2>
+
           <p className="mt-2 text-center text-sm text-gray-600">
-            Remember your password?{" "}
+            {t("auth.forgot.remember")}{" "}
             <Link
               to="/auth/login"
               className="font-medium text-purple-600 hover:text-purple-500"
             >
-              Sign in
+              {t("auth.forgot.signIn")}
             </Link>
           </p>
         </div>
@@ -86,7 +86,7 @@ const ForgotPasswordPage: React.FC = () => {
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Email address
+                  {t("auth.fields.email.label")}
                 </label>
                 <div className="mt-1">
                   <input
@@ -97,15 +97,16 @@ const ForgotPasswordPage: React.FC = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-purple-500 focus:border-purple-500"
-                    placeholder="Enter your email address"
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500"
                   />
                 </div>
               </div>
 
               <div>
                 <Button type="submit" fullWidth disabled={loading}>
-                  {loading ? "Sending..." : "Send reset link"}
+                  {loading
+                    ? t("auth.forgot.sending")
+                    : t("auth.forgot.sendLink")}
                 </Button>
               </div>
             </form>

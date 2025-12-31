@@ -21,6 +21,8 @@ import AuthCallback from "./pages/AuthCallback";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import Cookies from "./pages/Cookies";
+import { CookieConsentProvider } from "./contexts/CookieConsentContext";
+import CookieBanner from "./components/common/CookieBanner";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user, loading } = useAuth();
@@ -62,73 +64,72 @@ function App() {
   return (
     <LanguageProvider>
       <AuthProvider>
-        <Router>
-          <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
+        <CookieConsentProvider>
+          <Router>
+            <ScrollToTop />
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
 
-            <Route path="/datenschutz" element={<PrivacyPolicy />} />
-            <Route path="/agb" element={<TermsOfService />} />
-            <Route path="/cookies" element={<Cookies />} />
+              <Route path="/datenschutz" element={<PrivacyPolicy />} />
+              <Route path="/agb" element={<TermsOfService />} />
+              <Route path="/cookies" element={<Cookies />} />
 
-            <Route path="/auth/login" element={<LoginPage />} />
-            <Route path="/auth/signup" element={<SignUpPage />} />
-            <Route
-              path="/auth/forgot-password"
-              element={<ForgotPasswordPage />}
-            />
-            <Route
-              path="/auth/reset-password"
-              element={<ResetPasswordPage />}
-            />
-            <Route path="/auth/verify" element={<EmailVerify />} />
-            <Route path="/auth/callback" element={<AuthCallback />} />
+              <Route path="/auth/login" element={<LoginPage />} />
+              <Route path="/auth/signup" element={<SignUpPage />} />
+              <Route path="/auth/forgot-password" element={<ForgotPasswordPage />} />
+              <Route path="/auth/reset-password" element={<ResetPasswordPage />} />
+              <Route path="/auth/verify" element={<EmailVerify />} />
+              <Route path="/auth/callback" element={<AuthCallback />} />
 
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <DashboardHoroscopes />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dashboard/horoscopes"
-              element={
-                <ProtectedRoute>
-                  <DashboardHoroscopes />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dashboard/profile"
-              element={
-                <ProtectedRoute>
-                  <DashboardProfile />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dashboard/settings"
-              element={
-                <ProtectedRoute>
-                  <DashboardSettings />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dashboard/*"
-              element={
-                <ProtectedRoute>
-                  <DashboardHoroscopes />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-        </Router>
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <DashboardHoroscopes />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/dashboard/horoscopes"
+                element={
+                  <ProtectedRoute>
+                    <DashboardHoroscopes />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/dashboard/profile"
+                element={
+                  <ProtectedRoute>
+                    <DashboardProfile />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/dashboard/settings"
+                element={
+                  <ProtectedRoute>
+                    <DashboardSettings />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/dashboard/*"
+                element={
+                  <ProtectedRoute>
+                    <DashboardHoroscopes />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+
+            <CookieBanner />
+          </Router>
+        </CookieConsentProvider>
       </AuthProvider>
     </LanguageProvider>
   );
 }
+
 
 export default App;

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { useLanguage } from "../contexts/LanguageContext";
 import Button from "../components/common/Button";
 import Container from "../components/common/Container";
-import { supabase } from "../lib/supabase";
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -12,6 +12,7 @@ const LoginPage: React.FC = () => {
   const [error, setError] = useState("");
 
   const { signIn } = useAuth();
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -38,7 +39,7 @@ const LoginPage: React.FC = () => {
 
       navigate("/dashboard");
     } catch {
-      setError("An unexpected error occurred");
+      setError(t("auth.login.unexpectedError"));
     } finally {
       setLoading(false);
     }
@@ -49,25 +50,22 @@ const LoginPage: React.FC = () => {
       <Container>
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <Link to="/" className="flex justify-center">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-teal-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">AM</span>
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-teal-500 bg-clip-text text-transparent">
-                Luraaya
-              </span>
-            </div>
+            <span className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-teal-500 bg-clip-text text-transparent">
+              Luraaya
+            </span>
           </Link>
+
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign in to your account
+            {t("auth.login.title")}
           </h2>
+
           <p className="mt-2 text-center text-sm text-gray-600">
-            Or{" "}
+            {t("auth.login.noAccount")}{" "}
             <Link
               to="/auth/signup"
               className="font-medium text-purple-600 hover:text-purple-500"
             >
-              create a new account
+              {t("auth.login.createAccount")}
             </Link>
           </p>
         </div>
@@ -86,7 +84,7 @@ const LoginPage: React.FC = () => {
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Email address
+                  {t("auth.fields.email.label")}
                 </label>
                 <div className="mt-1">
                   <input
@@ -97,7 +95,7 @@ const LoginPage: React.FC = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-purple-500 focus:border-purple-500"
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500"
                   />
                 </div>
               </div>
@@ -107,7 +105,7 @@ const LoginPage: React.FC = () => {
                   htmlFor="password"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Password
+                  {t("auth.fields.password.label")}
                 </label>
                 <div className="mt-1">
                   <input
@@ -118,7 +116,7 @@ const LoginPage: React.FC = () => {
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-purple-500 focus:border-purple-500"
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500"
                   />
                 </div>
               </div>
@@ -129,14 +127,16 @@ const LoginPage: React.FC = () => {
                     to="/auth/forgot-password"
                     className="font-medium text-purple-600 hover:text-purple-500"
                   >
-                    Forgot your password?
+                    {t("auth.login.forgotPassword")}
                   </Link>
                 </div>
               </div>
 
               <div>
                 <Button type="submit" fullWidth disabled={loading}>
-                  {loading ? "Signing in..." : "Sign in"}
+                  {loading
+                    ? t("auth.login.signingIn")
+                    : t("auth.login.signIn")}
                 </Button>
               </div>
             </form>

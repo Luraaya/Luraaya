@@ -17,17 +17,23 @@ const Header: React.FC = () => {
   const location = useLocation();
 
   const goToSection = (id: string) => {
-    const scroll = () => {
+    const tryScroll = (attempt = 0) => {
       const el = document.getElementById(id);
-      if (!el) return;
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+      if (attempt < 40) {
+        requestAnimationFrame(() => tryScroll(attempt + 1));
+      }
     };
 
     if (location.pathname !== "/") {
       navigate(`/#${id}`);
-      setTimeout(scroll, 80);
+      requestAnimationFrame(() => tryScroll());
     } else {
-      scroll();
+      window.location.hash = id;
+      tryScroll();
     }
   };
 
@@ -42,17 +48,12 @@ const Header: React.FC = () => {
       }}
     >
       <Container>
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between h-[56px]">
           <Link
             to="/"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="flex items-center gap-2"
           >
-            <img
-              src="/logo.png"
-              alt="Luraaya Logo"
-              className="h-10 w-10 object-contain"
-            />
             <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-teal-500 bg-clip-text text-transparent">
               Luraaya
             </span>
@@ -107,9 +108,9 @@ const Header: React.FC = () => {
                       {t("nav.login")}
                     </Button>
                   </Link>
-                  <Link to="/auth/signup">
+                  <button type="button" onClick={() => goToSection("signup")}>
                     <Button size="sm">{t("nav.signup")}</Button>
-                  </Link>
+                  </button>
                 </>
               ))}
           </div>
@@ -200,9 +201,16 @@ const Header: React.FC = () => {
                       </Button>
                     </Link>
 
-                    <Link to="/auth/signup" onClick={closeMenu} className="flex-1">
-                      <Button fullWidth>{t("nav.signup")}</Button>
-                    </Link>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          goToSection("signup");
+                          closeMenu();
+                        }}
+                        className="flex-1"
+                      >
+                        <Button fullWidth>{t("nav.signup")}</Button>
+                      </button>
                   </div>
                 )}
               </nav>

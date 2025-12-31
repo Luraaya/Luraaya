@@ -397,6 +397,28 @@ const getTranslations = () => {
       "payment.canceled.body": "The payment was canceled. You can try again below at any time.",
       "errors.genericCheckout": "Payment could not be started. Please try again.",
  
+      // Registration
+      "auth.login.title": "Sign in to your account",
+      "auth.login.noAccount": "Or",
+      "auth.login.createAccount": "create a new account",
+      "auth.fields.email.label": "Email address",
+      "auth.fields.password.label": "Password",
+      "auth.login.forgotPassword": "Forgot your password?",
+      "auth.login.signIn": "Sign in",
+      "auth.login.signingIn": "Signing in...",
+      "auth.login.unexpectedError": "An unexpected error occurred. Please try again.",
+  
+      // Passwort Vergessen
+      "auth.forgot.title": "Reset your password",
+      "auth.forgot.remember": "Remember your password?",
+      "auth.forgot.signIn": "Sign in",
+      "auth.forgot.invalidEmail": "Please enter a valid email address.",
+      "auth.forgot.success": "Please check your email for the password reset link.",
+      "auth.forgot.unexpectedError": "An unexpected error occurred. Please try again.",
+      "auth.forgot.sendLink": "Send reset link",
+      "auth.forgot.sending": "Sending...",
+ 
+
       // Dashboard
       "dashboard.myHoroscopes": "My Horoscopes",
       "dashboard.profile": "Profile",
@@ -473,26 +495,18 @@ const getTranslations = () => {
       "dashboard.toggle": "Toggle",
       "dashboard.dangerZone": "Danger Zone",
       "dashboard.deleteAccount": "Delete Account",
-      "dashboard.deleteAccountDescription":
-        "Permanently delete your account and all associated data. This action cannot be undone.",
+      "dashboard.deleteAccountDescription": "Permanently delete your account and all associated data. This action cannot be undone.",
       "dashboard.deleteAccountButton": "Delete Account",
       "dashboard.emailUpdated": "Email updated successfully!",
       "dashboard.passwordMismatch": "New passwords do not match!",
       "dashboard.passwordUpdated": "Password updated successfully!",
-      "dashboard.cancelSubscriptionConfirm":
-        "Are you sure you want to cancel your subscription? You will lose access to premium features.",
-      "dashboard.cancelSubscriptionError":
-        "Error cancelling subscription. Please try again later.",
-      "dashboard.subscriptionCancelled":
-        "Subscription cancelled. You will retain access until your next billing date.",
-      "dashboard.deleteAccountConfirm":
-        'Type "DELETE" to confirm account deletion:',
-      "dashboard.accountDeletionRequested":
-        "Account deletion request submitted. You will receive a confirmation email.",
-      "dashboard.invalidCurrentPassword":
-        "Invalid current password. Please try again.",
-      "dashboard.passwordUpdateError":
-        "Error updating password. Please try again later.",
+      "dashboard.cancelSubscriptionConfirm": "Are you sure you want to cancel your subscription? You will lose access to premium features.",
+      "dashboard.cancelSubscriptionError": "Error cancelling subscription. Please try again later.",
+      "dashboard.subscriptionCancelled": "Subscription cancelled. You will retain access until your next billing date.",
+      "dashboard.deleteAccountConfirm": 'Type "DELETE" to confirm account deletion:',
+      "dashboard.accountDeletionRequested": "Account deletion request submitted. You will receive a confirmation email.",
+      "dashboard.invalidCurrentPassword": "Invalid current password. Please try again.",
+      "dashboard.passwordUpdateError": "Error updating password. Please try again later.",
 
       // Dashboard Navigation
       "dashboard.account": "Account",
@@ -514,17 +528,13 @@ const getTranslations = () => {
 
       // Notification Settings
       "dashboard.notifications.emailNotifications": "Email Notifications",
-      "dashboard.notifications.emailNotificationsDescription":
-        "Receive horoscopes and updates via email",
+      "dashboard.notifications.emailNotificationsDescription": "Receive horoscopes and updates via email",
       "dashboard.notifications.smsNotifications": "SMS Notifications",
-      "dashboard.notifications.smsNotificationsDescription":
-        "Receive horoscopes and alerts via SMS",
+      "dashboard.notifications.smsNotificationsDescription": "Receive horoscopes and alerts via SMS",
       "dashboard.notifications.pushNotifications": "Push Notifications",
-      "dashboard.notifications.pushNotificationsDescription":
-        "Receive push notifications in your browser",
+      "dashboard.notifications.pushNotificationsDescription": "Receive push notifications in your browser",
       "dashboard.notifications.weeklyDigest": "Weekly Digest",
-      "dashboard.notifications.weeklyDigestDescription":
-        "Get a weekly summary of your cosmic insights",
+      "dashboard.notifications.weeklyDigestDescription": "Get a weekly summary of your cosmic insights",
 
       // Common
       "common.email": "By email",
@@ -678,6 +688,7 @@ const getTranslations = () => {
       "terms.section12.body": "Die Anbieterin behält sich vor, diese Allgemeinen Geschäftsbedingungen jederzeit anzupassen. Wesentliche Änderungen werden den Nutzern in geeigneter Form mitgeteilt. Die fortgesetzte Nutzung des Angebots nach Inkrafttreten der Änderungen gilt als Zustimmung zur geänderten Fassung.",
       "terms.navigation.back": "Zurück",
       "terms.navigation.home": "Startseite",
+
       // Cookies
       "cookies.title": "Cookies",
       "cookies.intro": "Diese Cookies-Information erläutert den Einsatz von Cookies und vergleichbaren Technologien auf der Website sowie in den digitalen Dienstleistungen von Luraaya und ergänzt die Datenschutzerklärung.",
@@ -704,6 +715,33 @@ const getTranslations = () => {
       "cookies.navigation.back": "Zurück",
       "cookies.navigation.home": "Startseite",
 
+      // Cookie Banner
+      "common.close": "Schliessen",
+
+      "cookies.banner.title": "Ihre Privatsphäre ist uns wichtig.",
+      "cookies.banner.text": "Wir verwenden Cookies, um die Nutzung der Website zu verbessern. Sie können Ihre Auswahl jederzeit in den Cookie-Einstellungen anpassen. Details finden Sie in unserer",
+      "cookies.banner.privacyLink": "Datenschutzerklärung",
+      "cookies.banner.and": "und in der",
+      "cookies.banner.cookieLink": "Cookie-Richtlinie",
+      "cookies.banner.settings": "Cookie-Einstellungen",
+      "cookies.banner.rejectAll": "Alle ablehnen",
+      "cookies.banner.acceptAll": "Alle akzeptieren",
+
+      "cookies.settings.title": "Cookie-Einstellungen",
+      "cookies.settings.subtitle": "Wählen Sie aus, welche Kategorien Sie zulassen möchten.",
+      "cookies.settings.rejectAll": "Alle ablehnen",
+      "cookies.settings.acceptAll": "Alle akzeptieren",
+      "cookies.settings.save": "Speichern",
+
+      "cookies.categories.alwaysOn": "Immer aktiv",
+      "cookies.categories.necessary.title": "Notwendige Cookies",
+      "cookies.categories.necessary.desc": "Diese Cookies sind erforderlich, damit die Website funktioniert, und können nicht deaktiviert werden.",
+      "cookies.categories.functional.title": "Funktionale Cookies",
+      "cookies.categories.functional.desc": "Speichern Ihre Präferenzen und unterstützen Zusatzfunktionen.",
+      "cookies.categories.performance.title": "Performance Cookies",
+      "cookies.categories.performance.desc": "Helfen uns zu verstehen, wie die Website genutzt wird, um sie zu verbessern.",
+      "cookies.categories.targeting.title": "Targeting Cookies",
+      "cookies.categories.targeting.desc": "Ermöglichen es, Inhalte und Marketing relevanter auszuspielen.",
 
       // Hero Section Startseite
       "hero.badge": " ",
@@ -912,6 +950,28 @@ const getTranslations = () => {
       "payment.canceled.title": "Zahlung abgebrochen",
       "payment.canceled.body": "Die Zahlung wurde abgebrochen. Du kannst den Vorgang unten jederzeit erneut starten.",
       "errors.genericCheckout": "Zahlung konnte nicht gestartet werden. Bitte versuche es erneut.",
+
+
+      // Registration
+      "auth.login.title": "Anmeldung zu deinem Konto",
+      "auth.login.noAccount": "Oder",
+      "auth.login.createAccount": "neues Konto erstellen",
+      "auth.fields.email.label": "E-Mail-Adresse",
+      "auth.fields.password.label": "Passwort",
+      "auth.login.forgotPassword": "Passwort vergessen?",
+      "auth.login.signIn": "Anmelden",
+      "auth.login.signingIn": "Anmeldung läuft...",
+      "auth.login.unexpectedError": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es erneut.",
+
+      // Passwort vergessen
+      "auth.forgot.title": "Passwort zurücksetzen",
+      "auth.forgot.remember": "Du erinnerst dich an dein Passwort?",
+      "auth.forgot.signIn": "Anmelden",
+      "auth.forgot.invalidEmail": "Bitte gib eine gültige E-Mail-Adresse ein.",
+      "auth.forgot.success": "Bitte prüfe deine E-Mails für den Link zum Zurücksetzen des Passworts.",
+      "auth.forgot.unexpectedError": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es erneut.",
+      "auth.forgot.sendLink": "Link zum Zurücksetzen senden",
+      "auth.forgot.sending": "Wird gesendet...",
 
       // Dashboard
       "dashboard.myHoroscopes": "Meine Horoskope",
@@ -1341,6 +1401,27 @@ const getTranslations = () => {
       "payment.canceled.title": "Paiement annulé",
       "payment.canceled.body": "Le paiement a été annulé. Vous pouvez réessayer à tout moment ci-dessous.",
       "errors.genericCheckout": "Le paiement n’a pas pu etre demarre. Veuillez reessayer.",
+
+      // Registration
+      "auth.login.title": "Connexion à ton compte",
+      "auth.login.noAccount": "Ou",
+      "auth.login.createAccount": "créer un nouveau compte",
+      "auth.fields.email.label": "Adresse e-mail",
+      "auth.fields.password.label": "Mot de passe",
+      "auth.login.forgotPassword": "Mot de passe oublié?",
+      "auth.login.signIn": "Se connecter",
+      "auth.login.signingIn": "Connexion en cours...",
+      "auth.login.unexpectedError": "Une erreur inattendue est survenue. Veuillez réessayer.",
+
+      // Passwort vergessen
+      "auth.forgot.title": "Réinitialiser votre mot de passe",
+      "auth.forgot.remember": "Vous vous souvenez de votre mot de passe?",
+      "auth.forgot.signIn": "Se connecter",
+      "auth.forgot.invalidEmail": "Veuillez saisir une adresse e-mail valide.",
+      "auth.forgot.success": "Veuillez consulter vos e-mails pour obtenir le lien de réinitialisation du mot de passe.",
+      "auth.forgot.unexpectedError": "Une erreur inattendue est survenue. Veuillez réessayer.",
+      "auth.forgot.sendLink": "Envoyer le lien de réinitialisation",
+      "auth.forgot.sending": "Envoi en cours...",
 
       // Dashboard
       "dashboard.myHoroscopes": "Mes horoscopes",

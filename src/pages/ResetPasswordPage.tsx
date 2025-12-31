@@ -54,10 +54,7 @@ const ResetPasswordPage: React.FC = () => {
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <Link to="/" className="flex justify-center">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-teal-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">AM</span>
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-teal-500 bg-clip-text text-transparent">
+              <span className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-teal-500 bg-clip-text text-transparent">
                 Luraaya
               </span>
             </div>
