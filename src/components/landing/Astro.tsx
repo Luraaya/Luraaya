@@ -58,33 +58,21 @@ export default function Astro() {
 
   const refs = useRef<Record<string, HTMLDivElement | null>>({});
 
-    useEffect(() => {
-    if (!activeKey) return;
-    const el = refs.current[activeKey];
-    if (!el) return;
-
-    const id = window.setTimeout(() => {
-        el.scrollIntoView({ behavior: "smooth", block: "center" });
-    }, 120);
-
-    return () => window.clearTimeout(id);
-    }, [activeKey]);
 
   return (
-    <section className="bg-teal-50 py-12 md:py-20">
+    <section className="bg-teal-50 py-8 md:py-20">
       <Container>
-        <div className="text-center mb-10 md:mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 whitespace-pre-line">
+        <div className="text-center mb-8 md:mb-16">
+          <h2 className="text-2xl md:text-4xl font-bold mb-3 md:mb-4 whitespace-pre-line">
             {t("astroInfo.title")}
           </h2>
 
-          <p className="text-base md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             {t("astroInfo.description")}
-
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6">
           {CARD_KEYS.map(key => {
             const isActive = activeKey === key;
             const isDimmed = activeKey !== null && !isActive;
@@ -94,14 +82,13 @@ export default function Astro() {
                 key={key}
                 ref={el => (refs.current[key] = el)}
                 className={[
-                  "relative rounded-2xl border bg-white transition-all duration-800 ease-in-out flex flex-col",
-                    isActive
-                    ? "col-span-1 md:col-span-2 shadow-lg p-6 border-teal-200"
-                    : "p-4 md:p-5 border-gray-200 hover:shadow-md",
+                  "relative rounded-xl md:rounded-2xl border bg-white transition-all duration-800 ease-in-out flex flex-col",
+                  isActive
+                    ? "col-span-1 md:col-span-2 shadow-lg p-4 md:p-6 border-teal-200"
+                    : "p-3 md:p-5 border-gray-200 hover:shadow-md",
                   isDimmed ? "opacity-75" : "opacity-100"
                 ].join(" ")}
               >
-                {/* Klickbereich zum Öffnen/Schliessen */}
                 <button
                   type="button"
                   onClick={() => setActiveKey(isActive ? null : key)}
@@ -110,13 +97,15 @@ export default function Astro() {
                   <h3
                     className={[
                       "text-gray-900 font-semibold leading-snug",
-                      isActive ? "text-lg" : "text-base"
+                      isActive
+                        ? "text-base md:text-lg"
+                        : "text-sm md:text-base"
                     ].join(" ")}
                   >
                     {t(`astroInfo.cards.${key}.title`)}
                   </h3>
 
-                  <p className="mt-0.2 md:mt-1 text-sm text-gray-700 font-medium">
+                  <p className="mt-0.5 md:mt-1 text-xs md:text-sm text-gray-700 font-medium">
                     {t(`astroInfo.cards.${key}.title2`)}
                   </p>
 
@@ -126,7 +115,7 @@ export default function Astro() {
                     </p>
                   ) : isLaptop ? (
                     <p
-                      className="mt-3 text-sm text-gray-600"
+                      className="mt-2 text-sm text-gray-600"
                       style={clamp3Style}
                     >
                       {t(`astroInfo.cards.${key}.content`)}
@@ -135,18 +124,18 @@ export default function Astro() {
                 </button>
 
                 {!isActive && (
-                <div className="mt-auto w-full flex justify-end pt-2 md:pt-3">
+                  <div className="mt-auto w-full flex justify-end pt-1 md:pt-3">
                     <button
-                    type="button"
-                    onClick={(e) => {
-                        e.stopPropagation(); // optional, aber sauber, falls du später am Container klickst
+                      type="button"
+                      onClick={e => {
+                        e.stopPropagation();
                         setActiveKey(key);
-                    }}
-                    className="text-xs md:text-sm font-medium text-teal-600 underline underline-offset-2"
+                      }}
+                      className="text-xs md:text-sm font-medium text-teal-600 underline underline-offset-2"
                     >
-                    {t("common.extend")}
+                      {t("common.extend")}
                     </button>
-                </div>
+                  </div>
                 )}
 
                 {isActive && (
@@ -156,7 +145,7 @@ export default function Astro() {
                     <div className="grid grid-cols-2 gap-3 w-full">
                       <button
                         type="button"
-                        className="w-full rounded-2xl bg-gray-50 border py-3 font-semibold text-gray-800"
+                        className="w-full rounded-xl md:rounded-2xl bg-gray-50 border py-2.5 md:py-3 font-semibold text-gray-800"
                         onClick={() => setActiveKey(null)}
                       >
                         {t("common.close") || "Schliessen"}
@@ -164,7 +153,7 @@ export default function Astro() {
 
                       <button
                         type="button"
-                        className="w-full rounded-2xl bg-teal-600 text-white py-3 font-semibold hover:bg-teal-700"
+                        className="w-full rounded-xl md:rounded-2xl bg-teal-600 text-white py-2.5 md:py-3 font-semibold hover:bg-teal-700"
                         onClick={() => {
                           const idx = CARD_KEYS.indexOf(key);
                           setActiveKey(
@@ -181,34 +170,16 @@ export default function Astro() {
             );
           })}
         </div>
-        {/* Zusatztext unterhalb der Kacheln */}
-        <div className="mt-8 text-left border border-gray-200 rounded-lg bg-white p-4 md:p-6">
-        <div className="text-s mb-3">
-            {t("astroInfo.footerTitle")}
-        </div>
 
-        <ul className="list-disc pl-5 space-y-1">
-            <li className="text-sm md:text-base text-black">
-            {t("astroInfo.footerText")}
-            </li>
-            <li className="text-sm md:text-base text-black">
-            {t("astroInfo.footerText2")}
-            </li>
-            <li className="text-sm md:text-base text-black">
-            {t("astroInfo.footerText3")}
-            </li>
-        </ul>
-        </div>
-        {/* Call To Action Button ganz unten */}
-        <div className="mt-10 flex justify-center">
-        <a href="#signup">
+        <div className="mt-8 md:mt-10 flex justify-center">
+          <a href="#signup">
             <button
-            type="button"
-            className="rounded-2xl bg-teal-600 text-white px-8 py-4 font-semibold hover:bg-teal-700 transition"
+              type="button"
+              className="rounded-2xl bg-teal-600 text-white px-7 md:px-8 py-3 md:py-4 font-semibold hover:bg-teal-700 transition"
             >
-            {t("astroInfo.cta")}
+              {t("hero.cta")}
             </button>
-        </a>
+          </a>
         </div>
       </Container>
     </section>

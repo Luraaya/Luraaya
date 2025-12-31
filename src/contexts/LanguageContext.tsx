@@ -212,8 +212,7 @@ const getTranslations = () => {
 
       // Hero Sample Message Content
       "hero.sampleMessage.title": "Your Daily Horoscope",
-      "hero.sampleMessage.content":
-        "(...) The waxing Moon forms a trine with Pluto today, bringing your deeper inner currents more clearly to the surface. This constellation supports you in releasing what no longer serves you and making room for a decision that has already matured within you. (...)",
+      "hero.sampleMessage.content": "(...) This current lunar movement connects harmoniously with your personal horoscope structure. As a result, a particular area of life is activated in which inner clarity and a sense of confident decision-making can develop naturally. Themes that have matured internally can now be clearly acknowledged and brought to a conscious inner conclusion. (...)",
       "hero.sampleMessage.footer": "SMS • Daily • Premium",
 
       // Features Section
@@ -223,11 +222,11 @@ const getTranslations = () => {
       "features.description3": " ",
 
       // Kacheln Wie es funktioniert
-      "features.personalizedChart.title": "1. Your birth configuration",
+      "features.personalizedChart.title": "Your birth configuration",
       "features.personalizedChart.description": "Your birth data form the personal starting point for every interpretation. From them, an individual astrological structure is derived, providing the basis for the cosmic context.",
-      "features.dailyUpdates.title": "2. Cosmic context",
-      "features.dailyUpdates.description": "Ongoing planetary movements are analysed in relation to your personal starting point. This contextualisation highlights which themes are currently intensifying and which cycles are unfolding over a longer period. The calculations are based on astronomical data and established astrological methods.",
-      "features.multiChannel.title": "3. Your personal message",
+      "features.dailyUpdates.title": "Cosmic context",
+      "features.dailyUpdates.description": "The astrological elements (see the next section) are calculated and analysed in relation to your initial situation. The resulting interpretation shows which themes are currently intensifying and which cycles are operating over the longer term.",
+      "features.multiChannel.title": "Your personal message",
       "features.multiChannel.description": "From this context emerge personal insights for your everyday life. The underlying connections are clearly articulated and summarised into concise, precise, and personal impulses.",
       
       // Astro Info Section
@@ -270,16 +269,12 @@ const getTranslations = () => {
       "common.next": "Next",
       "common.extend": "More",
       
-      "astroInfo.footerTitle": "Info",
-      "astroInfo.footerText": "Toutes les sections font partie de votre horoscope personnel.",
-      "astroInfo.footerText2": "Dans le modèle de base, elles fournissent des indications claires et applicables au quotidien pour le moment présent.",
-      "astroInfo.footerText3": "Dans le modèle premium, ces mêmes sections sont analysées de manière plus approfondie, sur des périodes plus longues, avec davantage de liens et un accent plus marqué sur votre développement personnel.",
-
+     
        // Pricing Info
       "pricing.title": "Prices and Subscriptions",
       "pricing.subtitle": "Transparent, flexible, and cancel anytime.",
       "pricing.priceLine": "From CHF 16 per month",
-      "pricing.priceLine2": "From CHF 30.– per month",
+      "pricing.priceLine2": "From CHF 30 per month",
       "pricing.description": "Personal astrology insights, individually aligned with your birth configuration.",
       "pricing.bullets.customizable": "Individually customizable",
       "pricing.bullets.swissProvider": "Swiss provider",
@@ -727,8 +722,7 @@ const getTranslations = () => {
 
       // Hero Sample Message Content
       "hero.sampleMessage.title": "Dein Tageshoroskop",
-      "hero.sampleMessage.content":
-        "(...) Die zunehmende Mondphase steht heute in einem Trigon zu Pluto und lässt tiefere innere Bewegungen deutlicher werden. Diese Konstellation unterstützt dich, Altes gehen zu lassen und Platz für eine Entscheidung freizumachen, die bereits in dir gereift ist. (...)",
+      "hero.sampleMessage.content": "(...) Diese aktuelle Mondbewegung verbindet sich harmonisch mit deiner persönlichen Horoskopstruktur. Dadurch wird ein Lebensbereich aktiviert, in dem sich innere Klarheit und Entscheidungssicherheit auf natürliche Weise entwickeln können. Themen, die innerlich gereift sind, können jetzt klar benannt und innerlich abgeschlossen werden. (...)",
       "hero.sampleMessage.footer": "SMS • Täglich • Premium",
 
       // Features Section
@@ -738,11 +732,11 @@ const getTranslations = () => {
       "features.description3": " ",
 
       // Kacheln Wie es funktioniert
-      "features.personalizedChart.title": "1. Deine Geburtskonstellation",
+      "features.personalizedChart.title": "Deine Geburtskonstellation",
       "features.personalizedChart.description": "Deine Geburtsdaten bilden den persönlichen Ausgangspunkt jeder Einordnung. Aus ihnen entsteht eine individuelle astrologische Struktur und somit die Ausgangslage für die kosmische Einordnung.",
-      "features.dailyUpdates.title": "2. Kosmische Einordnung",
-      "features.dailyUpdates.description": "Die laufenden planetarischen Bewegungen werden in Bezug auf deine Ausgangslage analysiert. Die entstandene Einordnung zeigt, welche Themen sich aktuell verdichten und welche Zyklen längerfristig wirken. Die Berechnungen basieren auf astronomischen Daten und anerkannten astrologischen Verfahren.",
-      "features.multiChannel.title": "3. Deine persönlicher Hinweis",
+      "features.dailyUpdates.title": "Kosmische Einordnung",
+      "features.dailyUpdates.description": "Die astrologischen Elemente (siehe nächsten Abschnitt) werden in Bezug auf deine Ausgangslage berechnet und analysiert. Die entstandene Einordnung zeigt, welche Themen sich aktuell verdichten und welche Zyklen längerfristig wirken.",
+      "features.multiChannel.title": "Deine persönlicher Hinweis",
       "features.multiChannel.description": "Aus der Einordnung entstehen persönliche Hinweise für deinen Alltag. Die zugrunde liegenden Zusammenhänge werden verständlich aufbereitet und zu klaren Impulsen für dich zusammengefasst - präzise und persönlich.",
      
       // Astro Info Seciton
@@ -784,13 +778,6 @@ const getTranslations = () => {
       "common.close": "Schliessen",
       "common.next": "Nächstes",
       "common.extend": "Mehr",
-
-      "astroInfo.footerTitle": "Info",
-      "astroInfo.footerText": "Alle Bereiche sind Teil deines persönlichen Horoskops.",
-      "astroInfo.footerText2": "Im Basismodell erhältst du daraus verständliche, alltagsnahe Hinweise für den Moment.",
-      "astroInfo.footerText3": "Im Premiummodell werden dieselben Bereiche deutlich vertieft – mit längeren Zeiträumen, mehr Zusammenhängen und klarerem Fokus auf deine persönliche Entwicklung.",
-      
-      "astroInfo.cta": "Deine Hinweise erhalten",
       
       // Pricing Info
       "pricing.title": "Preise und Abonnemente",
@@ -1169,7 +1156,7 @@ const getTranslations = () => {
 
       // Hero Sample Message Content
       "hero.sampleMessage.title": "Votre horoscope du jour",
-      "hero.sampleMessage.content": "(...) La phase lunaire croissante forme aujourd’hui un trigone avec Pluton et fait ressortir plus clairement vos mouvements intérieurs les plus profonds. Cette constellation vous accompagne dans le processus de laisser partir l’ancien et de créer l’espace nécessaire pour une décision qui a déjà mûri en vous. (...)",
+      "hero.sampleMessage.content": "(...) Ce mouvement lunaire actuel se relie de manière harmonieuse à la structure de votre horoscope personnel. Il active ainsi un domaine de vie dans lequel la clarté intérieure et la sécurité dans les décisions peuvent se développer naturellement. Les thèmes qui ont mûri intérieurement peuvent désormais être clairement identifiés et amenés à une conclusion intérieure consciente. (...)",
       "hero.sampleMessage.footer": "SMS • Quotidien • Premium",
 
       // Features Section
@@ -1179,11 +1166,11 @@ const getTranslations = () => {
       "features.description3": " ",
         
       // Kacheln Wie es funktioniert
-      "features.personalizedChart.title": "1. Votre configuration de naissance",
+      "features.personalizedChart.title": "Votre configuration de naissance",
       "features.personalizedChart.description": "Vos données de naissance constituent le point de départ personnel de toute analyse. Elles permettent d’établir une structure astrologique individuelle, qui sert de base à la mise en perspective cosmique.",
-      "features.dailyUpdates.title": "2. Mise en perspective cosmique",
-      "features.dailyUpdates.description": "Les mouvements planétaires en cours sont analysés en lien avec votre situation de départ. Cette mise en perspective met en lumière les thèmes actuellement en jeu ainsi que les cycles qui s’inscrivent dans la durée. Les calculs reposent sur des données astronomiques et des méthodes astrologiques reconnues.",
-      "features.multiChannel.title": "3. Vos indications personnelles",
+      "features.dailyUpdates.title": "Mise en perspective cosmique",
+      "features.dailyUpdates.description": "Les éléments astrologiques (voir la section suivante) sont calculés et analysés en fonction de votre situation de départ. L’interprétation qui en résulte montre quels thèmes se renforcent actuellement et quels cycles agissent sur le plus long terme.",
+      "features.multiChannel.title": "Vos indications personnelles",
       "features.multiChannel.description": "De cette mise en perspective résultent des indications personnelles pour votre quotidien. Les liens sous-jacents sont présentés de manière claire et synthétisés en impulsions précises et personnelles.",
       
       // Astro section
@@ -1225,11 +1212,6 @@ const getTranslations = () => {
       "common.close": "Fermer",
       "common.next": "Suivant",
       "common.extend": "Plus",
-
-      "astroInfo.footerTitle": "Info",
-      "astroInfo.footerText": "Toutes les sections font partie de votre horoscope personnel.",
-      "astroInfo.footerText2": "Dans le modèle de base, elles fournissent des indications claires et applicables au quotidien pour le moment présent.",
-      "astroInfo.footerText3": "Dans le modèle premium, ces mêmes sections sont analysées de manière plus approfondie, sur des périodes plus longues, avec davantage de liens et un accent plus marqué sur votre développement personnel.",
 
       // Pricing Info
       "pricing.title": "Prix et abonnements",
