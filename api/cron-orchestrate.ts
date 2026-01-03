@@ -1,6 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { callComputeV1 } from "./_lib/computeClient.js";
-import { orchestrate } from "./_lib/orchestrate";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Method-Guard: Cron wird typischerweise per GET aufgerufen
