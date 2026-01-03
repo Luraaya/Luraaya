@@ -1,21 +1,69 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { callComputeV1 } from "./computeClient";
+import { GoogleAuth } from "google-auth-library";
 
+type ComputeRequestV1 = {
+  language: "de" | "en" | "fr";
+  plan_tier: "base" | "premium";
+  birth_date: string;
+  birth_time: string | null;
+  birth_place: {
+    lat: number;
+    lon: number;
+    place_id: string;
+    name: string;
+    country_code: string;
+  };
+  name: string;
+};
+
+function getRequiredEnv(name: string): string {
+  const v = process.env[name];
+  if (!v) throw new Error(`MISSING_ENV:${name}`);
+  return v;
+}
+
+async function getIdToken(audience: string): Promise<string> {
+  const saJson = getRequiredEnv("GOOGLE_APPLICATION_CREDENTIALS_JSON");
+  const credentials = JSON.parse(saJson);
+
+  const auth = new GoogleAuth({ credentials });
+  const client = await auth.getIdTokenClient(audience);
+  const headers = await client.getRequestHeaders();
+
+  const authHeader = headers["Authorization"] || headers["authorization"];
+  if (!authHeader) throw new Error("ID_TOKEN_MISSING_AUTH_HEADER");
+
+  const token = String(authHeader).replace(/^Bearer\s+/i, "").trim();
+  if (!token) throw new Error("ID_TOKEN_EMPTY");
+
+  return token;
+}
+
+async function callComputeV1(payload: ComputeRequestV1) {
+  const baseUrl = getRequiredEnv("COMPUTE_BASE_URL");
+  const url = `${baseUrl.replace(/\/$/, "")}/v1/compute`;
+
+  const idToken = await getIdToken(baseUrl);
+
+  const resp = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${idToken}`,
+    },
+    body: JSON.stringify(payload),
+  });
+
+  const rawText = await resp.text();
+  return { httpStatus: resp.status, rawText };
+}
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // Method-Guard: Cron wird typischerweise per GET aufgerufen
   if (req.method !== "GET") {
     res.setHeader("Allow", "GET");
     return res.status(405).json({ error: "METHOD_NOT_ALLOWED" });
   }
 
-  // Optionaler Guard: Cron-Secret (derzeit deaktiviert)
-  // const secret = req.headers["x-cron-secret"];
-  // if (!process.env.CRON_SECRET || secret !== process.env.CRON_SECRET) {
-  //   return res.status(401).json({ error: "UNAUTHORIZED" });
-  // }
-
-  // --- Schritt 18: IAM Smoke-Test (bewusst vorzeitig return) ---
   const ping = await callComputeV1({
     language: "de",
     plan_tier: "base",
@@ -35,12 +83,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     status: "ok",
     smoke: {
       httpStatus: ping.httpStatus,
-      bodyParsed: Boolean(ping.body),
       rawTextFirst200: ping.rawText.slice(0, 200),
     },
   });
-
-  // --- Produktiv-Orchestrator (nach Smoke-Test wieder aktivieren) ---
-  // const result = await orchestrate();
-  // return res.status(200).json({ status: "ok", result });
 }
