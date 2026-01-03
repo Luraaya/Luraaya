@@ -22,39 +22,31 @@ function getRequiredEnv(name: string): string {
   return v;
 }
 
-async function getIdToken(audience: string): Promise<string> {
+async function callComputeV1(payload: ComputeRequestV1) {
+  const baseUrl = getRequiredEnv("COMPUTE_BASE_URL"); // z.B. https://<service>-<hash>-<region>.a.run.app
+  const url = `${baseUrl.replace(/\/$/, "")}/v1/compute`;
+
   const saJson = getRequiredEnv("GOOGLE_APPLICATION_CREDENTIALS_JSON");
   const credentials = JSON.parse(saJson);
 
   const auth = new GoogleAuth({ credentials });
-  const client = await auth.getIdTokenClient(audience);
+  const client = await auth.getIdTokenClient(baseUrl);
 
-  // Token direkt vom Client holen (nicht via Headers)
-  const token = await (client as any).fetchIdToken(audience);
-
-  if (!token) throw new Error("ID_TOKEN_EMPTY");
-  return token;
-}
-
-
-
-async function callComputeV1(payload: ComputeRequestV1) {
-  const baseUrl = getRequiredEnv("COMPUTE_BASE_URL");
-  const url = `${baseUrl.replace(/\/$/, "")}/v1/compute`;
-
-  const idToken = await getIdToken(baseUrl);
-
-  const resp = await fetch(url, {
+  // Wichtig: client.request() setzt Authorization selbst (kein Token-Parsing nötig)
+  const resp = await (client as any).request({
+    url,
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${idToken}`,
-    },
-    body: JSON.stringify(payload),
+    headers: { "Content-Type": "application/json" },
+    data: payload, // google-auth-library nutzt gaxios; "data" ist korrekt
+    responseType: "text",
+    validateStatus: () => true, // wir wollen Status/Body auch bei 4xx sehen
   });
 
-  const rawText = await resp.text();
-  return { httpStatus: resp.status, rawText };
+  const httpStatus = resp?.status ?? 0;
+  const rawText =
+    typeof resp?.data === "string" ? resp.data : JSON.stringify(resp?.data ?? "");
+
+  return { httpStatus, rawText };
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
