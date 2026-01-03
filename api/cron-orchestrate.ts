@@ -27,17 +27,14 @@ async function getIdToken(audience: string): Promise<string> {
   const credentials = JSON.parse(saJson);
 
   const auth = new GoogleAuth({ credentials });
-  const client = await auth.getIdTokenClient(audience);
-  const headers = await client.getRequestHeaders();
 
-  const authHeader = headers["Authorization"] || headers["authorization"];
-  if (!authHeader) throw new Error("ID_TOKEN_MISSING_AUTH_HEADER");
+  // ID-Token direkt holen (robuster als Header-Parsing)
+  const token = await auth.fetchIdToken(audience);
 
-  const token = String(authHeader).replace(/^Bearer\s+/i, "").trim();
   if (!token) throw new Error("ID_TOKEN_EMPTY");
-
   return token;
 }
+
 
 async function callComputeV1(payload: ComputeRequestV1) {
   const baseUrl = getRequiredEnv("COMPUTE_BASE_URL");
