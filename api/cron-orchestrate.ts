@@ -27,13 +27,15 @@ async function getIdToken(audience: string): Promise<string> {
   const credentials = JSON.parse(saJson);
 
   const auth = new GoogleAuth({ credentials });
+  const client = await auth.getIdTokenClient(audience);
 
-  // ID-Token direkt holen (robuster als Header-Parsing)
-  const token = await auth.fetchIdToken(audience);
+  // Token direkt vom Client holen (nicht via Headers)
+  const token = await (client as any).fetchIdToken(audience);
 
   if (!token) throw new Error("ID_TOKEN_EMPTY");
   return token;
 }
+
 
 
 async function callComputeV1(payload: ComputeRequestV1) {
