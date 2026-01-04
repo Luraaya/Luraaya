@@ -9,6 +9,7 @@
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "crons": [
-    { "path": "/api/trigger-horoscope?key=${CRON_SECRET}", "schedule": "30 6 * * *" }
+    { "path": "/api/trigger-horoscope?key=${CRON_SECRET}", "schedule": "30 6 * * *" },
+    { "path": "/api/cron-finalize-subscriptions", "schedule": "0 3 * * *" }
   ]
 }

@@ -33,7 +33,7 @@ async function callComputeV1(payload: ComputeRequestV1) {
   const client = await auth.getIdTokenClient(baseUrl);
 
   // Wichtig: client.request() setzt Authorization selbst (kein Token-Parsing nötig)
-  const resp = await (client as any).request({
+ git push const resp = await (client as any).request({
     url,
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -74,7 +74,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     status: "ok",
     smoke: {
       httpStatus: ping.httpStatus,
-      rawTextFirst200: ping.rawText.slice(0, 200),
+      rawTextFirst500: rawText.slice(0, 500)
     },
   });
 }

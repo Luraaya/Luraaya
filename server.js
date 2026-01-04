@@ -7,6 +7,7 @@ import OpenAI from 'openai';
 import cron from 'node-cron';
 import twilio from 'twilio';
 import sgMail from '@sendgrid/mail';
+import { fetchPlacesFromMapbox } from './src/lib/placesAutocomplete.ts';
 
 // Load environment variables
 dotenv.config();
@@ -17,6 +18,60 @@ const port = 3001;
 // Middleware
 app.use(cors());
 app.use(express.json({ verify: (req, res, buf) => { req.rawBody = buf; } }));
+console.log('SERVER PID:', process.pid);
+
+app.use((req, res, next) => {
+  console.log('INCOMING', process.pid, req.method, req.originalUrl);
+  next();
+});
+
+// Health check endpoint (direct)
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    services: {
+      sendgrid: hasSendGrid,
+      twilio: hasTwilio,
+      supabase: !!process.env.VITE_SUPABASE_URL,
+      openai: !!process.env.OPENAI_API_KEY
+    }
+  });
+});
+
+// Health check endpoint (alias for /api/* paths)
+app.get('/api/health', (req, res) => {
+  res.json({
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    services: {
+      sendgrid: hasSendGrid,
+      twilio: hasTwilio,
+      supabase: !!process.env.VITE_SUPABASE_URL,
+      openai: !!process.env.OPENAI_API_KEY
+    }
+  });
+});
+
+// Places autocomplete (Mapbox)
+app.get('/api/places/autocomplete', async (req, res) => {
+  try {
+    const q = String(req.query.q ?? '').trim();
+    if (q.length < 2) return res.status(200).json({ results: [] });
+
+    const token = process.env.MAPBOX_ACCESS_TOKEN;
+    if (!token) return res.status(500).json({ error: 'MISSING_MAPBOX_TOKEN' });
+
+    const country = String(req.query.country ?? 'ch').trim().toLowerCase();
+    const limit = Math.max(1, Math.min(8, Number(req.query.limit ?? 8) || 8));
+
+    const results = await fetchPlacesFromMapbox({ q, token, country, limit });
+    return res.status(200).json({ results });
+  } catch (e) {
+    return res.status(500).json({ error: 'PLACES_AUTOCOMPLETE_FAILED' });
+  }
+});
+console.log("ROUTE LOADED: /api/places/autocomplete");
 
 const stripe = new Stripe(process.env.VITE_STRIPE_SECRET_KEY || "", {
   apiVersion: "2025-08-27.basil",
@@ -1117,6 +1172,7 @@ app.get('/health', (req, res) => {
   });
 });
 
+
 // Test SMS endpoint
 app.post('/test-sms', async (req, res) => {
   try {
@@ -1337,6 +1393,7 @@ app.post('/cancel-subscription', async (req, res) => {
     return res.status(500).json({ success: false, message: error?.message || 'Failed to cancel subscription' });
   }
 });
+
 
 app.listen(port, () => {
   console.log(`Webhook server listening at http://localhost:${port}`);

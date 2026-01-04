@@ -7,3 +7,5 @@
 .vscode/
 *.backup
 test-stripe-api.js
+
+.vercel

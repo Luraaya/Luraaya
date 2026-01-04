@@ -54,6 +54,12 @@ const Header: React.FC = () => {
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="flex items-center gap-2"
           >
+            <img
+              src="/logo7.png"
+              alt="Luraaya Logo"
+              className="h-12 w-auto"
+            />
+
             <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-teal-500 bg-clip-text text-transparent">
               Luraaya
             </span>

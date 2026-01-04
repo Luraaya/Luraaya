@@ -1,0 +1,2 @@
+pyswisseph==2.10.03.2
+python-dateutil==2.9.0.post0
