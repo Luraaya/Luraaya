@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { GoogleAuth } from "google-auth-library";
-import { orchestrate } from "./_lib/orchestrate";
+import { orchestrate } from "./_lib/orchestrate.js";
 
 type ComputeRequestV1 = {
   language: "de" | "en" | "fr";
