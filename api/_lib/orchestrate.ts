@@ -133,28 +133,54 @@ export async function orchestrate(): Promise<OrchestrateResult> {
     const desiredIdempotencyKey =
       job.idempotency_key ?? buildIdempotencyKey(job.id, scheduledAt);
 
-    // 2. Lock setzen: Wir verzichten hier auf .or() im Update-Filter, 
-    // da dies oft den "column does not exist" Fehler in der API triggert.
-    const { data: updated, error: upErr } = await supabase
-      .from("horoscope")
-      .update({
+
+    // 2. Lock setzen atomar ohne .or() im Update:
+    // Versuch A: locked_at IS NULL
+    let updated: any[] | null = null;
+
+    {
+    const { data: u1, error: e1 } = await supabase
+        .from("horoscope")
+        .update({
         locked_at: now,
         locked_by: runId,
         run_id: runId,
         attempt_count: (job.attempt_count ?? 0) + 1,
         idempotency_key: desiredIdempotencyKey,
         updated_at: now,
-      })
-      .match({ id: job.id, status: "queued" }) 
-      .filter("attempt_count", "lt", MAX_ATTEMPTS)
-      .select("id");
+        })
+        .match({ id: job.id, status: "queued" })
+        .is("locked_at", null)
+        .filter("attempt_count", "lt", MAX_ATTEMPTS)
+        .select("id");
 
-    if (upErr) {
-        console.error("DEBUG_UPDATE_PAYLOAD:", { id: job.id, now });
-        throw new Error(`DB_LOCK_UPDATE_FAILED:${upErr.message}`);
+    if (e1) throw new Error(`DB_LOCK_UPDATE_FAILED:${e1.message}`);
+    updated = (u1 as any[]) ?? null;
+    }
+
+    if (!updated || updated.length === 0) {
+    // Versuch B: locked_at <= cutoff
+    const { data: u2, error: e2 } = await supabase
+        .from("horoscope")
+        .update({
+        locked_at: now,
+        locked_by: runId,
+        run_id: runId,
+        attempt_count: (job.attempt_count ?? 0) + 1,
+        idempotency_key: desiredIdempotencyKey,
+        updated_at: now,
+        })
+        .match({ id: job.id, status: "queued" })
+        .lte("locked_at", cutoff)
+        .filter("attempt_count", "lt", MAX_ATTEMPTS)
+        .select("id");
+
+    if (e2) throw new Error(`DB_LOCK_UPDATE_FAILED:${e2.message}`);
+    updated = (u2 as any[]) ?? null;
     }
 
     if (!updated || updated.length === 0) continue;
+
 
     processed += 1;
     

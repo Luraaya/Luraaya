@@ -57,8 +57,6 @@ async function callComputeV1(payload: ComputeRequestV1) {
  * Main Handler für den Cron-Job / Orchestrator
  */
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // EXAKT HIER EINFÜGEN:
-  console.log("DEBUG_CHECK - Benutzte URL:", process.env.SUPABASE_URL);
 
   // Nur GET-Requests erlauben (typisch für Cron-Jobs)
   if (req.method !== "GET") {
