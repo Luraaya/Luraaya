@@ -183,7 +183,8 @@ export async function orchestrate(): Promise<OrchestrateResult> {
 
 
     processed += 1;
-    
+    break;
+
     // Hier würde normalerweise die weitere Verarbeitung (Compute/LLM) folgen.
     // Für diesen Test stoppen wir beim erfolgreichen Locking.
   }
