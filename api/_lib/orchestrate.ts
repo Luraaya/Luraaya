@@ -116,7 +116,7 @@ export async function orchestrate(): Promise<OrchestrateResult> {
     .not("scheduled_at", "is", null)
     .lte("scheduled_at", now)
     .lt("attempt_count", MAX_ATTEMPTS)
-    .or(`locked_at.is.null,locked_at.lt.${cutoff}`)
+    .or('locked_at.is.null')
     .order("scheduled_at", { ascending: true })
     .limit(25);
 
@@ -146,7 +146,7 @@ export async function orchestrate(): Promise<OrchestrateResult> {
       .eq("id", job.id)
       .eq("status", "queued")
       .lt("attempt_count", MAX_ATTEMPTS)
-      .or(`locked_at.is.null,locked_at.lt.${cutoff}`)
+      .or('locked_at.is.null')
       .select("id");
 
     if (upErr) throw new Error(`DB_LOCK_UPDATE_FAILED:${upErr.message}`);
