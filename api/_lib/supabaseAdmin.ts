@@ -22,13 +22,13 @@ export function getSupabaseAdmin() {
 
   // Initialisierung des Supabase Clients
   cached = createClient(url, key, {
+    db: { 
+      schema: 'public' 
+    },
     auth: { 
       autoRefreshToken: false, 
       persistSession: false 
-    },
-    global: { 
-      headers: { "Content-Type": "application/json" } 
-    },
+    }
   });
 
   return cached;
