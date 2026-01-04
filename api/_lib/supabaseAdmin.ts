@@ -1,20 +1,26 @@
-import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import { createClient } from "@supabase/supabase-js";
 
-let cached: SupabaseClient | null = null;
+let cached = null;
 
-export function getSupabaseAdmin(): SupabaseClient {
+export function getSupabaseAdmin() {
+  // Falls der Client bereits existiert, gib ihn zurück
   if (cached) return cached;
 
-  // Korrektur: Wir nutzen die Variablen ohne VITE_, da diese in Vercel hinterlegt sind
+  // Laden der Umgebungsvariablen aus Vercel
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
+  // Sicherheitscheck: Sind die Variablen überhaupt vorhanden?
   if (!url) throw new Error("MISSING_ENV:SUPABASE_URL");
   if (!key) throw new Error("MISSING_ENV:SUPABASE_SERVICE_ROLE_KEY");
 
-  // Debug-Log für die Vercel-Logs (hilft uns zu sehen, ob die URL stimmt)
-  console.log(`Connecting to Supabase Project: ${url.substring(0, 20)}...`);
+  // --- DEBUG LOGS (WICHTIG!) ---
+  // Diese Zeilen erscheinen in deinem Vercel Dashboard unter "Logs"
+  console.log("DEBUG_CONNECTION_URL:", url);
+  console.log("DEBUG_KEY_START:", key.substring(0, 8));
+  // ------------------------------
 
+  // Initialisierung des Supabase Clients
   cached = createClient(url, key, {
     auth: { 
       autoRefreshToken: false, 
