@@ -302,7 +302,16 @@ export async function orchestrate(): Promise<OrchestrateResult> {
         calcVersion: job.calc_version as string,
         factsHash: job.facts_hash as string,
         });
-    } else {
+    await markSent({
+        jobId: job.id,
+        runId,
+        providerMessageId: "DUMMY",
+        content: "<DUMMY_CONTENT>",
+        promptVersion: "1.0.0",
+        factsHash: job.facts_hash as string,
+        calcVersion: job.calc_version as string,
+        });
+} else {
     const language = job.language;
     const planTier = job.plan_tier;
     const userId = job.user_id;
