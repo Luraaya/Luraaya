@@ -1,5 +1,6 @@
 import crypto from "crypto";
-import { getSupabaseAdmin } from "./supabaseAdmin";
+// WICHTIG: .js Endung für den ESM-Modus auf Vercel
+import { getSupabaseAdmin } from "./supabaseAdmin.js";
 
 export type OrchestrateResult = {
   processed: number;
@@ -34,7 +35,6 @@ function sha256Hex(input: string): string {
 }
 
 function buildIdempotencyKey(jobId: string, scheduledAtIso: string): string {
-  // Verbindliche Formel: sha256(horoscope_id + "|" + scheduled_at_iso)
   return sha256Hex(`${jobId}|${scheduledAtIso}`);
 }
 
@@ -61,7 +61,6 @@ async function markSent(args: {
       prompt_version: args.promptVersion,
       facts_hash: args.factsHash,
       schema_version: "v1",
-      // calc_version Feld existiert in horoscope nicht; kommt spaeter in Faktenlogik, daher hier nicht speichern
       error_code: null,
       error_message: null,
       locked_at: null,
@@ -106,11 +105,10 @@ async function markFailed(args: {
 export async function orchestrate(): Promise<OrchestrateResult> {
   const supabase = getSupabaseAdmin();
 
-  const runId = crypto.randomUUID(); // uuid v4
+  const runId = crypto.randomUUID(); 
   const now = nowIso();
   const cutoff = ttlCutoffIso();
 
-  // 1) Kandidaten lesen (read-only)
   const { data, error } = await supabase
     .from("horoscope")
     .select("id,status,scheduled_at,locked_at,attempt_count,idempotency_key")
@@ -128,7 +126,6 @@ export async function orchestrate(): Promise<OrchestrateResult> {
 
   let processed = 0;
 
-  // 2) Atomar locken pro Job (Update-Condition)
   for (const job of candidates) {
     const scheduledAt = job.scheduled_at;
     if (!scheduledAt) continue;
@@ -154,12 +151,9 @@ export async function orchestrate(): Promise<OrchestrateResult> {
 
     if (upErr) throw new Error(`DB_LOCK_UPDATE_FAILED:${upErr.message}`);
 
-    // Wenn 0 Rows: Job wurde parallel gelockt, ueberspringen
     if (!updated || updated.length === 0) continue;
 
     processed += 1;
-
-    // In diesem Schritt noch keine weitere Verarbeitung
   }
 
   return { processed, sent: 0, failed: 0 };
