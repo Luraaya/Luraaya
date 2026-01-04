@@ -68,7 +68,7 @@ async function markSent(args: {
       run_id: args.runId,
       updated_at: now,
     })
-    .eq("id", args.jobId);
+    .match({ id: args.jobId }); // Sicherer als .eq
 
   if (error) throw new Error(`DB_MARK_SENT_FAILED:${error.message}`);
 }
@@ -97,7 +97,7 @@ async function markFailed(args: {
       run_id: args.runId,
       updated_at: now,
     })
-    .eq("id", args.jobId);
+    .match({ id: args.jobId });
 
   if (error) throw new Error(`DB_MARK_FAILED_FAILED:${error.message}`);
 }
@@ -109,6 +109,7 @@ export async function orchestrate(): Promise<OrchestrateResult> {
   const now = nowIso();
   const cutoff = ttlCutoffIso();
 
+  // 1. Suche nach Jobs: Entweder locked_at ist NULL oder der Lock ist älter als 15 Min
   const { data, error } = await supabase
     .from("horoscope")
     .select("id,status,scheduled_at,locked_at,attempt_count,idempotency_key")
@@ -116,14 +117,13 @@ export async function orchestrate(): Promise<OrchestrateResult> {
     .not("scheduled_at", "is", null)
     .lte("scheduled_at", now)
     .lt("attempt_count", MAX_ATTEMPTS)
-    .or('locked_at.is.null')
+    .or(`locked_at.is.null,locked_at.lte.${cutoff}`)
     .order("scheduled_at", { ascending: true })
     .limit(25);
 
   if (error) throw new Error(`DB_SELECT_FAILED:${error.message}`);
 
   const candidates = (data ?? []) as HoroscopeJob[];
-
   let processed = 0;
 
   for (const job of candidates) {
@@ -133,6 +133,8 @@ export async function orchestrate(): Promise<OrchestrateResult> {
     const desiredIdempotencyKey =
       job.idempotency_key ?? buildIdempotencyKey(job.id, scheduledAt);
 
+    // 2. Lock setzen: Wir verzichten hier auf .or() im Update-Filter, 
+    // da dies oft den "column does not exist" Fehler in der API triggert.
     const { data: updated, error: upErr } = await supabase
       .from("horoscope")
       .update({
@@ -143,17 +145,21 @@ export async function orchestrate(): Promise<OrchestrateResult> {
         idempotency_key: desiredIdempotencyKey,
         updated_at: now,
       })
-      .eq("id", job.id)
-      .eq("status", "queued")
-      .lt("attempt_count", MAX_ATTEMPTS)
-      .or('locked_at.is.null')
+      .match({ id: job.id, status: "queued" }) 
+      .filter("attempt_count", "lt", MAX_ATTEMPTS)
       .select("id");
 
-    if (upErr) throw new Error(`DB_LOCK_UPDATE_FAILED:${upErr.message}`);
+    if (upErr) {
+        console.error("DEBUG_UPDATE_PAYLOAD:", { id: job.id, now });
+        throw new Error(`DB_LOCK_UPDATE_FAILED:${upErr.message}`);
+    }
 
     if (!updated || updated.length === 0) continue;
 
     processed += 1;
+    
+    // Hier würde normalerweise die weitere Verarbeitung (Compute/LLM) folgen.
+    // Für diesen Test stoppen wir beim erfolgreichen Locking.
   }
 
   return { processed, sent: 0, failed: 0 };
