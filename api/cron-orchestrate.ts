@@ -23,7 +23,7 @@ function getRequiredEnv(name: string): string {
 }
 
 async function callComputeV1(payload: ComputeRequestV1) {
-  const baseUrl = getRequiredEnv("COMPUTE_BASE_URL"); // z.B. https://<service>-<hash>-<region>.a.run.app
+  const baseUrl = getRequiredEnv("COMPUTE_BASE_URL");
   const url = `${baseUrl.replace(/\/$/, "")}/v1/compute`;
 
   const saJson = getRequiredEnv("GOOGLE_APPLICATION_CREDENTIALS_JSON");
@@ -32,14 +32,14 @@ async function callComputeV1(payload: ComputeRequestV1) {
   const auth = new GoogleAuth({ credentials });
   const client = await auth.getIdTokenClient(baseUrl);
 
-  // Wichtig: client.request() setzt Authorization selbst (kein Token-Parsing nötig)
- git push const resp = await (client as any).request({
+  // Hier war das "git push" - jetzt entfernt:
+  const resp = await (client as any).request({
     url,
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    data: payload, // google-auth-library nutzt gaxios; "data" ist korrekt
+    data: payload,
     responseType: "text",
-    validateStatus: () => true, // wir wollen Status/Body auch bei 4xx sehen
+    validateStatus: () => true,
   });
 
   const httpStatus = resp?.status ?? 0;
@@ -55,26 +55,34 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: "METHOD_NOT_ALLOWED" });
   }
 
-  const ping = await callComputeV1({
-    language: "de",
-    plan_tier: "base",
-    birth_date: "2000-01-01",
-    birth_time: null,
-    birth_place: {
-      lat: 47.3769,
-      lon: 8.5417,
-      place_id: "smoke",
-      name: "Zuerich",
-      country_code: "CH",
-    },
-    name: "Test",
-  });
+  try {
+    const ping = await callComputeV1({
+      language: "de",
+      plan_tier: "base",
+      birth_date: "2000-01-01",
+      birth_time: null,
+      birth_place: {
+        lat: 47.3769,
+        lon: 8.5417,
+        place_id: "smoke",
+        name: "Zuerich",
+        country_code: "CH",
+      },
+      name: "Test",
+    });
 
-  return res.status(200).json({
-    status: "ok",
-    smoke: {
-      httpStatus: ping.httpStatus,
-      rawTextFirst500: rawText.slice(0, 500)
-    },
-  });
+    return res.status(200).json({
+      status: "ok",
+      smoke: {
+        httpStatus: ping.httpStatus,
+        // Korrigiert: Zugriff auf ping.rawText statt nur rawText
+        rawTextFirst500: ping.rawText.slice(0, 500)
+      },
+    });
+  } catch (err: any) {
+    return res.status(500).json({
+      status: "error",
+      message: err.message
+    });
+  }
 }
