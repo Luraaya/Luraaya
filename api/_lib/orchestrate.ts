@@ -382,6 +382,16 @@ export async function orchestrate(): Promise<OrchestrateResult> {
         calcVersion,
         factsHash,
     });
+    await markSent({
+        jobId: job.id,
+        runId,
+        providerMessageId: "DUMMY",
+        content: "<DUMMY_CONTENT>",
+        promptVersion: "1.0.0",
+        factsHash,
+        calcVersion,
+        });
+
     }
 
 
